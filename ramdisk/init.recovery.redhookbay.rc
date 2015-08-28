@@ -1,12 +1,25 @@
 # REDHOOKBAY specific rules for recovery os
-on early-init
-    insmod /lib/modules/pnwdisp.ko
-    insmod /lib/modules/pvrsgx.ko
-    insmod /lib/modules/texfat.ko
-    insmod /lib/modules/tntfs.ko
-    chmod 0600 /dev/dri/controlD64
-    start thermald
-    chmod 0770 /upi_ug31xx
+
+
+on load_all_props_action
+    load_all_props
+
+on firmware_mounts_complete
+   rm /dev/.booting
+
+on fs
+    mount_all ./fstab.redhookbay
+
+on late-init
+    #export LD_PRELOAD libsigchain.so
+    trigger fs
+    trigger load_all_props_action
+
+    # Remove a file to wake up anything waiting for firmware.
+    trigger firmware_mounts_complete
+
+    trigger early-boot
+    trigger boot
 
 on init
     # Android creates by-name disk links with the disk controller
@@ -21,12 +34,6 @@ on init
     mount ext4 /dev/block/by-name/factory /factory nosuid nodev noatime barrier=1,data=ordered
 
 on boot
-    insmod /lib/modules/rmi4.ko boot_mode=1
-    setprop sys.usb.config adb
-    trigger firmware_mounts_complete
-
-on firmware_mounts_complete
-    rm /dev/.booting
 
 on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/enable 0
@@ -36,6 +43,9 @@ on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
 
+service killservices /sbin/killservices.sh
+    oneshot
+
 service intel_prop /sbin/intel_prop
     oneshot
 
@@ -43,12 +53,17 @@ service intel_prop /sbin/intel_prop
 service watchdogd /sbin/watchdogd 60 20
     oneshot
 
-service thermald /sbin/thermald ROS
-    class core
-    user root
+on property:recovery.perf.mode=1
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
 
-service upi_ug31xx /upi_ug31xx
-    class core
+on property:recovery.perf.mode=0
+    write /sys/devices/system/cpu/cpu0/online 0
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
 
 # Reset the watchdog counter once boot is completed
 on property:init.svc.recovery=running

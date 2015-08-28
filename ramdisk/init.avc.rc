@@ -49,7 +49,7 @@ on post-fs
 on post-fs
 #  Permissions for Vibrator
     chown system system /sys/devices/pci0000:00/0000:00:06.6/vibrator
-    chown media system /sys/devices/platform/ctp_rhb_cs42l73/Cloverview\ virtual-ASP/pmdown_time
+    chown media system /sys/devices/platform/ctp_audio/Cloverview\ virtual-ASP/pmdown_time
 
 service ad_proxy /system/xbin/ad_proxy
     class core

@@ -1,0 +1,15 @@
+./lib/prebuild_modules/tntfs.ko
+./lib/prebuild_modules/texfat.ko
+atomisp-css2401a0_legacy_v21.ko
+atomisp-css2300.ko
+t4k35.ko
+atomisp-css2401a0_v21.ko
+imx111.ko
+mn34130.ko
+atomisp-css2400b0_v21.ko
+t4k37.ko
+ov8830.ko
+mt9m114.ko
+videobuf-core.ko
+t4k35_180.ko
+videobuf-vmalloc.ko

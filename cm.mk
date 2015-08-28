@@ -19,7 +19,14 @@ PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.
 
 # Inherit device configuration change remove aosp full
 $(call inherit-product, device/asus/a500cg/full_a500cg.mk)
+# Vendor blob files
+$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
+# Gapps
+$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 
+
+# Inherit device
+#$(call inherit-product, device/asus/a500cg/device.mk)
 
 ## Device identifier. This must come after all inclusions
 #PRODUCT_DEVICE := a500cg
@@ -41,8 +48,3 @@ TARGET_VENDOR := asus
 TARGET_VENDOR_PRODUCT_NAME := cm_a500cg
 TARGET_VENDOR_DEVICE_NAME := ASUS_T00F
 
-# Vendor blob files
-$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
-
-# Inherit device
-$(call inherit-product, device/asus/a500cg/device.mk)

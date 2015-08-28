@@ -8,10 +8,11 @@
 # GPS
 # remove?
 /dev/gsmtty7                u:object_r:gps_device:s0
-/system/bin/gpsd            u:object_r:gpsd_exec:s0
+#/system/bin/gpsd            u:object_r:gpsd_exec:s0
 /system/bin/gpslogd         u:object_r:gpsd_exec:s0
 /system/bin/gpscerd         u:object_r:gpsd_exec:s0
-
+/data/gps/brcm_gps_unix_socket  u:object_r:bluetooth_data_file:s0
+/data/gps(/.*)?                 u:object_r:bluetooth_data_file:s0
 # mmgr
 #/dev/socket/mmgr            u:object_r:mmgr_socket:s0
 /dev/socket/mmgr[0-9]*      u:object_r:mmgr_socket:s0
@@ -34,7 +35,7 @@
 /dev/kxtj9_dev                          u:object_r:sensors_device:s0
 /dev/asus_gsensor                       u:object_r:sensors_device:s0
 /dev/lightsensor                        u:object_r:sensors_device:s0
-/system/bin/akmd09911                   u:object_r:akmd_exec:s0
+/system/bin/akmd09911                   u:object_r:sensors_exec:s0
 /system/bin/a600cg_akmd09911            u:object_r:sensors_exec:s0
 /dev/i2c(.*)?                           u:object_r:i2c_device:s0
 
@@ -51,7 +52,7 @@
 /system/bin/bd_prov             u:object_r:bd_prov_exec:s0
 
 # thermal management
-#/sys/devices/virtual/thermal(.*)?      u:object_r:sysfs_thermal_management:s0
+/sys/devices/virtual/thermal(.*)?      u:object_r:sysfs_thermal_management:s0
 /dev/socket/logconfig                  u:object_r:thermal_socket:s0
 
 # healthd

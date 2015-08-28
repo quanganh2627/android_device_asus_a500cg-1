@@ -24,3 +24,4 @@ allow mmgr sysfs:file write;
 allow mmgr log_file:file {write read open unlink getattr};
 allow mmgr system_data_file:dir { add_name create remove_name write};
 allow mmgr system_data_file:file {create write open unlink };
+allow radio_device sysfs:filesystem associate;

@@ -6,8 +6,8 @@
 
 import /init.environ.rc
 import /init.usb.rc
-import /init.${ro.hardware}.rc
-import /init.${ro.zygote}.rc
+import /init.redhookbay.rc
+import /init.zygote32.rc
 import /init.trace.rc
 
 on early-init

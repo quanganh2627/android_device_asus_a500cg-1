@@ -1,1 +1,4 @@
 allow healthd self:capability { dac_override dac_read_search };
+#============= healthd ==============
+allow healthd tmpfs:chr_file ioctl;
+allow healthd tmpfs:sock_file write;

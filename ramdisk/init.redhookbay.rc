@@ -1,21 +1,21 @@
-import init.superuser.rc
-import init.common.rc
-import init.debug.rc
-import init.diag.rc
-import init.avc.rc
-import init.wireless.rc
-import init.modem.rc
-#import init.config_init.rc
-import init.wifi.rc
-#import init.widi.rc
-import init.a500cg.usb.rc
-import init.wl128x.rc
-import init.gps.rc
-import init.bt.rc
-import init.compass.rc
+import /init.cm.rc
+import /init.common.rc
+import /init.debug.rc
+import /init.diag.rc
+import /init.avc.rc
+import /init.wireless.rc
+import /init.modem.rc
+#import /init.config_init.rc
+import /init.wifi.rc
+#import /init.widi.rc
+import /init.a500cg.usb.rc
+import /init.wl128x.rc
+import /init.gps.rc
+import /init.bt.rc
+import /init.compass.rc
 
-import init.product.rc
-import init.logtool.rc
+import /init.product.rc
+import /init.logtool.rc
 
 
 on early-init

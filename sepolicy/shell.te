@@ -8,3 +8,9 @@ userdebug_or_eng(`
 allow shell logcat_exec:file getattr;
 allow shell nvm_server_exec:file {getattr};
 allow shell netd_exec:file {getattr execute};
+#============= shell ==============
+allow shell tmpfs:chr_file { read write ioctl open };
+allow shell tmpfs:file open;
+allow shell tmpfs:sock_file write;
+#============= shared_relro ==============
+allow shared_relro tmpfs:chr_file { read write ioctl open getattr };

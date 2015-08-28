@@ -1,3 +1,25 @@
 type customize, domain;
 type customize_exec, exec_type, file_type;
 init_daemon_domain(customize);
+#============= adbd ==============
+allow adbd tmpfs:chr_file { read write ioctl open getattr };
+allow adbd tmpfs:lnk_file read;
+allow adbd tmpfs:sock_file write;
+
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel tmpfs:chr_file { read write };
+allow bcu_cpufreqrel tmpfs:file open;
+allow bcu_cpufreqrel tmpfs:sock_file write;
+
+#============= dex2oat ==============
+allow dex2oat tmpfs:chr_file { read write getattr };
+allow dex2oat tmpfs:file open;
+allow dex2oat tmpfs:sock_file write;
+
+#============= dhcp ==============
+allow dhcp tmpfs:chr_file { read write ioctl open getattr };
+allow dhcp tmpfs:file open;
+allow dhcp tmpfs:sock_file write;
+
+#============= drmserver ==============
+allow drmserver tmpfs:chr_file ioctl;

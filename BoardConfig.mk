@@ -1,7 +1,12 @@
+
 include $(GENERIC_X86_CONFIG_MK)
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+COMMON_PATH := device/intel/common
+SUPPORT_PATH := vendor/intel/support
+
 LOCAL_PATH := device/asus/a500cg
+
 BOARD_CREATE_MODPROBE_SYMLINK := true
+TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -13,7 +18,6 @@ TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
 TARGET_CPU_SMP := true
-TARGET_RELEASETOOLS_EXTENSIONS := device/asus/a500cg/releasetools
 
 INTEL_INGREDIENTS_VERSIONS := true
 LOCAL_CFLAGS += -DARCH_IA32
@@ -30,7 +34,7 @@ BUILD_EMULATOR := false
 BUILD_ARM_FOR_X86 := true
 
 # Atom optimizations to improve memory benchmarks.
--include $(LOCAL_PATH)/OptAtom.mk
+-include device/asus/a500cg/OptAtom.mk
 
 TARGET_RECOVERY_FSTAB := device/asus/a500cg/ramdisk/fstab.redhookbay
 
@@ -51,6 +55,13 @@ BOARD_MALLOC_ALIGNMENT := 16
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
+# Inline kernel building
+#TARGET_KERNEL_BUILT_FROM_SOURCE := true
+#TARGET_KERNEL_SOURCE := kernel/asus/T00F/kernel
+#TARGET_KERNEL_CONFIG := i386_ctp_defconfig
+#TARGET_KERNEL_ARCH := x86
+#BOARD_KERNEL_IMAGE_NAME := bzImage
+
 # Kernel Build from source inline
 # TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 # TARGET_KERNEL_CONFIG := a500cg_defconfig
@@ -64,7 +75,8 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # prebuild source kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage
+BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
+TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/kernel
 DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot.img
 DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery-WW-3.23.40.52.img
 
@@ -75,10 +87,6 @@ cmdline_extra := watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxx
 cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 
 cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
-
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -134,7 +142,11 @@ BUILD_ARM_FOR_X86 := true
 
 # HW_Renderer
 USE_OPENGL_RENDERER := true
-
+BOARD_EGL_CFG := device/asus/a500cg/configs/egl.cfg
+BOARD_ALLOW_EGL_HIBERNATION := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
 # DPST
 INTEL_DPST := true
 
@@ -142,10 +154,11 @@ INTEL_DPST := true
 BOARD_USES_HWCOMPOSER := true
 
 # RILD
-#RIL_SUPPORTS_SEEK := true
+RIL_SUPPORTS_SEEK := true
 
 # GPS
 BOARD_HAVE_GPS := true
+include device/intel/common/gps/GpsBoardConfig.mk
 
 # RMT_STORAGE
 BOARD_USES_LEGACY_MMAP := true
@@ -167,16 +180,29 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery global
-TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/ramdisk/recovery.init.redhookbay.rc
+#TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-
+TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/kernel-build
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
 TW_INCLUDE_CRYPTO := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
+TARGET_RECOVERY_SCREEN_WIDTH := 720
+TARGET_RECOVERY_SCREEN_HEIGHT := 1280
+BOARD_HAS_NO_SELECT_BUTTON := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "/emmc"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "/external_sd"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_EXCLUDE_SUPERSU := false
+BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
+BOARD_SUPPRESS_EMMC_WIPE := true
+
 
 
 # SELinux
@@ -221,9 +247,11 @@ BOARD_SEPOLICY_UNION += \
     untrusted_app.te
 
 # Build From source
+ENABLE_GRAPHICS_IMG := true
+ENABLE_GEN_GRAPHICS := true
 USE_INTEL_MDP := true
 BUILD_WITH_FULL_STAGEFRIGHT := true
-BOARD_USES_WRS_OMXIL_CORE := true
+#BOARD_USES_WRS_OMXIL_CORE := true
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
@@ -234,3 +262,32 @@ USE_MINIKIN := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+BLOCK_BASED_OTA := false
+BOARD_CUSTOM_MAKE_RECOVERY_PATCH := vendor/intel/hardware/libintelprov/make_recovery_patch
+TARGET_RELEASETOOLS_EXTENSIONS := device/asus/a500cg/releasetools
+TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools/make_recovery_patch
+#TARGET_RELEASETOOLS_EXTENSIONS := vendor/intel/hardware/libintelprov
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
+TARGET_RECOVERY_UPDATER_LIBS := libintel_updater
+TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J
+#TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
+#    libcgpt_static \
+#    liboempartitioning_static \
+PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/egl:/system/vendor/lib/egl
+#RECOVERY_VARIANT := twrp
+TARGET_PROVIDES_INIT_RC := true
+USE_OSIP := true
+
+# Radio
+BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
+SIM_COUNT := 2
+
+# Init
+TARGET_IGNORE_RO_BOOT_SERIALNO := true
+# Hardware
+BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
+#BOARD_PROVIDES_INIT := true
+ENABLE_SENSOR_HUB := true
+REF_DEVICE_NAME := redhookbay
+BOARD_FUNCTIONFS_HAS_SS_COUNT := true

@@ -17,3 +17,10 @@ allow system_server surfaceflinger_tmpfs:file { read write };
 
 allow system_server default_android_service:service_manager {add};
 
+#============= system_server ==============
+allow system_server init_tmpfs:file { read getattr unlink open };
+allow system_server recovery_cache_file:dir { read open };
+allow system_server tmpfs:chr_file { read write ioctl open getattr };
+allow system_server tmpfs:dir { write remove_name };
+allow system_server tmpfs:lnk_file read;
+allow system_server tmpfs:sock_file write;

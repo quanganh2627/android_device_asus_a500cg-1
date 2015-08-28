@@ -30,4 +30,4 @@ PRODUCT_MANUFACTURER := asus
 
 $(call inherit-product, device/asus/a500cg/device.mk)
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
-$(call inherit-product-if-exists, vendor/google/gapps/gapps-vendor.mk)
+$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)

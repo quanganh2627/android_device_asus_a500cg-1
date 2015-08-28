@@ -1,3 +1,14 @@
 allow untrusted_app unlabeled:filesystem {getattr};
 allow untrusted_app debugfs:file { getattr };
 allow untrusted_app logcat_exec:file {execute};
+#============= untrusted_app ==============
+allow untrusted_app bluetooth_data_file:dir getattr;
+allow untrusted_app bluetooth_data_file:file getattr;
+allow untrusted_app hosts_data_file:file { read getattr open };
+allow untrusted_app property_data_file:dir getattr;
+allow untrusted_app tmpfs:chr_file { read write ioctl open getattr };
+allow untrusted_app tmpfs:file open;
+allow untrusted_app tmpfs:lnk_file read;
+allow untrusted_app tmpfs:sock_file write;
+allow untrusted_app tombstone_data_file:dir { read getattr };
+allow untrusted_app tombstone_data_file:file getattr;

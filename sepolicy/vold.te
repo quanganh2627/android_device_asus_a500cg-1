@@ -6,3 +6,7 @@ allow vold ecryptfs:filesystem mount;
 allow vold ecryptfs:filesystem unmount;
 allow vold config_file:dir {open ioctl read getattr search};
 allow vold factory_file:dir { open ioctl read getattr search};
+#============= vold ==============
+allow vold tmpfs:blk_file { read getattr open ioctl };
+allow vold tmpfs:chr_file { read write ioctl open getattr };
+allow vold tmpfs:file open;

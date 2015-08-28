@@ -249,7 +249,6 @@ system/lib/arm/libwilhelm.so
 system/lib/arm/libz.so
 system/lib/arm/linker
 
-
 # PVR
 system/lib/libpvr2d.so
 system/lib/libsrv_init.so
@@ -296,8 +295,25 @@ system/lib/libclcore_x86.bc
 # vendor/intel/external/glib
 
 # vendor/intel/hardware/rapid_ril
+system/bin/rild
+system/etc/telephony/rril_2230_conf_1.txt
+system/etc/telephony/rril_6360_conf_1.txt
+system/etc/telephony/rril_6360_conf_2.txt
+system/etc/telephony/rril_7160_conf_1.txt
+system/etc/telephony/rril_7160_conf_2.txt
+system/etc/telephony/rril_7160_conf_3.txt
+system/etc/telephony/rril_7160_conf_4.txt
+system/etc/telephony/rril_7260_conf_1.txt
+system/etc/telephony/rril_7260_conf_1_ATT.txt
+system/etc/telephony/rril_7260_conf_2.txt
+system/etc/telephony/rril_7260_conf_2_ATT.txt
+system/etc/telephony/rril_7260_conf_3.txt
+system/etc/telephony/rril_7260_conf_4.txt
 system/lib/librapid-ril-core.so
 system/lib/librapid-ril-util.so
+system/lib/libreference-ril.so
+system/lib/libril.so
+system/lib/librilutils.so
 
 # mamgr
 system/etc/mamgr/xmm1.xml
@@ -313,6 +329,7 @@ system/lib/libmodemupdate.so
 system/bin/activate_trace_modem
 system/bin/configure_trace_modem
 system/bin/mmgr
+system/bin/miu-app
 system/bin/mts
 system/bin/proxy
 system/bin/nvm_server
@@ -694,11 +711,6 @@ system/etc/telephony/XMM7260_CONF_6.xml
 system/etc/telephony/XMM7260_CONF_7.xml
 system/etc/telephony/XMM7260_CONF_8.xml
 
-#copy this manualy on /system/lib :)
-system/lib/libxditk_DIT_Manager.so
-system/lib/libxditk_DIT_CloverTrailPlus.so
-
-
 # add extra hardware module we see that this is triger to start
 system/lib/hw/audio.codec_offload.redhookbay.so
 system/lib/hw/audio.hdmi.redhookbay.so
@@ -710,7 +722,9 @@ system/lib/libmamgr-xmm.so
 system/lib/libmodem-audio-collection.so
 system/lib/libxditk_AT.so
 system/lib/libxditk_ISP.so
-
+system/lib/ditlib_a500cg/libxditk_DIT_CloverTrailPlus.so
+system/lib/ditlib_a500cg/libxditk_DIT_Manager.so
+system/lib/DataSet/ISP/libxditk_isp.bin
 system/lib/DataSet/ditSCidGen/msgchk.db
 
 # Vendor additional
@@ -739,11 +753,11 @@ system/vendor/lib/libwvm.so
 system/vendor/lib/libWVStreamControlAPI_L1.so
 
 # manully copy the /system/etc/catalog if you need
-/system/etc/catalog/DSDS_A500CG/platform/init.props
-/system/etc/catalog/DSDS_A500CG/telephony_config/init.props
+system/etc/catalog/DSDS_A500CG/platform/init.props
+system/etc/catalog/DSDS_A500CG/telephony_config/init.props
 
 # Baidu
-/system/lib/libBaiduMapSDK_v2_4_1.so
+system/lib/libBaiduMapSDK_v2_4_1.so
 
 
 # sound
@@ -751,3 +765,52 @@ system/etc/icesoundpresets.def
 system/etc/icesoundpresets_a500cg.def
 
 system/etc/route_criteria.conf
+#system/vendor
+#system/vendor/bin
+system/vendor/bin/pvrsrvctl
+#system/vendor/etc
+system/vendor/etc/audio_effects.conf
+system/vendor/etc/fallback_fonts.xml
+system/vendor/etc/route_criteria.conf
+system/vendor/etc/style.cng
+#system/vendor/firmware
+system/vendor/firmware/00imx135-0-0x4-0.drvb
+system/vendor/firmware/00ov8830-0-0x2-0.drvb
+system/vendor/firmware/01s5k8aay.drvb
+#system/vendor/firmware/telephony
+system/vendor/firmware/telephony/hash
+system/vendor/firmware/telephony/mmgr_upgrade.sh
+system/vendor/firmware/telephony/patch_nvm_THA.tlv
+system/vendor/firmware/telephony/XMM_6360_A500CG_REV20_1515.00_LPDDR1_MIPI_FLASHLESS.fls
+system/vendor/firmware/telephony/XMM_6360_A600CG_REV20_1515.00_LPDDR1_MIPI_FLASHLESS.fls
+#system/vendor/lib
+#system/vendor/lib/drm
+system/vendor/lib/drm/libdrmwvmplugin.so
+#system/vendor/lib/egl
+system/vendor/lib/egl/libEGL_POWERVR_SGX544_115.so.1.12.3197934
+system/vendor/lib/egl/libGLESv1_CM_POWERVR_SGX544_115.so.1.12.3197934
+system/vendor/lib/egl/libGLESv2_POWERVR_SGX544_115.so.1.12.3197934
+#system/vendor/lib/hw
+system/vendor/lib/hw/gralloc.redhookbay.so.1.12.3197934
+system/vendor/lib/hw/memtrack.redhookbay.so.1.12.3197934
+system/vendor/lib/libbt-vendor.so
+system/vendor/lib/libdrmdecrypt.so
+system/vendor/lib/libglslcompiler.so.1.12.3197934
+system/vendor/lib/libIMGegl.so.1.12.3197934
+system/vendor/lib/liboclcompiler.so.1.12.3197934
+system/vendor/lib/libpvr2d.so.1.12.3197934
+system/vendor/lib/libpvrANDROID_WSEGL.so.1.12.3197934
+system/vendor/lib/libPVROCL.so.1.12.3197934
+system/vendor/lib/libPVRScopeServices.so.1.12.3197934
+system/vendor/lib/libsrv_init.so.1.12.3197934
+system/vendor/lib/libsrv_um.so.1.12.3197934
+system/vendor/lib/libusc.so.1.12.3197934
+system/vendor/lib/libwvdrm_L1.so
+system/vendor/lib/libwvm.so
+system/vendor/lib/libWVStreamControlAPI_L1.so
+#system/vendor/lib/mediadrm
+system/vendor/lib/mediadrm/libdrmclearkeyplugin.so
+system/vendor/lib/mediadrm/libwvdrmengine.so
+#system/vendor/media
+system/vendor/media/LMspeed_508.emd
+system/vendor/media/PFFprec_600.emd

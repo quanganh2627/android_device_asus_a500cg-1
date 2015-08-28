@@ -17,3 +17,8 @@ allow mediaserver sysfs_wake_lock:file {read open write};
 allow mediaserver mmgr_socket:sock_file {write};
 allow mediaserver mmgr:unix_stream_socket {connectto};
 allow mediaserver tty_device:chr_file {read open ioctl write getattr};
+#============= mediaserver ==============
+allow mediaserver mediaserver_tmpfs:file { create open getattr };
+allow mediaserver tmpfs:chr_file { write read getattr open ioctl };
+allow mediaserver tmpfs:dir { write add_name };
+allow mediaserver tmpfs:lnk_file read;

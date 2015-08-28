@@ -1,4 +1,4 @@
-tbo# Android default init.rc (system/core/rootdir/init.rc) should be untouched.
+# Android default init.rc (system/core/rootdir/init.rc) should be untouched.
 # *EXCEPTIONALLY*, definitions from Android default init.rc may be modified.
 #
 # Use this file for overrides prior to default init.rc definitions.
