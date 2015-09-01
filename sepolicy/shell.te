@@ -14,3 +14,7 @@ allow shell tmpfs:file open;
 allow shell tmpfs:sock_file write;
 #============= shared_relro ==============
 allow shared_relro tmpfs:chr_file { read write ioctl open getattr };
+#============= shell ==============
+allow shell config_file:dir getattr;
+allow shell factory_file:dir getattr;
+

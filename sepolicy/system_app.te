@@ -14,3 +14,6 @@ allow platform_app tmpfs:lnk_file read;
 allow platform_app tmpfs:sock_file write;
 #============= isolated_app ==============
 allow isolated_app tmpfs:chr_file { read write ioctl open getattr };
+#============= system_app ==============
+allow system_app sysfs_thermal_management:dir search;
+allow system_app sysfs_thermal_management:file { write read open };
