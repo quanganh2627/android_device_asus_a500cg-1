@@ -7,6 +7,7 @@ LOCAL_PATH := device/asus/a500cg
 
 BOARD_CREATE_MODPROBE_SYMLINK := true
 TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include
+TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
 
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
@@ -36,7 +37,7 @@ BUILD_ARM_FOR_X86 := true
 # Atom optimizations to improve memory benchmarks.
 -include device/asus/a500cg/OptAtom.mk
 
-TARGET_RECOVERY_FSTAB := device/asus/a500cg/ramdisk/fstab.redhookbay
+TARGET_RECOVERY_FSTAB := device/asus/a500cg/recovery.fstab
 
 TARGET_BOARD_PLATFORM := clovertrail
 TARGET_BOOTLOADER_BOARD_NAME := clovertrail
@@ -130,6 +131,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+#BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
 
 # DRM Protected Video
@@ -165,7 +167,7 @@ BOARD_USES_LEGACY_MMAP := true
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.sf.lcd_density=320 \
-    ro.opengles.version = 196608 \
+    ro.opengles.version = 131072 \
     gsm.net.interface=rmnet0 \
     persist.system.at-proxy.mode=0 \
     ro.dalvik.vm.native.bridge=libhoudini.so \
@@ -183,7 +185,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/kernel-build
+TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-twrp-z5-sbinsh
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
@@ -244,7 +246,8 @@ BOARD_SEPOLICY_UNION += \
     akmd.te \
     gauge.te \
     customize.te \
-    untrusted_app.te
+    untrusted_app.te \
+    intel_prop.te
 
 # Build From source
 ENABLE_GRAPHICS_IMG := true
@@ -255,7 +258,7 @@ BUILD_WITH_FULL_STAGEFRIGHT := true
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
-#INTEL_VA := true
+INTEL_VA := true
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
@@ -279,10 +282,6 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/egl:/system/vendor/l
 TARGET_PROVIDES_INIT_RC := true
 USE_OSIP := true
 
-# Radio
-BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
-SIM_COUNT := 2
-
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Hardware
@@ -291,3 +290,17 @@ BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 ENABLE_SENSOR_HUB := true
 REF_DEVICE_NAME := redhookbay
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+
+# Define platform battery healthd library
+BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
+
+# Rild
+# Radio
+BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
+BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
+
+# Init
+TARGET_IGNORE_RO_BOOT_SERIALNO := true

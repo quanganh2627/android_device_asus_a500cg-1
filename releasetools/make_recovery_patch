@@ -23,7 +23,7 @@ import subprocess
 import threading
 import inspect
 
-#sys.path.insert(0, './build/tools/releasetools')
+sys.path.insert(0, './build/tools/releasetools')
 import common
 
 if sys.hexversion < 0x02070000:

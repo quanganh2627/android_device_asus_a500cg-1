@@ -14,12 +14,13 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/asus/a500cg
 
+$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+LOCAL_PATH := device/asus/a500cg
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
@@ -54,7 +55,7 @@ PRODUCT_COPY_FILES += \
 
 # Modules (currently from ASUS)
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/asus/a500cg/ramdisk/,root)
+    $(call find-copy-subdir-files,*,device/asus/a500cg/ramdisk,root)
 #    device/asus/a500cg/ramdisk/lib/modules/apwr3_1.ko:root/lib/modules/apwr3_1.ko \
 #    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2300.ko:root/lib/modules/atomisp-css2300.ko \
 #    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2400b0_v21.ko:root/lib/modules/atomisp-css2400b0_v21.ko \
@@ -265,13 +266,71 @@ PRODUCT_PACKAGES += \
   libart-extension \
   libartd-extension
 
+#Intel-sensors family
 PRODUCT_PACKAGES += \
   power.$(TARGET_BOARD_PLATFORM) \
+  sensors.$(REF_DEVICE_NAME) \
+#  sensorhubd \
+#  libsensorhub \
+#  sensorhub_client \
+  lights.$(REF_DEVICE_NAME) \
+  SensorCal
+
+#Touchfilter
+PRODUCT_PACKAGES += \
+  libeventprocessing
+  
+#Video Firmware
+PRODUCT_PACKAGES += \
+  msvdx_fw_mfld_DE2.0.bin \
+  topazsc_fw.bin 
+
+#ZenUI set
+PRODUCT_PACKAGES += \
+  AsusFMService \
+  OemTelephonyApp \
+  AsusBackup \
+  MobileManager \
+  PCLinkManager \
+  AsusInputDevices \
+  AsusCalculator \
+  AsusCamera \
+  SMMI_TEST \
+  AsusFMRadio \
   AsusKeyboard \
-  sensors.$(REF_DEVICE_NAME)
+  MobileManagerService \
+  3CToolbox \
+  PCLinkBinary \
+  ASUSBrowser \
+  AsusDrawRes \
+  SARManager
+
+#Libva
+PRODUCT_PACKAGES += \
+  libva \
+  libva-android \
+  libva-tpi \
+  libva-egl \
+  libdrm
+
+PRODUCT_PACKAGES += \
+  bcu_cpufreqrel \
+  fg_conf
+
+PRODUCT_PACKAGES += \
+  thermald \
+  libeventprocessing \
+  pstore-clean
+
+#ituxd for intel thermal management
+ENABLE_ITUXD := true
+PRODUCT_PACKAGES += \
+  ituxd
 
 DEVICE_PACKAGE_OVERLAYS := \
-  device/asus/a500cg/overlay
+  device/asus/a500cg/overlay \
+  device/asus/a500cg/overlays
+  
 
 
 ############################### property ##########################
@@ -301,8 +360,174 @@ PRODUCT_PROPERTY_OVERRIDES += \
   
 # Set default network type to LTE/GSM/WCDMA (9)
 PRODUCT_PROPERTY_OVERRIDES += ro.telephony.default_network=0
+# Backup Tool
+#ifneq ($(WITH_GMS),true)
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+  vendor/cm/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+  vendor/cm/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
+  vendor/cm/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+#endif
+
+# Signature compatibility validation
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+
+# Copy latinime for gesture typing
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so
+
+
+# init.d support
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+  vendor/cm/prebuilt/common/bin/sysinit:system/bin/sysinit
+
+ifneq ($(TARGET_BUILD_VARIANT),user)
+# userinit support
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+endif
+
+# PitchBlack Theme
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/PitchBlack/com.resurrectionremix.pitchblack.apk:system/priv-app/PitchBlack/com.resurrectionremix.pitchblack.apk
+
+# CM-specific init file
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/etc/init.local.rc:root/init.cm.rc
+
+# Bring in camera effects
+PRODUCT_COPY_FILES +=  \
+  vendor/cm/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
+  vendor/cm/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
+
+# Enable SIP+VoIP on all targets
+PRODUCT_COPY_FILES += \
+  frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
+# Enable wireless Xbox 360 controller support
+PRODUCT_COPY_FILES += \
+  frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
+
+# This is CM!
+PRODUCT_COPY_FILES += \
+  vendor/cm/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
+
+# T-Mobile theme engine
+include vendor/cm/config/themes_common.mk
+
+# Required CM packages
+PRODUCT_PACKAGES += \
+  Development \
+  BluetoothExt \
+  Profiles
+
+# Optional CM packages
+PRODUCT_PACKAGES += \
+  VoicePlus \
+  Basic \
+  libemoji \
+  Terminal
+
+# Custom CM packages
+PRODUCT_PACKAGES += \
+  Launcher3 \
+  Trebuchet \
+  AudioFX \
+  Eleven \
+  CMFileManager \
+  LockClock \
+  CMAccount \
+  CMHome \
+  OTACenter
+  
+# SuperSU
+PRODUCT_COPY_FILES += \
+  vendor/cm/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
+  vendor/cm/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+
+# CM Platform Library
+PRODUCT_PACKAGES += \
+  org.cyanogenmod.platform-res \
+  org.cyanogenmod.platform \
+  org.cyanogenmod.platform.xml
+
+# CM Hardware Abstraction Framework
+PRODUCT_PACKAGES += \
+  org.cyanogenmod.hardware \
+  org.cyanogenmod.hardware.xml
+
+# Extra tools in CM
+PRODUCT_PACKAGES += \
+  libsepol \
+  e2fsck \
+  mke2fs \
+  tune2fs \
+  bash \
+  nano \
+  htop \
+  powertop \
+  lsof \
+  mount.exfat \
+  fsck.exfat \
+  mkfs.exfat \
+  mkfs.f2fs \
+  fsck.f2fs \
+  fibmap.f2fs \
+  ntfsfix \
+  ntfs-3g \
+  gdbserver \
+  micro_bench \
+  oprofiled \
+  sqlite3 \
+  strace
+
+# Openssh
+PRODUCT_PACKAGES += \
+  scp \
+  sftp \
+  ssh \
+  sshd \
+  sshd_config \
+  ssh-keygen \
+  start-ssh
+
+# rsync
+PRODUCT_PACKAGES += \
+  rsync
+
+# Stagefright FFMPEG plugin
+PRODUCT_PACKAGES += \
+  libffmpeg_extractor \
+  libffmpeg_omx \
+  media_codecs_ffmpeg.xml
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  media.sf.omx-plugin=libffmpeg_omx.so \
+  media.sf.extractor-plugin=libffmpeg_extractor.so
+
+# These packages are excluded from user builds
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_PACKAGES += \
+  procmem \
+  procrank \
+  Superuser \
+  su
+endif
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  persist.sys.root_access=1
+
+PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 
 
 # setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
+
+#$(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
