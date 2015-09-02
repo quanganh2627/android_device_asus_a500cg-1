@@ -20,13 +20,20 @@ $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
 LOCAL_PATH := device/asus/a500cg
+
+PRODUCT_BRAND := asus
+PRODUCT_MODEL := ASUS_T00F
+PRODUCT_DEVICE := a500cg
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
 
 # This device is xhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xhdpi density so
@@ -36,9 +43,6 @@ PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 
-DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot.img
-DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery-ww-2.20.40.13.img
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
 CUSTOM_SUPERUSER = Superuser
 
 # specific management of audio_policy.conf
@@ -50,112 +54,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=320
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
 # Modules (currently from ASUS)
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/asus/a500cg/ramdisk,root)
-#    device/asus/a500cg/ramdisk/lib/modules/apwr3_1.ko:root/lib/modules/apwr3_1.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2300.ko:root/lib/modules/atomisp-css2300.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2400b0_v21.ko:root/lib/modules/atomisp-css2400b0_v21.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2401a0_legacy_v21.ko:root/lib/modules/atomisp-css2401a0_legacy_v21.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/atomisp-css2401a0_v21.ko:root/lib/modules/atomisp-css2401a0_v21.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/bcm43362.ko:root/lib/modules/bcm43362.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/bcm_bt_lpm.ko:root/lib/modules/bcm_bt_lpm.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/gc2155.ko:root/lib/modules/gc2155.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/hm2056.ko:root/lib/modules/hm2056.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/hm2056_raw.ko:root/lib/modules/hm2056_raw.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/imx111.ko:root/lib/modules/imx111.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/imx219.ko:root/lib/modules/imx219.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/lm3554.ko:root/lib/modules/lm3554.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/mac80211.ko:root/lib/modules/mac80211.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/mn34130.ko:root/lib/modules/mn34130.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.alias:root/lib/modules/modules.alias \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.alias.bin:root/lib/modules/modules.alias.bin \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.builtin.bin:root/lib/modules/modules.builtin.bin \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.dep:root/lib/modules/modules.dep \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.dep.bin:root/lib/modules/modules.dep.bin \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.devname:root/lib/modules/modules.devname \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.softdep:root/lib/modules/modules.softdep \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.symbols:root/lib/modules/modules.symbols \
-#    device/asus/a500cg/ramdisk/lib/modules/modules.symbols.bin:root/lib/modules/modules.symbols.bin \
-#    device/asus/a500cg/ramdisk/lib/modules/mt9m114.ko:root/lib/modules/mt9m114.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/ov8830.ko:root/lib/modules/ov8830.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/pax.ko:root/lib/modules/pax.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/pnwdisp.ko:root/lib/modules/pnwdisp.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/pvrsgx.ko:root/lib/modules/pvrsgx.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/rmi4.ko:root/lib/modules/rmi4.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/rt8515.ko:root/lib/modules/rt8515.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/sep3_15.ko:root/lib/modules/sep3_15.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/st_drv.ko:root/lib/modules/st_drv.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/t4k35_180.ko:root/lib/modules/t4k35_180.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/t4k35.ko:root/lib/modules/t4k35.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/t4k37.ko:root/lib/modules/t4k37.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/test_nx.ko:root/lib/modules/test_nx.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/texfat.ko:root/lib/modules/texfat.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/tntfs.ko:root/lib/modules/tntfs.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/videobuf-core.ko:root/lib/modules/videobuf-core.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/videobuf-vmalloc.ko:root/lib/modules/videobuf-vmalloc.ko \
-#    device/asus/a500cg/ramdisk/lib/modules/vtsspp.ko:root/lib/modules/vtsspp.ko \
-#    device/asus/a500cg/ramdisk/lib/prebuild_modules/texfat.ko:root/lib/prebuild_modules/texfat.ko \
-#    device/asus/a500cg/ramdisk/lib/prebuild_modules/tntfs.ko:root/lib/prebuild_modules/tntfs.ko
-
-
-#PRODUCT_COPY_FILES += \
-#  device/asus/a500cg/ramdisk/sbin/pclinkd:root/sbin/pclinkd \
-#  device/asus/a500cg/ramdisk/sbin/killservices.sh:recovery/root/sbin/killservices.sh \
-#  device/asus/a500cg/ramdisk/sbin/intel_prop:root/sbin/intel_prop \
-#  device/asus/a500cg/ramdisk/sbin/thermald:root/sbin/thermald \
-#    device/asus/a500cg/ramdisk/sbin/healthd:root/sbin/healthd \
-#    device/asus/a500cg/ramdisk/charger:root/charger
-#    device/asus/a500cg/ramdisk/sbin/adbd:root/sbin/adbd \
-
-#PRODUCT_COPY_FILES += \
-#  device/asus/a500cg/ramdisk/local_cfg/platform/init.props:root/local_cfg/platform/init.props \
-#  device/asus/a500cg/ramdisk/local_cfg/telephony_config/init.props:root/local_cfg/telephony_config/init.props
 
 # Binary to be replaced with source code ..
 PRODUCT_COPY_FILES += \
-  device/asus/a500cg/twrp.fstab:recovery/root/etc/twrp.fstab \
-
-
-# Ramdisk fstab / rc files
-#PRODUCT_COPY_FILES += \
-#  device/asus/a500cg/ramdisk/config.sh:root/config.sh \
-#  device/asus/a500cg/ramdisk/config_init.sh:root/config_init.sh \
-#  device/asus/a500cg/ramdisk/fstab:root/fstab \
-#  device/asus/a500cg/ramdisk/fstab.charger.redhookbay:root/fstab.charger \
-#  device/asus/a500cg/ramdisk/fstab.ramconsole.redhookbay:root/fstab.ramconsole.redhookbay \
-#  device/asus/a500cg/ramdisk/fstab.redhookbay:root/fstab.redhookbay \
-#  device/asus/a500cg/ramdisk/fstab.zram:root/fstab.zram \
-#  device/asus/a500cg/ramdisk/init.a500cg.usb.rc:root/init.a500cg.usb.rc \
-#  device/asus/a500cg/ramdisk/init.avc.rc:root/init.avc.rc \
-#  device/asus/a500cg/ramdisk/init.bt.rc:root/init.bt.rc \
-#  device/asus/a500cg/ramdisk/init.compass.rc:root/init.compass.rc \
-#  device/asus/a500cg/ramdisk/init.debug.rc:root/init.debug.rc \
-#  device/asus/a500cg/ramdisk/init.diag.rc:root/init.diag.rc \
-#  device/asus/a500cg/ramdisk/init.logtool.rc:root/init.logtool.rc \
-#  device/asus/a500cg/ramdisk/init.bt.vendor.rc:root/init.bt.vendor.rc \
-#  device/asus/a500cg/ramdisk/init.modem.rc:root/init.modem.rc \
-#  device/asus/a500cg/ramdisk/init.common.rc:root/init.common.rc \
-#  device/asus/a500cg/ramdisk/init.gps.rc:root/init.gps.rc \
-#  device/asus/a500cg/ramdisk/init.ksm.rc:root/init.ksm.rc \
-#  device/asus/a500cg/ramdisk/init.config_init.rc:root/init.config_init.rc \
-#  device/asus/a500cg/ramdisk/intel_prop.cfg:root/intel_prop.cfg \
-#  device/asus/a500cg/ramdisk/init.redhookbay.rc:root/init.redhookbay.rc \
-#  device/asus/a500cg/ramdisk/init.wifi.rc:root/init.wifi.rc \
-#  device/asus/a500cg/ramdisk/init.wifi.vendor.rc:root/init.wifi.vendor.rc \
-#  device/asus/a500cg/ramdisk/init.wireless.rc:root/init.wireless.rc \
-#  device/asus/a500cg/ramdisk/rfkill_bt.sh:root/rfkill_bt.sh \
-#  device/asus/a500cg/ramdisk/init.watchdog.rc:root/init.watchdog.rc \
-#  device/asus/a500cg/ramdisk/init.zram.rc:root/init.zram.rc \
-#  device/asus/a500cg/ramdisk/init.zygote32.rc:root/init.zygote32.rc \
-#  device/asus/a500cg/ramdisk/ueventd.redhookbay.rc:root/ueventd.redhookbay.rc \
-#  device/asus/a500cg/ramdisk/init.rc:root/init.rc \
-#  device/asus/a500cg/ramdisk/init.cm.rc:root/init.cm.rc \
-#  device/asus/a500cg/ramdisk/init.firmware.rc:root/init.firmware.rc \
-#  device/asus/a500cg/ramdisk/init.aosp.rc:root/init.aosp.rc
+  device/asus/a500cg/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -263,18 +168,19 @@ PRODUCT_PACKAGES += \
   link_modprobe
 
 PRODUCT_PACKAGES += \
-  libart-extension \
-  libartd-extension
+  libart-extension
 
 #Intel-sensors family
 PRODUCT_PACKAGES += \
+  libhealthd.intel \
   power.$(TARGET_BOARD_PLATFORM) \
   sensors.$(REF_DEVICE_NAME) \
 #  sensorhubd \
 #  libsensorhub \
 #  sensorhub_client \
   lights.$(REF_DEVICE_NAME) \
-  SensorCal
+  SensorCal \
+  akmdfs
 
 #Touchfilter
 PRODUCT_PACKAGES += \
@@ -286,50 +192,46 @@ PRODUCT_PACKAGES += \
   topazsc_fw.bin 
 
 #ZenUI set
-PRODUCT_PACKAGES += \
-  AsusFMService \
-  OemTelephonyApp \
-  AsusBackup \
-  MobileManager \
-  PCLinkManager \
-  AsusInputDevices \
-  AsusCalculator \
-  AsusCamera \
-  SMMI_TEST \
-  AsusFMRadio \
-  AsusKeyboard \
-  MobileManagerService \
-  3CToolbox \
-  PCLinkBinary \
-  ASUSBrowser \
-  AsusDrawRes \
-  SARManager
+#PRODUCT_PACKAGES += \
+#  AsusFMService \
+##  OemTelephonyApp \
+#  AsusBackup \
+##  MobileManager \
+#  PCLinkManager \
+##  AsusInputDevices \
+#  AsusCalculator \
+#  AsusCamera \
+#  SMMI_TEST \
+#  AsusFMRadio \
+#  AsusKeyboard \
+##  MobileManagerService \
+#  3CToolbox \
+#  PCLinkBinary \
+#  ASUSBrowser \
+#  AsusDrawRes \
+#  SARManager \
+#  ASUSGallery \
+#  ASUSGalleryBrust
 
 #Libva
-PRODUCT_PACKAGES += \
-  libva \
-  libva-android \
-  libva-tpi \
-  libva-egl \
-  libdrm
+#PRODUCT_PACKAGES += \
+#  libva \
+#  libva-android \
+#  libva-tpi \
+#  libva-egl \
+#  libdrm
 
-PRODUCT_PACKAGES += \
-  bcu_cpufreqrel \
-  fg_conf
-
-PRODUCT_PACKAGES += \
-  thermald \
-  libeventprocessing \
-  pstore-clean
+#PRODUCT_PACKAGES += \
+#  bcu_cpufreqrel \
+#  fg_conf
 
 #ituxd for intel thermal management
-ENABLE_ITUXD := true
-PRODUCT_PACKAGES += \
-  ituxd
+#ENABLE_ITUXD := true
+#PRODUCT_PACKAGES += \
+#  ituxd
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay \
-  device/asus/a500cg/overlays
   
 
 
@@ -353,6 +255,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
   ro.secure=0 \
   ro.adb.secure=0 \
   persist.sys.adb.root=1
+  persist.sys.root_access=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \

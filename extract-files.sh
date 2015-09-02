@@ -99,17 +99,19 @@ done
 LOCAL_PATH := vendor/__VENDOR__/__DEVICE__
 
 PRODUCT_COPY_FILES += \\
+	\$(call find-copy-subdir-files,*,vendor/__VENDOR__/__DEVICE__/proprietary/system,system)
+
 EOF
 
-LINEEND=" \\"
-COUNT=`cat proprietary-files.txt | grep -v ^# | grep -v ^$ | wc -l | awk {'print $1'}`
-for FILE in `cat proprietary-files.txt | grep -v ^# | grep -v ^$`; do
-COUNT=`expr $COUNT - 1`
-    if [ $COUNT = "0" ]; then
-LINEEND=""
-    fi
-echo " \$(LOCAL_PATH)/proprietary/$FILE:$FILE$LINEEND" >> ../../../vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk
-done
+#LINEEND=" \\"
+#COUNT=`cat proprietary-files.txt | grep -v ^# | grep -v ^$ | wc -l | awk {'print $1'}`
+#for FILE in `cat proprietary-files.txt | grep -v ^# | grep -v ^$`; do
+#COUNT=`expr $COUNT - 1`
+    #if [ $COUNT = "0" ]; then
+#LINEEND=""
+    #fi
+#echo " \$(LOCAL_PATH)/proprietary/$FILE:$FILE$LINEEND" >> ../../../vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk
+#done
 
 (cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__VENDOR__/$VENDOR/g > ../../../vendor/$VENDOR/$DEVICE/$DEVICE-vendor.mk
 # Copyright (C) 2013 The CyanogenMod Project

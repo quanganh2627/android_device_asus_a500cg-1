@@ -6,7 +6,7 @@ SUPPORT_PATH := vendor/intel/support
 LOCAL_PATH := device/asus/a500cg
 
 BOARD_CREATE_MODPROBE_SYMLINK := true
-TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include
+TARGET_DEVICE_KERNEL_HEADERS := device/asus/a500cg/include
 TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
 
 TARGET_NO_BOOTLOADER := true
@@ -77,15 +77,15 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 # prebuild source kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
 BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/kernel
-DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot.img
-DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery-WW-3.23.40.52.img
+TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage_60
+DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
+DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
 
 # Kernel config (reference only)
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 cmdline_extra := watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901
-cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 
+cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 slub_max_order=2
 cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
 
@@ -185,7 +185,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-twrp-z5-sbinsh
+TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage_recovery_60
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
@@ -287,12 +287,14 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
-ENABLE_SENSOR_HUB := true
+#ENABLE_SENSOR_HUB := true
 REF_DEVICE_NAME := redhookbay
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
 
 # Define platform battery healthd library
 BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
@@ -302,5 +304,32 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
 
-# Init
-TARGET_IGNORE_RO_BOOT_SERIALNO := true
+# Use Intel camera extras (HDR, face detection, panorama, etc.) by default
+USE_INTEL_CAMERA_EXTRAS := true
+
+# select libcamera2 as the camera HAL
+USE_CAMERA_HAL2 := true
+
+# disable the new V3 HAL by default so it can be added to the tree without conflicts
+# it will be enabled in selected platforms
+USE_CAMERA_HAL_3 := false
+
+# Set USE_VIDEO_EFFECT to 'false' to unsupport live face effect. And Set OMX Component Input Buffer Count to 2.
+USE_VIDEO_EFFECT := true
+
+# Do not use shared object of ia_face by default
+USE_SHARED_IA_FACE := false
+
+# Use multi-thread for acceleration
+USE_INTEL_MULT_THREAD := true
+
+# Use Async OMX for http streaming
+USE_ASYNC_OMX_CLIENT := true
+
+# Use panorama v1.0 by default
+IA_PANORAMA_VERSION := 1.0
+
+# Turn on GR_STATIC_RECT_VB flag in skia to boost performance
+TARGET_USE_GR_STATIC_RECT_VB := true
+
+

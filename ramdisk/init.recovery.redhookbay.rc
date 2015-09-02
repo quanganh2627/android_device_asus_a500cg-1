@@ -46,7 +46,7 @@ on property:sys.usb.config=adb
 service killservices /sbin/killservices.sh
     oneshot
 
-service intel_prop /sbin/intel_prop
+service intel_prop /sbin/intel_prop -f /intel_prop.cfg
     oneshot
 
 # copied from common/init.watchdogd.rc

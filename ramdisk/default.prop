@@ -20,3 +20,6 @@ dalvik.vm.image-dex2oat-Xms=64m
 dalvik.vm.image-dex2oat-Xmx=64m
 ro.allow.mock.location=1
 ro.zygote=zygote32
+ro.telephony.default_network=0
+ro.dalvik.vm.isa.arm=x86
+ro.enable.native.bridge.exec=1

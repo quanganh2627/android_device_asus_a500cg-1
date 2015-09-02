@@ -9,6 +9,10 @@
 /config		ext4		/dev/block/mmcblk0p5
 /external_sd     vfat    	/dev/block/mmcblk1p1    		flags=display="MicroSD";storage;wipeingui;removable
 /usb_otg       vfat     /dev/block/sda1	 /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
+*/block/sda*                   auto            vfat    None    wait,voldmanaged=USBdisk1:auto                                
+ */block/sdb*                   auto            vfat    None    wait,voldmanaged=USBdisk2:auto                                
+ */block/sdc*                   auto            vfat    None    wait,voldmanaged=USBdisk3:auto                                
+-*/block/sde*                   auto            vfat    None    wait,voldmanaged=USBdisk5:auto
 
 #/boot           osip        /dev/block/by-name/boot
 #/recovery       osip        /dev/block/by-name/recovery
