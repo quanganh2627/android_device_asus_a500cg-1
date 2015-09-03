@@ -192,26 +192,26 @@ PRODUCT_PACKAGES += \
   topazsc_fw.bin 
 
 #ZenUI set
-#PRODUCT_PACKAGES += \
-#  AsusFMService \
-##  OemTelephonyApp \
-#  AsusBackup \
-##  MobileManager \
-#  PCLinkManager \
-##  AsusInputDevices \
-#  AsusCalculator \
-#  AsusCamera \
-#  SMMI_TEST \
-#  AsusFMRadio \
-#  AsusKeyboard \
-##  MobileManagerService \
-#  3CToolbox \
-#  PCLinkBinary \
-#  ASUSBrowser \
-#  AsusDrawRes \
-#  SARManager \
-#  ASUSGallery \
-#  ASUSGalleryBrust
+PRODUCT_PACKAGES += \
+  AsusFMService \
+  OemTelephonyApp \
+  AsusBackup \
+#  MobileManager \
+  PCLinkManager \
+#  AsusInputDevices \
+  AsusCalculator \
+  AsusCamera \
+  SMMI_TEST \
+  AsusFMRadio \
+  AsusKeyboard \
+#  MobileManagerService \
+  3CToolbox \
+  PCLinkBinary \
+  ASUSBrowser \
+  AsusDrawRes \
+  SARManager \
+  ASUSGallery \
+  ASUSGalleryBrust
 
 #Libva
 #PRODUCT_PACKAGES += \
@@ -226,9 +226,9 @@ PRODUCT_PACKAGES += \
 #  fg_conf
 
 #ituxd for intel thermal management
-#ENABLE_ITUXD := true
-#PRODUCT_PACKAGES += \
-#  ituxd
+ENABLE_ITUXD := true
+PRODUCT_PACKAGES += \
+  ituxd
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay \
