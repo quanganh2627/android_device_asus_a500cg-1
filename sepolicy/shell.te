@@ -18,3 +18,5 @@ allow shared_relro tmpfs:chr_file { read write ioctl open getattr };
 allow shell config_file:dir getattr;
 allow shell factory_file:dir getattr;
 
+#============= shell ==============
+allow shell unlabeled:filesystem getattr;

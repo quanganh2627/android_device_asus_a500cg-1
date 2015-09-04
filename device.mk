@@ -174,23 +174,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libhealthd.intel \
   power.$(TARGET_BOARD_PLATFORM) \
-  sensors.$(REF_DEVICE_NAME) \
-#  sensorhubd \
-#  libsensorhub \
-#  sensorhub_client \
-  lights.$(REF_DEVICE_NAME) \
-  SensorCal \
-  akmdfs
 
 #Touchfilter
-PRODUCT_PACKAGES += \
-  libeventprocessing
+#PRODUCT_PACKAGES += \
+#  libeventprocessing
   
-#Video Firmware
-PRODUCT_PACKAGES += \
-  msvdx_fw_mfld_DE2.0.bin \
-  topazsc_fw.bin 
-
 #ZenUI set
 PRODUCT_PACKAGES += \
   AsusFMService \
@@ -212,18 +200,6 @@ PRODUCT_PACKAGES += \
   SARManager \
   ASUSGallery \
   ASUSGalleryBurst
-
-#Libva
-#PRODUCT_PACKAGES += \
-#  libva \
-#  libva-android \
-#  libva-tpi \
-#  libva-egl \
-#  libdrm
-
-#PRODUCT_PACKAGES += \
-#  bcu_cpufreqrel \
-#  fg_conf
 
 #ituxd for intel thermal management
 #ENABLE_ITUXD := true

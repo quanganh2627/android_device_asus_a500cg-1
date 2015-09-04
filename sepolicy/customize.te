@@ -50,3 +50,5 @@ allow intel_prop rootfs:file entrypoint;
 
 #============= ueventd ==============
 allow ueventd sysfs_thermal_management:file { write open };
+#============= customize ==============
+allow customize sysfs:file write;

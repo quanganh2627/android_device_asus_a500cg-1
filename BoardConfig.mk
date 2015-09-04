@@ -185,7 +185,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage_recovery_60
+TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-recovery_60
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280

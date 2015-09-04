@@ -8,7 +8,14 @@
 echo 'LOCAL_PATH := $(my-dir)'
 echo ''
 
-for i in `find -name '*.apk'`
+if [ -z "$1" ]
+  then
+    src=
+  else
+    src="$1"
+fi
+
+for i in `find $src -name '*.apk'`
 do
   base=$(echo $(basename $i .apk))
   dir=$(echo $(dirname $i))
