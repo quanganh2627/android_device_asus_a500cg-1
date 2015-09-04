@@ -155,6 +155,9 @@ INTEL_DPST := true
 # HWComposer
 BOARD_USES_HWCOMPOSER := true
 
+# RILD
+RIL_SUPPORTS_SEEK := true
+
 # GPS
 BOARD_HAVE_GPS := true
 include device/intel/common/gps/GpsBoardConfig.mk
@@ -182,7 +185,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-recovery_60
+TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage_recovery_60
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
@@ -300,8 +303,6 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
-SIM_COUNT := 2
-RIL_SUPPORTS_SEEK := true
 
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
