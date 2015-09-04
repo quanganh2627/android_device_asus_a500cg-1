@@ -247,15 +247,15 @@ BOARD_SEPOLICY_UNION += \
     intel_prop.te
 
 # Build From source
-ENABLE_IMG_GRAPHICS := true
-ENABLE_GEN_GRAPHICS := true
+#ENABLE_IMG_GRAPHICS := true
+#ENABLE_GEN_GRAPHICS := true
 USE_INTEL_MDP := true
 BUILD_WITH_FULL_STAGEFRIGHT := true
 #BOARD_USES_WRS_OMXIL_CORE := true
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
-INTEL_VA := true
+#INTEL_VA := true
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
@@ -330,3 +330,10 @@ IA_PANORAMA_VERSION := 1.0
 
 # Turn on GR_STATIC_RECT_VB flag in skia to boost performance
 TARGET_USE_GR_STATIC_RECT_VB := true
+
+# Adding DSDS enabling/disabling property
+ADDITIONAL_DEFAULT_PROPERTIES += persist.dual_sim=dsds
+
+ifeq ($(TARGET_RIL_DISABLE_STATUS_POLLING),true)
+ADDITIONAL_BUILD_PROPERTIES += ro.ril.status.polling.enable=0
+endif

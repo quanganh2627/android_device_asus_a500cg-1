@@ -22,9 +22,8 @@ do
   echo "LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)"
   echo "LOCAL_CERTIFICATE := PRESIGNED"
   if [ -d "$dir/lib" ]; then
-    deplibs=`find $dir -name '*.so' -exec basename {} .so \; | sed 's/'\\n'/ /g'`
-    echo "LOCAL_REQUIRED_MODULES := \\
-              $deplibs"
+    deplibs=`find $dir -name '*.so' -exec basename {} .so \; | tr '\r\n' ' '`
+    echo "LOCAL_REQUIRED_MODULES := $deplibs"
   fi
   echo ""
   echo "include \$(BUILD_PREBUILT)"

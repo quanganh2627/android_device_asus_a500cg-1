@@ -211,7 +211,7 @@ PRODUCT_PACKAGES += \
   AsusDrawRes \
   SARManager \
   ASUSGallery \
-  ASUSGalleryBrust
+  ASUSGalleryBurst
 
 #Libva
 #PRODUCT_PACKAGES += \
@@ -226,12 +226,12 @@ PRODUCT_PACKAGES += \
 #  fg_conf
 
 #ituxd for intel thermal management
-ENABLE_ITUXD := true
-PRODUCT_PACKAGES += \
-  ituxd
+#ENABLE_ITUXD := true
+#PRODUCT_PACKAGES += \
+#  ituxd
 
 DEVICE_PACKAGE_OVERLAYS := \
-  device/asus/a500cg/overlay \
+  device/asus/a500cg/overlay
   
 
 
