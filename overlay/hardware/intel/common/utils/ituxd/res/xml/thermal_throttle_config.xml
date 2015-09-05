@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2014  -->
+<thermalthrottleconfig>
+  <!--Cooling Devices-->
+  <ContributingDeviceInfo>
+    <CDeviceName>CPU</CDeviceName>
+    <CDeviceID>1</CDeviceID>
+    <CDeviceClassPath>com.intel.thermal.CPUMaxFreqControl</CDeviceClassPath>
+    <!--Throttle values are the set of values that a cooling device takes as input.-->
+    <!--The values can be a set of Frequencies for CPU cooling device,-->
+    <!--brightness limit (as percentage) for display cooling device etc.-->
+    <ThrottleValues>
+      <ThrottleNormal>2000000</ThrottleNormal>
+      <ThrottleWarning>1600000</ThrottleWarning>
+      <ThrottleAlert>1333000</ThrottleAlert>
+      <ThrottleCritical>933000</ThrottleCritical>
+    </ThrottleValues>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+    <CDeviceName>Battery</CDeviceName>
+    <CDeviceID>2</CDeviceID>
+    <CDeviceClassPath>com.intel.thermal.BatteryChargeCurrentControl</CDeviceClassPath>
+    <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+    <CDeviceName>Display</CDeviceName>
+    <CDeviceID>3</CDeviceID>
+    <CDeviceClassPath>com.intel.thermal.BrightnessControl</CDeviceClassPath>
+    <ThrottleValues>
+      <ThrottleNormal>100</ThrottleNormal>
+      <ThrottleWarning>100</ThrottleWarning>
+      <ThrottleAlert>40</ThrottleAlert>
+      <ThrottleCritical>40</ThrottleCritical>
+    </ThrottleValues>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>gpu_dvfs</CDeviceName>
+      <CDeviceID>4</CDeviceID>
+      <CDeviceClassPath>auto</CDeviceClassPath>
+      <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>Modem</CDeviceName>
+      <CDeviceID>5</CDeviceID>
+      <CDeviceClassPath>com.intel.thermal.ModemCooling</CDeviceClassPath>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>GPU</CDeviceName>
+      <CDeviceID>6</CDeviceID>
+      <CDeviceClassPath>com.intel.thermal.GPUMaxFreqControl</CDeviceClassPath>
+      <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>ModemAirplane</CDeviceName>
+      <CDeviceID>7</CDeviceID>
+      <CDeviceClassPath>none</CDeviceClassPath>
+  </ContributingDeviceInfo>
+
+  <!--Map the cooling devices with specfic zones for throttling-->
+  <ZoneThrottleInfo>
+    <ZoneID>0</ZoneID>
+    <CriticalShutDown>0</CriticalShutDown>
+    <!--set CriticalShutDown to 1, if platform needs to shutdown
+        if this zone reaches critical thermal state to avoid any user impact-->
+    <!--list of cooling device IDs registered for the zone-->
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>1</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>2</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>3</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>4</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>4</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>6</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>6</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>5</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>5</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>0</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>0</Warning>
+        <Alert>1</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>7</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>0</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+</thermalthrottleconfig>

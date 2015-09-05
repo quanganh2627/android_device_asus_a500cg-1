@@ -181,8 +181,6 @@ PRODUCT_PACKAGES += \
   
 #ZenUI set
 PRODUCT_PACKAGES += \
-  AsusFMService \
-  OemTelephonyApp \
   AsusBackup \
 #  MobileManager \
   PCLinkManager \
@@ -197,14 +195,13 @@ PRODUCT_PACKAGES += \
   PCLinkBinary \
   ASUSBrowser \
   AsusDrawRes \
-  SARManager \
   ASUSGallery \
   ASUSGalleryBurst
 
 #ituxd for intel thermal management
-#ENABLE_ITUXD := true
-#PRODUCT_PACKAGES += \
-#  ituxd
+ENABLE_ITUXD := true
+PRODUCT_PACKAGES += \
+  ituxd
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay

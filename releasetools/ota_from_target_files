@@ -95,6 +95,7 @@ except ImportError:
   from sha import sha as sha1
 
 import common
+sys.path.insert(0, './build/tools/releasetools')
 import edify_generator
 
 OPTIONS = common.OPTIONS

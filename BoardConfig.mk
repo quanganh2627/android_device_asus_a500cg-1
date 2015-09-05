@@ -247,7 +247,8 @@ BOARD_SEPOLICY_UNION += \
     gauge.te \
     customize.te \
     untrusted_app.te \
-    intel_prop.te
+    intel_prop.te \
+    gpsd.te
 
 # Build From source
 #ENABLE_IMG_GRAPHICS := true
@@ -303,7 +304,7 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
-
+SIM_COUNT := 2
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
 
@@ -331,9 +332,6 @@ IA_PANORAMA_VERSION := 1.0
 
 # Turn on GR_STATIC_RECT_VB flag in skia to boost performance
 TARGET_USE_GR_STATIC_RECT_VB := true
-
-# Adding DSDS enabling/disabling property
-ADDITIONAL_DEFAULT_PROPERTIES += persist.dual_sim=dsds
 
 ifeq ($(TARGET_RIL_DISABLE_STATUS_POLLING),true)
 ADDITIONAL_BUILD_PROPERTIES += ro.ril.status.polling.enable=0
