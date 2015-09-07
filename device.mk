@@ -182,21 +182,19 @@ PRODUCT_PACKAGES += \
 #ZenUI set
 PRODUCT_PACKAGES += \
   AsusBackup \
-#  MobileManager \
   PCLinkManager \
-#  AsusInputDevices \
   AsusCalculator \
   AsusCamera \
   SMMI_TEST \
   AsusFMRadio \
   AsusKeyboard \
-#  MobileManagerService \
   3CToolbox \
   PCLinkBinary \
   ASUSBrowser \
   AsusDrawRes \
   ASUSGallery \
-  ASUSGalleryBurst
+  ASUSGalleryBurst \
+  AsusKeyboard
 
 #ituxd for intel thermal management
 ENABLE_ITUXD := true
