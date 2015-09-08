@@ -278,7 +278,8 @@ TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := vendor/intel/hardware/libintelprov
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS := libintel_updater
-TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J
+TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
+
 #TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
 #    liboempartitioning_static \

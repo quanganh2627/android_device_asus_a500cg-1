@@ -55,8 +55,8 @@ PROPS_FILE=init.props
 
 config=`cat /config/local_config`
 
-ln -s /system/etc/catalog/DSDS_A500CG /local_cfg
-#mount -o bind /system/etc/catalog/$config /local_cfg
+#ln -s /system/etc/catalog/$config /local_cfg
+mount -o bind /system/etc/catalog/$config /local_cfg
 
 log -p i -t config_init "Activating configuration $config"
 

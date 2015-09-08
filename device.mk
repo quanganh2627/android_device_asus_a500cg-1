@@ -133,7 +133,12 @@ PRODUCT_PACKAGES += \
   audio.usb.default \
   audio.primary.default \
 
-
+PRODUCT_PACKAGES += \
+  libhoudini \
+  houdini \
+  arm_dyn \
+  arm_exe
+include vendor/intel/houdini/houdini.mk
 # usb
 PRODUCT_PACKAGES += \
   com.android.future.usb.accessory

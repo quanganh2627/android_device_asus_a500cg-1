@@ -56,7 +56,7 @@
 
     <!-- Boolean indicating whether the wifi chipset has background scan support -->
     <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
-    <bool name="config_wifi_enable_5GHz_preference">false</bool>
+    <bool name="config_wifi_enable_5GHz_preference">true</bool>
     
     <!-- Setting this true forces the headset jack switches to use the/dev/input/event subsystem rather than the uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
