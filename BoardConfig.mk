@@ -256,14 +256,17 @@ BOARD_SEPOLICY_UNION += \
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
-#ENABLE_GEN_GRAPHICS := true
+ENABLE_GEN_GRAPHICS := true
 USE_INTEL_MDP := true
 BUILD_WITH_FULL_STAGEFRIGHT := true
 BOARD_USES_WRS_OMXIL_CORE := true
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
-#INTEL_VA := true
+INTEL_VA := true
+TARGET_HAS_ISV := true
+USE_HW_VP8 := true
+TARGET_HAS_MULTIPLE_DISPLAY := true
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
@@ -311,11 +314,20 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
 SIM_COUNT := 2
+
+USE_MDS_LEGACY := true
+
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
 
 # select libcamera2 as the camera HAL
+USE_CAMERA_STUB := false
 USE_CAMERA_HAL2 := true
+USE_CSS_1_5 := true
+USE_CSS_2_0 := true
+USE_INTEL_METABUFFER := true
+USE_INTEL_JPEG := true
+
 
 # disable the new V3 HAL by default so it can be added to the tree without conflicts
 # it will be enabled in selected platforms
@@ -342,3 +354,8 @@ TARGET_USE_GR_STATIC_RECT_VB := true
 ifeq ($(TARGET_RIL_DISABLE_STATUS_POLLING),true)
 ADDITIONAL_BUILD_PROPERTIES += ro.ril.status.polling.enable=0
 endif
+
+# Libm
+TARGET_USE_PRIVATE_LIBM := true
+
+TARGET_HAS_MULTIPLE_DISPLAY := true

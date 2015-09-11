@@ -1,0 +1,10 @@
+# ASF dynamically adjusts the inotify max_user_watches
+on property:sys.inotify.max_user_watches=*
+    write /proc/sys/fs/inotify/max_user_watches ${sys.inotify.max_user_watches}
+
+# ASF securityfile service; providing unrestricted filesystem access
+# to authorized ASF applications.
+service securityfile /system/bin/securityfileservice
+    class main
+    user root
+

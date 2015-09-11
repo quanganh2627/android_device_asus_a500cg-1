@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <library name="com.intel.asf" file="/system/framework/com.intel.asf.jar"/>
+</permissions>
