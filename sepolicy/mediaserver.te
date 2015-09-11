@@ -17,3 +17,4 @@ allow mediaserver sysfs_wake_lock:file {read open write};
 allow mediaserver mmgr_socket:sock_file {write};
 allow mediaserver mmgr:unix_stream_socket {connectto};
 allow mediaserver tty_device:chr_file {read open ioctl write getattr};
+allow mediaserver default_prop:property_service set;
