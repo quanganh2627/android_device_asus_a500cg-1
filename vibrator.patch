@@ -1,0 +1,192 @@
+From 404fbcbef4986ded9365ebb3caa47061186b6a75 Mon Sep 17 00:00:00 2001
+From: tin <thuutin@gmail.com>
+Date: Fri, 10 Jul 2015 21:02:19 +0700
+Subject: [PATCH] vibrator fix
+
+---
+ .DS_Store                 | Bin 14340 -> 14340 bytes
+ ramdisk/.DS_Store         | Bin 10244 -> 10244 bytes
+ ramdisk/init.aosp.rc      |  26 +++++++++++++-------------
+ ramdisk/init.rc           |   8 ++++----
+ sepolicy/.DS_Store        | Bin 10244 -> 8196 bytes
+ sepolicy/ecryptfs.te      |  14 +++++++-------
+ sepolicy/genfs_contexts   |   2 +-
+ sepolicy/system_server.te |   1 +
+ 8 files changed, 26 insertions(+), 25 deletions(-)
+
+diff --git a/.DS_Store b/.DS_Store
+index 21ea0a83fcebf3bbab22ff56751bc866174f05ef..89c9e85564c3570290aa34685c1dcbe288ff89f7 100644
+GIT binary patch
+delta 1622
+zcmeH{+fN)-9LLXhp>QTsWp+VeXBTG6D(lKvp$I}zSfGV&x5QSct<r$AJ0o2SJIgK?
+zQ*5^-?Sr=7a%$?etv2534c#=UwLW0fn3(8GAAFQFjV2n?mnOa#JTtS!O8gU?hn<|?
+zch1TAea`3Xk@S)D!o$T49wjg;mB+QjzOjrsozi>FaWm61K5dLjW!b&vY&2n}wr7l)
+zq%q5$EWXH2RST8FW0|BrnAQ@>)L5|V8nGXNeP10aicF>1_3Cge7>PM$LP-PZCWB-T
+znIwnENphB)CyV3<a)n$c%eV!Vs6zu(w4f6aMDY-Yp~Ju!(wN2!a!m6E^S+WZKs<k`
+zbb^AhH@#IQy_+_d_w_R~+|8D~nybB&{U$Xd$`tp}{#H@moiHaRjMP-t4OO6*%OtmF
+zV}~q{=-QOAP0LO_m^M;|E`3LxtjjCQk62l^t{Xa~G#E+#%tn1xY}vhk-P3pm$8Z8?
+z@iyMUyI8<Qe1S{&65rxS{DdV|>sN4vUGUW46~4R55@kztYgvq?!aaO<yV>#bwWW95
+zb<e%+oxSXI`FyTU6eZ$DR1hv#du3mJNKqu0be?a<8aAkkC>2Q>b<)NrQIXb2I&Z^D
+zTUz<#VkujgyRn0(B~q-Ac18G7)b7jrcvFZk1uEG6*e4Q<+)3D8->tkcfkkVZ*)J6p
+zI|ea?ofyGmh$F%APr$?^GRWd79K<0U#ykh`ES|>;coDDSb)3R!oWc9}03YFFe1Z%A
+zM#7eA6)feSxNQ*?8}4gW0~;D!4yb{-_NEp!(9+nJ@2b*Vc<aVV_VsUBb&@%YjYo2q
+ziM$JequFDf&VZ>WA5R*(oycBUp>)`)_ht<K>y*Vh`F4TB8_Fj48_p6TF)VOkL;I4c
+z!c<jUPdU+@<67JpcUEf>n<>Y*YsScAljcCmskVx3)KX~0C#T#YKVU&#rIV9+<!(xE
+zk|`KTvk~78*5L85Mc@6s4$KpH2`BNgZPTat>?WJ8;t%KUxKOx5(Zaj%!Zmi-TP399
+z<7S)?*L${cer{ZB8(XUXFXMKxgEjRzpI5G4w@N*K$RDO0ujI1j5>@|t3!YSD5B)Y2
+zU69r|DW_q9l!~3SL*x`<f>h!RBmN!>isX1IhWvd3<?`|V?Txd9FU*bGoZF5YzKufT
+z##z3l_;sJOeLH|0H_r0yIG*FiS-!o7H@I<@Z|CqKH_r0yb8g%}SMaLCW(C>6Dr6Q?
+zO0vWtX(lSa=f%K6k@bfXoTo@Iw_3S2KASBNC4VwaJ?E~Pn`>`Y1I>+X1#?-=-9Fb>
+aU$bNN3cg`mYaacd=nBza^QDb{mHrJw4~rWB
+
+delta 1672
+zcmeH{?@t^>7{}*14sO=5VK@$sTaH`gDstt(vp}Il${mQcTn$vvqOCm-cBSjx?OyIE
+zL@HiuF#aqFPK~xo(pclqsx_Bt+te4vm}oRHF*PxL(GcF&8uf*5jEOV5S4G30;J%r8
+z=9!s&=KKB3EM^z8XCH7j1p<u;T0NPZN=@g?LxwtNrp??y`j9rEPnpJ;KCiK(&Wl?T
+zv@(CtoZH36MswP%uFdV6&gtq{HaVpm)4~2<ko5(lqwKr7wvi|<#dd=brVxw{9kIf3
+z!!$HW3P$6lEJm#;hKA7?I*8`b5;}>_p!4WUbOrr{eg`Mivbaxy0!#UV#rld<0IuRC
+zR|fl+CbMZhKNE>u0Y{m$yuyX0n+Vw?4-DQ_%~qQS**E?Pwn`;OPajLm9S~+p)zdW|
+zB2P@2nT%%4<RyH$l2*C5_p(b>vS)`+mLF7;Gg?elH5FqVM2NKo>X^eluRH_K!ZMtK
+zH{dk92_L|xa2_teMfd`~g&*K5s|zWx%06>91deZ9ma_AnU6sRw%nZeNVXA9$sJ)}7
+zZ-8xU*vtN?ZY?wrLXjk0uJg(Dw>B#Zb<lGdTj7>gh0rpZ#CG=f2vKM`ReAMda%UG`
+z>7@D6+U>nOTS4Qc?2dlE6{cU6wi;~aTLG5D+3YVEZ4n*T8z8Lc87=IA`(PhD3<-Dy
+zlJFR$!2lDo@HiZX1$Yt)T!`o4MK}ga@CuxO*Wh(nfw$ltcn{u(GjQ(T(%3(7fZd`S
+zo|i(n$~!KULrIiDD$-HDxLETsRBnrOgd4YZb}WP&4|jJ*n7^&QnDE9Oft8KL6`l{>
+zy|W~)<vQu<v&<zPQp@(V)O9|jtK4(_QC-VPRS=fOjbui%r*IV|uJ(Rm{=KFu=BQSN
+zeJ)oQ1R|tK-Yjtk#`FA2*o$r>A&IL#p3)6_vK%JunA>uHIytGOtx577qyuv=_Rea#
+zylxuypoes0>2C<_v0nL3;nD$7!tP{#W+bZ_b`dph*(XOaUWX>Xa2(8bcA`GG>3j4e
+zT0_^-&*)e58~eIGc8hRm8D4_p@Un&Khw#xlRM+4dTX8FJogMXhZcgWCvy*9a5+TQF
+zmhpQlIHkk!p$#ZqC<xd{0|`nJMHYGfW`7Ijx>1J}l2(74(1@1V*$CMx<e=qtwu^KN
+zy{Oa9_7Z;JxI`=Lu-_jO=chK)q}e|t@kax%ds<jmAXONFQH#(0aDWpk_)I~D6Ds(e
+zhbK6p;`GnK3!G5F=c{m%6Ds(88{XxF3O+yKg#L4N*ZxE3?h=|e2))KT80C?MvdCn|
+yyqJZQwdEt8B56EZCZ3|;Qy3DgDqPEG(}j)5WeIN+(;J5W7jV6RwCIZb>G}&zj)*A$
+
+diff --git a/ramdisk/.DS_Store b/ramdisk/.DS_Store
+index 07edf17a574a07470f51226f92f79a42982aa4db..fd423d88006171c1108c1065dd412ffefc59b96c 100644
+GIT binary patch
+delta 84
+zcmZn(XbISGLV$&VfkAHb837&^MwQ7oMbbcg`OVIvPZ=4NCToh@Gb(S+6xUz`2`fyV
+UDxu4$y7{m~4G*TW$(iD_0gFx)t^fc4
+
+delta 84
+zcmZn(XbISGLV)Ez5Ntjpz{A2QGWn)R8iemG`jnATc(SIrJ)`*MOmPiHu<+!m61t2s
+Qn-5FW@L(#NoGCsV09UOe(*OVf
+
+diff --git a/ramdisk/init.aosp.rc b/ramdisk/init.aosp.rc
+index 1c3656d..49a6590 100755
+--- a/ramdisk/init.aosp.rc
++++ b/ramdisk/init.aosp.rc
+@@ -580,11 +580,11 @@ service drm /system/bin/drmserver
+     user drm
+     group drm system inet drmrpc
+ 
+-service media /system/bin/mediaserver
+-    class main
+-    user media
+-    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm
+-    ioprio rt 4
++#service media /system/bin/mediaserver
++#    class main
++#    user media
++#    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm
++#    ioprio rt 4
+ 
+ # One shot invocation to deal with encrypted volume.
+ service defaultcrypto /system/bin/vdc --wait cryptfs mountdefaultencrypted
+@@ -611,10 +611,10 @@ service installd /system/bin/installd
+     class main
+     socket installd stream 600 system system
+ 
+-service flash_recovery /system/bin/install-recovery.sh
+-    class main
+-    seclabel u:r:install_recovery:s0
+-    oneshot
++#service flash_recovery /system/bin/install-recovery.sh
++#    class main
++#    seclabel u:r:install_recovery:s0
++#    oneshot
+ 
+ service racoon /system/bin/racoon
+     class main
+@@ -632,10 +632,10 @@ service mtpd /system/bin/mtpd
+     disabled
+     oneshot
+ 
+-service keystore /system/bin/keystore /data/misc/keystore
+-    class main
+-    user keystore
+-    group keystore drmrpc
++#service keystore /system/bin/keystore /data/misc/keystore
++#    class main
++#    user keystore
++#    group keystore drmrpc
+ 
+ service dumpstate /system/bin/dumpstate -s
+     class main
+diff --git a/ramdisk/init.rc b/ramdisk/init.rc
+index cbf89b3..8a1d78b 100755
+--- a/ramdisk/init.rc
++++ b/ramdisk/init.rc
+@@ -26,7 +26,7 @@ service keystore /system/bin/keystore /data/misc/keystore
+     user keystore
+     group keystore drmrpc system
+ 
+-service flash_recovery /system/bin/install-recovery.sh
+-    class main
+-    seclabel u:r:install_recovery:s0
+-    oneshot
++#service flash_recovery /system/bin/install-recovery.sh
++#    class main
++#    seclabel u:r:install_recovery:s0
++#    oneshot
+diff --git a/sepolicy/.DS_Store b/sepolicy/.DS_Store
+index d7d433731fcb3e715f7fdf4416d4f434b9eed36c..43b95498d12a88853436488b940769202aec2ee1 100644
+GIT binary patch
+delta 110
+zcmZn(XmOBWU|?W$DortDU;r^WfEYvza8E20o2aMAsJt;?H$S8DW*z}f=FQe3c8r_P
+xitb>Vd{g3&ATv-M5J+$X30IJojfLNtC-bWWaxg*+VwfDyGj(&h7#~RePXL`T7lHr)
+
+delta 580
+zcmZp1XbF&DU|?W$DortDU{C-uIe-{M3-C-V6q~50$f&U~U^hRb#%3M?PG&~M$+v`L
+z+!*v2iW!m^bQug7j2O%qQW=tgJaYzPpoj@WDMJQ>FOXN^nUkNKl#`zXG7M-%5Ca3#
+ziT_{#6k%W>Xp||?SXTx^pz&qI7-fgYRn81S3^@#u41Nr`xQyD&C+y1TE5%U6kO@?p
+z0yL}yXftk)x-#T4xB!D8m7x@;kv<~(nSe%?G2|0vqzgkD(9j5m5QZw8MzV-AGj41!
+zViRNr2O@(4H;{G(Mc2l{@640=WdcQ*Ad#p6QozUnj3XeJTp-gs`L=Kc)jep(1OSFu
+Bed7QC
+
+diff --git a/sepolicy/ecryptfs.te b/sepolicy/ecryptfs.te
+index 8888506..e715599 100644
+--- a/sepolicy/ecryptfs.te
++++ b/sepolicy/ecryptfs.te
+@@ -1,7 +1,7 @@
+-allow app_data_file ecryptfs:filesystem associate;
+-allow bluetooth_data_file ecryptfs:filesystem associate;
+-allow nfc_data_file ecryptfs:filesystem associate;
+-allow platform_app_data_file ecryptfs:filesystem associate;
+-allow radio_data_file ecryptfs:filesystem associate;
+-allow shell_data_file ecryptfs:filesystem associate;
+-allow system_data_file ecryptfs:filesystem associate;
++#allow app_data_file ecryptfs:filesystem associate;
++#allow bluetooth_data_file ecryptfs:filesystem associate;
++#allow nfc_data_file ecryptfs:filesystem associate;
++#allow platform_app_data_file ecryptfs:filesystem associate;
++#allow radio_data_file ecryptfs:filesystem associate;
++#allow shell_data_file ecryptfs:filesystem associate;
++#allow system_data_file ecryptfs:filesystem associate;
+diff --git a/sepolicy/genfs_contexts b/sepolicy/genfs_contexts
+index f4f23f6..f19a1ae 100644
+--- a/sepolicy/genfs_contexts
++++ b/sepolicy/genfs_contexts
+@@ -1 +1 @@
+-genfscon ecyrptfs / u:object_r:ecryptfs:s0
++#genfscon ecyrptfs / u:object_r:ecryptfs:s0
+diff --git a/sepolicy/system_server.te b/sepolicy/system_server.te
+index 8a18d71..48c3fc2 100644
+--- a/sepolicy/system_server.te
++++ b/sepolicy/system_server.te
+@@ -16,4 +16,5 @@ allow system_server init:unix_dgram_socket sendto;
+ allow system_server surfaceflinger_tmpfs:file { read write };
+ 
+ allow system_server default_android_service:service_manager {add};
++allow system_server fuse:dir {search read write};
+ 

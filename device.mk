@@ -192,6 +192,7 @@ PRODUCT_PACKAGES += \
   AsusCamera \
   SMMI_TEST \
   AsusFMRadio \
+  AsusFMService \
   AsusKeyboard \
   3CToolbox \
   PCLinkBinary \

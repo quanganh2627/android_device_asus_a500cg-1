@@ -1,5 +1,0 @@
-# Disable IMS
-persist.ims_support=0
-
-# Activate DSDS
-persist.radio.multisim.config=dsds

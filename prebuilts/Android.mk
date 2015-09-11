@@ -10,6 +10,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE_PATH:=$(PRODUCT_OUT)/system/priv-app
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_SHARED_LIBRARIES := libjni_xt9input
 LOCAL_REQUIRED_MODULES := libjni_xt9input
 $(shell mkdir -p $(TARGET_OUT_SHARED_LIBRARIES))
 $(shell cp $(LOCAL_PATH)/AsusKeyboard/lib/x86/libjni_xt9input.so $(TARGET_OUT_SHARED_LIBRARIES))
@@ -18,6 +19,17 @@ $(shell mkdir -p $(TARGET_OUT_APPS)/AsusKeyboard/lib/x86)
 $(shell ln -sf ../../../../lib/libjni_xt9input.so $(TARGET_OUT_APPS)/AsusKeyboard/lib/x86/libjni_xt9input.so)
 ALL_DEFAULT_INSTALLED_MODULES += $(TARGET_OUT_APPS)/AsusKeyboard/lib/x86/libjni_xt9input.so
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS:=optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_SRC_FILES := AsusKeyboard/lib/x86/libjni_xt9input.so
+LOCAL_MODULE := libjni_xt9input
+LOCAL_MODULE_STEM := libjni_xt9input.so
+include $(BUILD_PREBUILT)
+
+
 
 ###############################################################################
 include $(CLEAR_VARS)
@@ -50,6 +62,7 @@ LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_SHARED_LIBRARIES := libjni_picbest_static libjni_piclear_static libgifencoder 
 LOCAL_REQUIRED_MODULES := libjni_picbest_static libjni_piclear_static libgifencoder 
 
 include $(BUILD_PREBUILT)
@@ -57,7 +70,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGalleryBurst/lib/x86/libjni_picbest_static.so
 LOCAL_MODULE := libjni_picbest_static
 LOCAL_MODULE_STEM := libjni_picbest_static.so
@@ -66,7 +79,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGalleryBurst/lib/x86/libjni_piclear_static.so
 LOCAL_MODULE := libjni_piclear_static
 LOCAL_MODULE_STEM := libjni_piclear_static.so
@@ -75,7 +88,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGalleryBurst/lib/x86/libgifencoder.so
 LOCAL_MODULE := libgifencoder
 LOCAL_MODULE_STEM := libgifencoder.so
@@ -145,6 +158,7 @@ LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_SHARED_LIBRARIES := libjni_face_effect libgif libjni_face_detection libjni_filter_show 
 LOCAL_REQUIRED_MODULES := libjni_face_effect libgif libjni_face_detection libjni_filter_show 
 
 include $(BUILD_PREBUILT)
@@ -152,7 +166,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGallery/lib/x86/libjni_face_effect.so
 LOCAL_MODULE := libjni_face_effect
 LOCAL_MODULE_STEM := libjni_face_effect.so
@@ -161,7 +175,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGallery/lib/x86/libgif.so
 LOCAL_MODULE := libgif
 LOCAL_MODULE_STEM := libgif.so
@@ -170,7 +184,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGallery/lib/x86/libjni_face_detection.so
 LOCAL_MODULE := libjni_face_detection
 LOCAL_MODULE_STEM := libjni_face_detection.so
@@ -179,7 +193,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/x86
 LOCAL_SRC_FILES := ASUSGallery/lib/x86/libjni_filter_show.so
 LOCAL_MODULE := libjni_filter_show
 LOCAL_MODULE_STEM := libjni_filter_show.so
@@ -272,6 +286,7 @@ LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_SHARED_LIBRARIES := libBaiduMapSDK_v2_4_1 libbdpush_V2_2 
 LOCAL_REQUIRED_MODULES := libBaiduMapSDK_v2_4_1 libbdpush_V2_2 
 
 include $(BUILD_PREBUILT)
