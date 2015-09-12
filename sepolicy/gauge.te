@@ -5,3 +5,4 @@ allow gauge gauge_device:chr_file {open read write ioctl};
 allow gauge config_file:dir {search };
 allow gauge config_file:file {read write open getattr };
 allow gauge fuse:dir {search };
+allow gauge object_r:input_device:dir r_dir_perm;
