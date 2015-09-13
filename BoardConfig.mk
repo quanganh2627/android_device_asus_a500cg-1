@@ -57,15 +57,15 @@ BOARD_MALLOC_ALIGNMENT := 16
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
-TARGET_KERNEL_BUILT_FROM_SOURCE := true
-TARGET_KERNEL_SOURCE := linux/kernel
-TARGET_KERNEL_CONFIG := T00F_defconfig
-TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
-TARGET_KERNEL_ARCH := x86
-KERNEL_ARCH := i386
-BOARD_KERNEL_IMAGE_NAME := bzImage
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
-KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
+#TARGET_KERNEL_BUILT_FROM_SOURCE := true
+#TARGET_KERNEL_SOURCE := linux/kernel
+#TARGET_KERNEL_CONFIG := T00F_defconfig
+#TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
+#TARGET_KERNEL_ARCH := x86
+#KERNEL_ARCH := i386
+#BOARD_KERNEL_IMAGE_NAME := bzImage
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
+#KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 
 
 # Kernel Build from source inline
@@ -94,7 +94,7 @@ cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidbo
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
 
 # Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(TARGET_BUILD_VARIANT),userdebug)
     ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT := true
     endif
@@ -267,7 +267,9 @@ INTEL_VA := true
 TARGET_HAS_ISV := true
 USE_HW_VP8 := true
 TARGET_HAS_MULTIPLE_DISPLAY := true
-
+#USE_AVC_SHORT_FORMAT := true
+USE_SLICE_HEADER_PARSING := true
+USE_SW_MPEG4 := true
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
 
@@ -297,7 +299,7 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
-#ENABLE_SENSOR_HUB := true
+ENABLE_SENSOR_HUB := true
 REF_DEVICE_NAME := redhookbay
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
@@ -315,7 +317,6 @@ BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
 SIM_COUNT := 2
 
-USE_MDS_LEGACY := true
 
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
@@ -356,6 +357,10 @@ ADDITIONAL_BUILD_PROPERTIES += ro.ril.status.polling.enable=0
 endif
 
 # Libm
-TARGET_USE_PRIVATE_LIBM := true
+#TARGET_USE_PRIVATE_LIBM := true
 
 TARGET_HAS_MULTIPLE_DISPLAY := true
+USE_MDS_LEGACY := true
+BOARD_CAMERA_PLUGIN := vendor/intel/hardware/camera_extension
+include $(COMMON_PATH)/BoardConfig.mk
+
