@@ -3,4 +3,5 @@ allow zygote property_socket:sock_file write;
 #allow zygote device:chr_file { read write };
 allow zygote system_prop:property_service set;
 #allow zygote device:chr_file open;
+allow zygote gpu_device:chr_file { read write ioctl open getattr };
 
