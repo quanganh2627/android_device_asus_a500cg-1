@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2015 Resurrection Remix
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+<resources>
+    <!-- Main strings -->
+    <string name="app_name">OTA Center</string>
+    <string name="menu_settings">Settings</string>
+    <string name="device_title">Device</string>
+    <string name="device_name_title">Name:</string>
+    <string name="codename_title">Codename:</string>
+    <string name="version_title">Version:</string>
+    <string name="file_name_title">File:</string>
+    <string name="curVer">Current Version</string>
+    <string name="ok">OK</string>
+    <string name="title_update">Update</string>
+    <string name="device_info_title">Device Information</string>
+    <string name="up_to_date_title">Your system is up to date</string>
+    <string name="no_data_title">No data connection available</string>
+    <string name="error_reading_title">Cannot read properties</string>
+    <string name="update_file_title">Update:</string>
+    <string name="reboot">All done! Reboot your device now.</string>
+    <string name="reboot_ok">Reboot now</string>
+    <string name="reboot_cancel">Don\'t reboot</string>
+    <string name="refresh_button">Refresh</string>
+
+    <!-- Settings -->
+    <string name="settings_title">OTA Settings</string>    
+    <string name="update_interval_title">Automatic update check interval</string>
+    <string name="update_interval_summary">Set automatic update check interval</string>
+    <string name="update_interval_day">Every 24 hours</string>
+    <string name="update_interval_half_day">Every 12 hours</string>
+    <string name="update_interval_hour">Every hour</string>
+    <string name="update_interval_disable">Disable</string>
+
+    <!-- Error messages -->
+    <string name="system_prop_error">Cannot read system properties</string>
+    <string name="bad_url">Unable to get to download area.\nPlease inform your device maintainer!</string>
+    <string name="menu_update">Look for Updates now</string>
+    <string name="toast_text">Looking for updates, please wait.</string>
+    <string name="toast_no_data_text">No data connection. Please turn on</string>
+
+    <!-- Shortcut fragment -->
+    <string name="short_cut_release_title">ROM related</string>
+    <string name="short_cut_changelog_title">Changelog</string>
+    <string name="short_cut_changelog_summary_update_available">Read recent changelog</string>
+    <string name="short_cut_download_summary_update_available">New update available, click to download!</string>
+    <string name="short_cut_changelog_summary">View the changelog</string>
+    <string name="short_cut_additional_title">Additional</string>
+    <string name="short_cut_faq_title">FAQ</string>
+    <string name="short_cut_faq_summary">Coming Soon!</string>
+    <string name="short_cut_news_title">News</string>
+    <string name="short_cut_news_summary">Read about latest news</string>
+    <string name="short_cut_download_title">Download</string>
+    <string name="short_cut_download_uptodate_summary">Download the latest version</string>
+    <string name="short_cut_download_gapps_title">Gapps</string>
+    <string name="short_cut_download_gapps_summary">Download latest Gapps package</string>
+
+    <!-- URL's -->
+    <string name="download_url">http://forum.resurrectionremix.com/index.php?topic=2037</string>
+    <string name="changelog_url">https://github.com/ResurrectionRemix/android_vendor_resurrection/blob/lollipop5.1/CHANGELOG.mkdn</string>
+    <string name="gapps_url">http://forum.xda-developers.com/zenfone2/development/gapps-t3161271</string>
+
+    <!-- Update checker -->
+    <string name="xml_url">http://zf2-ota.github.io/ota.xml</string>
+    <string name="notification_message">ROM update available</string>
+
+    <!-- About -->
+    <string name="googleplus_title">Google+</string>
+    <string name="googleplus_summary">Visit the Google+ community</string>
+    <string name="about_title">About</string>
+    <string name="devs">Developer</string>
+    <string name="website_title">Website</string>
+    <string name="website_summary">Find all latest news here</string>
+    <string name="donate_title">Donate</string>
+    <string name="donate_summary">Donate</string>
+    <string name="source_title">Source</string>
+    <string name="source_summary">github.com/ResurrectionRemix</string>
+    <string name="center_summary"><b>OTACenter</b> provides tools &amp; information to help make your experience with ResurrectionRemix even better. Upgrade to the newest version of our ROM with <b>OTACenter</b>.</string>
+    <string name="bugreport_title">Bugreport</string>
+    <string name="bugreport_summary">Create a complete bugreport</string>
+    <string name="report_infosuccess">Created a system report, provide it to ResurrectionRemix. You can find the Zip file on your SD-Card in a directory called \"BugReport\".</string>
+    <string name="report_infofail">Failed to create Bugreport, please try again.</string>
+
+    <string name="about_home_url"><a href="http://resurrectionremix.com/">ResurrectionRemix Website</a></string>
+    <string name="about_ota">OTACenter allows you to easily manage\n your ROM!</string>
+    <string name="about_copyright">\u00A9 Copyright Slimroms 2013 modifed for ResurrectionRemix</string>
+    <string name="about_version">OTACenter 2.0</string>
+    <string name="about_contact">Contact us</string>
+    <string name="about_contact_text">Tell us what you think\nor let us know about a bug or problem</string>
+    <string name="about_license">Open source licenses</string>
+    <string name="about_license_text">OTACenter app:</string>
+    <string name="about_license_url"><a href="http://otaslim.slimroms.net/license.htm">gpl(2)</a></string>
+
+    <!-- Sizer  -->
+    <string name="listsystem">list</string>
+    <string name="sizer_title">System Apps</string>
+    <string name="caution">Caution!</string>
+    <string name="sizer_message_startup">This tool allows you to delete system apps. Use with caution and only delete apps you know are safe to be removed.</string>
+    <string name="cancel">Cancel</string>
+    <string name="sizer_message_delete">Are you sure you want to delete this app?</string>
+    <string name="sizer_message_delete_multi_one">Are you sure you want to delete selected app?</string>
+    <string name="sizer_message_delete_multi">Are you sure you want to delete selected apps?</string>
+    <string name="btn_delete">Delete selected APPs now!</string>
+    <string name="delete_progress_title">Deleting</string>
+    <string name="delete_progress">Selected files are being deleted, please wait.</string>
+    <string name="delete_success">Deleted</string>
+    <string name="delete_fail">Unable to delete</string>
+    <string name="btn_profile">Profile</string>
+    <string name="sizer_message_sdnowrite">Cannot write to SD Card.</string>
+    <string name="sizer_message_sdnoread">Cannot read SD Card.</string>
+    <string name="sizer_message_filesuccess">Created profile.</string>
+    <string name="sizer_message_filefail">Failed to create profile.</string>
+    <string name="sizer_message_noselect">Nothing selected.</string>
+    <string name="ota_title">Updater</string>
+</resources>
