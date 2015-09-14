@@ -173,8 +173,7 @@ PRODUCT_PACKAGES += \
   link_modprobe
 
 PRODUCT_PACKAGES += \
-  libart-extension \
-  libartd-extension
+  libart-extension
 
 #Intel-sensors family
 PRODUCT_PACKAGES += \
@@ -182,12 +181,8 @@ PRODUCT_PACKAGES += \
   power.$(TARGET_BOARD_PLATFORM) \
 
 #Touchfilter
-PRODUCT_PACKAGES += \
-  libeventprocessing
-  
-PRODUCT_PACKAGES += \
-  libgesture \
-  libActivityInstant
+#PRODUCT_PACKAGES += \
+#  libeventprocessing
   
 #ZenUI set
 PRODUCT_PACKAGES += \
@@ -237,7 +232,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
   ro.secure=0 \
   ro.adb.secure=0 \
   persist.sys.adb.root=1
-  persist.sys.root_access=3
+  persist.sys.root_access=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \
@@ -400,6 +395,9 @@ PRODUCT_PACKAGES += \
   Superuser \
   su
 endif
+
+PRODUCT_PROPERTY_OVERRIDES += \
+  persist.sys.root_access=1
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 

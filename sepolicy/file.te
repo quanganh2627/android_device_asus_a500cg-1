@@ -39,7 +39,6 @@ type logtoold_tmpfs, file_type;
 type logbackup, domain, mlstrustedsubject;
 type logbackup_exec, exec_type, file_type;
 type logbackup_tmpfs, file_type;
-type themepack_module_file, data_file_type, file_type;
 
 
 
