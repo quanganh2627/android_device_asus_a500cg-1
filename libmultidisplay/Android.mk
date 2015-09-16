@@ -129,21 +129,21 @@ LOCAL_NO_EMMA_COMPILE := true
 
 include $(BUILD_JAVA_LIBRARY)
 
-else
+#else
 # ============================================================
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := \
-     dummy/DisplayObserver.java
-
-LOCAL_MODULE := com.intel.multidisplay
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_NO_EMMA_INSTRUMENT := true
-LOCAL_NO_EMMA_COMPILE := true
-
-include $(BUILD_JAVA_LIBRARY)
-
+#include $(CLEAR_VARS)
+#
+#LOCAL_SRC_FILES := \
+#     dummy/DisplayObserver.java
+#
+#LOCAL_MODULE := com.intel.multidisplay
+#LOCAL_MODULE_TAGS := optional
+#
+#LOCAL_NO_EMMA_INSTRUMENT := true
+#LOCAL_NO_EMMA_COMPILE := true
+#
+#include $(BUILD_JAVA_LIBRARY)
+#
 endif
 include $(BUILD_DROIDDOC)
 # ===========================================================

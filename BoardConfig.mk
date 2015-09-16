@@ -6,9 +6,9 @@ SUPPORT_PATH := vendor/intel/support
 LOCAL_PATH := device/asus/a500cg
 
 BOARD_CREATE_MODPROBE_SYMLINK := true
-TARGET_DEVICE_KERNEL_HEADERS := device/asus/a500cg/include
+TARGET_DEVICE_KERNEL_HEADERS := device/asus/a500cg/kernel-headers
 TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
-
+TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -94,7 +94,7 @@ cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidbo
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
 
 # Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+ifeq ($(TARGET_BUILD_VARIANT),user)
     ifeq ($(WITH_DEXPREOPT),)
       WITH_DEXPREOPT := true
     endif
@@ -256,7 +256,7 @@ BOARD_SEPOLICY_UNION += \
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
-ENABLE_GEN_GRAPHICS := true
+#ENABLE_GEN_GRAPHICS := true
 USE_INTEL_MDP := true
 BUILD_WITH_FULL_STAGEFRIGHT := true
 BOARD_USES_WRS_OMXIL_CORE := true
@@ -285,9 +285,9 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota
 TARGET_RECOVERY_UPDATER_LIBS := libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
 
-#TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
+TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
-#    liboempartitioning_static \
+    liboempartitioning_static \
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/egl:/system/vendor/lib/egl
 #RECOVERY_VARIANT := twrp
 TARGET_PROVIDES_INIT_RC := true
@@ -359,8 +359,8 @@ endif
 # Libm
 #TARGET_USE_PRIVATE_LIBM := true
 
-TARGET_HAS_MULTIPLE_DISPLAY := true
+#TARGET_HAS_MULTIPLE_DISPLAY := true
 USE_MDS_LEGACY := true
 BOARD_CAMERA_PLUGIN := vendor/intel/hardware/camera_extension
-include $(COMMON_PATH)/BoardConfig.mk
+#include $(COMMON_PATH)/BoardConfig.mk
 

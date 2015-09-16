@@ -23,4 +23,9 @@ include $(CLEAR_VARS)
 LOCAL_COPY_HEADERS := include/pvr2d/pvr2d.h include/pvr2d/pvr_android.h
 LOCAL_COPY_HEADERS_TO := pvr/pvr2d
 include $(BUILD_COPY_HEADERS)
+
+include $(CLEAR_VARS)
+LOCAL_COPY_HEADERS := include/hal/hal_public.h
+LOCAL_COPY_HEADERS_TO := pvr/hal
+include $(BUILD_COPY_HEADERS)
 endif

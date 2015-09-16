@@ -122,6 +122,9 @@ PRODUCT_COPY_FILES += \
   frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
   frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
+PRODUCT_COPY_FILES += \
+  $(call find-copy-subdir-files,*,device/asus/a500cg/include,$(TARGET_OUT_HEADERS))
+
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.sf.lcd_density=320 \
   ro.opengles.version = 131072
@@ -146,6 +149,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   gps_bcm_4752
 
+# Keyhandler
+PRODUCT_PACKAGES += \
+    com.cyanogenmod.keyhandler
+
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
   e2fsck \
@@ -154,6 +162,11 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
   Stk
+
+PRODUCT_PACKAGES += \
+  libmultidisplay \
+  libmultidisplayjni \
+  com.intel.multidisplay.xml
 
 # library 
 PRODUCT_PACKAGES += \

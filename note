@@ -17,3 +17,16 @@ https://github.com/angel666
 https://github.com/gpdroid
 https://github.com/lenovo-k900
 https://github.com/xxx-man
+
+#external/skia
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_external_skia refs/changes/89/95689/2 && git cherry-pick FETCH_HEAD
+
+#system/core
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_system_core refs/changes/28/103928/1 && git cherry-pick FETCH_HEAD
+
+#hardware/ril
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_hardware_ril refs/changes/25/102725/2 && git cherry-pick FETCH_HEAD
+
+#framework/base
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_frameworks_base refs/changes/28/107828/1 && git cherry-pick FETCH_HEAD
+
