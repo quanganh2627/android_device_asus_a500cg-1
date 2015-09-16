@@ -5,10 +5,17 @@
 # sep (Symantec endpoint protection) device, since app domain doesn't have access to tee device
 /dev/sep_sec_driver         u:object_r:sep_device:s0
 
+# PCLink
+/dev/android_pclink.*	u:object_r:pclink_device:s0
+/dev/socket/pclinkd	u:object_r:pclinkd_socket:s0
+
+# asec container
+/mnt/secure/asec(/.*)?      u:object_r:asec_image_file_ext:s0
+
 # GPS
 # remove?
 /dev/gsmtty7                u:object_r:gps_device:s0
-#/system/bin/gpsd            u:object_r:gpsd_exec:s0
+/system/vendor/bin/gpsd u:object_r:gpsd_exec:s0
 /system/bin/gpslogd         u:object_r:gpsd_exec:s0
 /system/bin/gpscerd         u:object_r:gpsd_exec:s0
 /data/gps/brcm_gps_unix_socket  u:object_r:bluetooth_data_file:s0

@@ -1,5 +1,5 @@
 type bluetooth_control, dev_type;
-
+type asec_image_file_ext, data_file_type, file_type;
 type ecryptfs, fs_type;
 type log_file, file_type;
 type thermal_socket, file_type;
@@ -27,11 +27,6 @@ type atproxy_usbreset_exec, exec_type;
 
 #type charge_exec, exec_type;
 
-#type gpsd, domain, netdomain;
-
-#type gpsd_exec, exec_type, file_type;
-
-#type gpsd_tmpfs, file_type;
 type logtoold, domain, mlstrustedsubject;
 type logtoold_exec, exec_type, file_type;
 type logtoold_socket, file_type;
@@ -40,6 +35,10 @@ type logbackup, domain, mlstrustedsubject;
 type logbackup_exec, exec_type, file_type;
 type logbackup_tmpfs, file_type;
 type themepack_module_file, data_file_type, file_type;
+type pclink_device, dev_type;
+type pclinkd, domain, netdomain;
+
+type pclinkd_socket, file_type;
 
 
 

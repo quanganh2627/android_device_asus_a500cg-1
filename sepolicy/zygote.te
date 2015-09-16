@@ -49,3 +49,8 @@ allow zygote appdomain : process { getpgid setpgid dyntransition } ;
 allow zygote appdomain : file { ioctl read getattr lock open } ;
 allow zygote appdomain : dir { getattr search } ;
 type_transition zygote tmpfs : file zygote_tmpfs;
+#allow zygote device:chr_file { read write };
+#allow zygote device:chr_file { open };
+allow zygote system_prop:property_service set;
+
+

@@ -15,7 +15,7 @@ allow gpsd gpsd_exec : file { read getattr execute execute_no_trans entrypoint o
 allow gpsd keystore : binder call ;
 allow gpsd keystore : keystore_key saw ;
 allow gpsd tty_device : chr_file { ioctl read write open } ;
-allow gpsd bluetooth_data_file : file { read write create getattr lock append rename open } ;
+allow gpsd bluetooth_data_file : file { read write create getattr setattr lock append rename open } ;
 allow gpsd bluetooth_data_file : dir { read write create add_name remove_name search open } ;
 allow gpsd bluetooth_data_file : fifo_file { read write create getattr setattr append unlink open } ;
 allow gpsd mmgr_socket : sock_file write ;

@@ -10,3 +10,7 @@ type bcu_cpufreqrel, domain;
 init_daemon_domain(bcu_cpufreqrel);
 allow init system_file:file {write setattr link create rename unlink};
 allow init system_file:dir {write add_name remove_name };
+#============= init_shell ==============
+allow init_shell default_prop:property_service set;
+allow init_shell radio_prop:property_service set;
+
