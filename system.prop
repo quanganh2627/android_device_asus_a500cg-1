@@ -1,11 +1,9 @@
 
-dalvik.vm.lockprof.threshold=500
 dalvik.jit.code_cache_size=1048576
 ro.hwui.texture_cache_size=24.0f
 ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=512
 persist.tel.hot_swap.support=true
-drm.service.enabled=true
 ro.blankphone_id=1
 widi.media.extmode.enable=false
 ro.ril.status.polling.enable=0
@@ -24,3 +22,4 @@ rs.gpu.filterscript=0
 rs.gpu.rsIntrinsic=0
 ro.ime.lowmemory=false
 ro.intel.corp.email=1
+ro.spid.gps.tty=ttyMFD2
