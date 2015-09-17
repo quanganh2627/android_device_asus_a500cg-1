@@ -18,6 +18,7 @@
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
+$(call inherit-product, device/asus/a500cg/intel-prebuilt/Android.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -123,7 +124,7 @@ PRODUCT_COPY_FILES += \
   frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 PRODUCT_COPY_FILES += \
-  $(call find-copy-subdir-files,*,device/asus/a500cg/include,$(TARGET_OUT_HEADERS))
+  $(call find-copy-subdir-files,*,device/asus/a500cg/include,obj/include)
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.sf.lcd_density=320 \

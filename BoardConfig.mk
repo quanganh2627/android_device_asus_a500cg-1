@@ -363,4 +363,5 @@ endif
 USE_MDS_LEGACY := true
 BOARD_CAMERA_PLUGIN := vendor/intel/hardware/camera_extension
 #include $(COMMON_PATH)/BoardConfig.mk
+BOARD_USES_CYANOGEN_HARDWARE := true
 
