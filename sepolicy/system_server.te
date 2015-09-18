@@ -25,3 +25,11 @@ allow system_server tmpfs:chr_file { read write ioctl open getattr };
 allow system_server tmpfs:dir { write remove_name };
 allow system_server tmpfs:lnk_file read;
 allow system_server tmpfs:sock_file write;
+
+#============= servicemanager ==============
+allow servicemanager zygote:dir search;
+allow servicemanager zygote:file { read open };
+allow servicemanager zygote:process getattr;
+
+#============= system_server ==============
+allow system_server zygote:binder call;

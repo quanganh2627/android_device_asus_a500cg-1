@@ -52,5 +52,10 @@ type_transition zygote tmpfs : file zygote_tmpfs;
 #allow zygote device:chr_file { read write };
 #allow zygote device:chr_file { open };
 allow zygote system_prop:property_service set;
+#============= zygote ==============
+allow zygote gpu_device:chr_file { read write ioctl open getattr };
+allow zygote servicemanager:binder call;
+allow zygote system_server:binder { transfer call };
+
 
 
