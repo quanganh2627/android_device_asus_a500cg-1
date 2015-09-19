@@ -35,13 +35,13 @@ on init
     mkdir /data/misc/audio 0770 audio audio
 
     # Insert GPU driver
-    insmod /lib/modules/pnwdisp.ko
-    insmod /lib/modules/pvrsgx.ko
-    insmod /lib/modules/hdmi_audio.ko
+    insmod /system/lib/modules/pnwdisp.ko
+    insmod /system/lib/modules/pvrsgx.ko
+    insmod /system/lib/modules/hdmi_audio.ko
     chmod 0600 /dev/dri/controlD64
 
     # Insert matrix for PnP measurements
-    insmod /lib/modules/matrix.ko
+    insmod /system/lib/modules/matrix.ko
     chmod 0640 /dev/matrix
 
     # Android creates by-name disk links with the disk controller
@@ -177,7 +177,7 @@ on post-fs
     chown media system /sys/devices/platform/gpio-keys/disabled_wakeup
 
     # Insert touchscreen module
-    insmod /lib/modules/rmi4.ko
+    insmod /system/lib/modules/rmi4.ko
 
 #  Permissions for Sensors
 
@@ -590,20 +590,20 @@ on charger
     mount ext4 /dev/block/by-name/logs /logs nosuid nodev barrier=1,data=ordered
 
     start watchdogd
-    insmod /lib/modules/rmi4.ko boot_mode=1
-    insmod /lib/modules/imx111.ko
-    insmod /lib/modules/imx219.ko
-    insmod /lib/modules/t4k35.ko
-    insmod /lib/modules/t4k35_180.ko
+    insmod /system/lib/modules/rmi4.ko boot_mode=1
+    insmod /system/lib/modules/imx111.ko
+    insmod /system/lib/modules/imx219.ko
+    insmod /system/lib/modules/t4k35.ko
+    insmod /system/lib/modules/t4k35_180.ko
     
-    insmod /lib/modules/t4k37.ko
-    insmod /lib/modules/mn34130.ko  
+    insmod /system/lib/modules/t4k37.ko
+    insmod /system/lib/modules/mn34130.ko  
     
-    insmod /lib/modules/hm2056.ko
-    insmod /lib/modules/gc2155.ko
+    insmod /system/lib/modules/hm2056.ko
+    insmod /system/lib/modules/gc2155.ko
     
-    insmod /lib/modules/rt8515.ko
-    insmod /lib/modules/atomisp-css2300.ko
+    insmod /system/lib/modules/rt8515.ko
+    insmod /system/lib/modules/atomisp-css2300.ko
 
     # Invoke fuel gauging helper binary to restore config data
     #symlink /dev/max170xx /dev/fg
