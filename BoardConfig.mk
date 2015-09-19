@@ -57,15 +57,15 @@ BOARD_MALLOC_ALIGNMENT := 16
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
-#TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
-#TARGET_KERNEL_CONFIG := T00F_defconfig
-#TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
-#TARGET_KERNEL_ARCH := x86
-#KERNEL_ARCH := i386
-#BOARD_KERNEL_IMAGE_NAME := bzImage
-#TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
-#KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
+TARGET_KERNEL_BUILT_FROM_SOURCE := true
+TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_CONFIG := i386_ctp_defconfig
+TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
+TARGET_KERNEL_ARCH := x86
+KERNEL_ARCH := i386
+BOARD_KERNEL_IMAGE_NAME := bzImage
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
+KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 
 
 # Kernel Build from source inline
@@ -115,6 +115,7 @@ WIFI_DRIVER_MODULE_ARG := "iface_name=wlan0 firmware_path=/system/etc/firmware/f
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BLUEDROID_ENABLE_V4L2 := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
@@ -164,6 +165,8 @@ RIL_SUPPORTS_SEEK := true
 
 # GPS
 BOARD_HAVE_GPS := true
+GPS_CHIP_VENDOR := bcm
+GPS_CHIP := 4752
 include device/intel/common/gps/GpsBoardConfig.mk
 
 # RMT_STORAGE
@@ -189,7 +192,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-recovery_60
+#TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-recovery_60
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
@@ -300,7 +303,7 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
 ENABLE_SENSOR_HUB := true
-REF_DEVICE_NAME := redhookbay
+ENABLE_SCALABLE_SENSOR_HAL := false
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true

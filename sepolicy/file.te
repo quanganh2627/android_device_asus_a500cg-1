@@ -21,8 +21,6 @@ type fg_conf_exec, exec_type;
 type bcu_cpufreqrel_exec, exec_type, file_type;
 type logcat_exec, exec_type;
 
-type dpstmgr_exec, exec_type;
-
 type atproxy_usbreset_exec, exec_type;
 
 #type charge_exec, exec_type;

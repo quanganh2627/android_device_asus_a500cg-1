@@ -1,0 +1,5 @@
+type dpstmgr, domain;
+
+type dpstmgr_exec, exec_type, file_type;
+
+type dpstmgr_tmpfs, file_type;
