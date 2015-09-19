@@ -1,8 +1,8 @@
 on boot
     setprop wifi.interface wlan0
     setprop ap.interface wlan0
-    insmod /lib/modules/cfg80211.ko
-    insmod /lib/modules/bcm43362.ko
+    insmod /system/lib/modules/cfg80211.ko
+    insmod /system/lib/modules/bcm43362.ko
     start wlan_prov
 
 service wlan_prov /system/bin/wlan_prov
