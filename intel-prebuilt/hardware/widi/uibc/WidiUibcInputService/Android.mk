@@ -11,7 +11,7 @@ LOCAL_UNINSTALLABLE_MODULE:=
 LOCAL_SRC_FILES:=target/WidiInputService.apk
 LOCAL_BUILT_MODULE_STEM:=package.apk
 LOCAL_STRIP_MODULE:=
-LOCAL_MODULE:=WidiInputService
+LOCAL_MODULE := WidiInputService
 LOCAL_MODULE_STEM:=WidiInputService.apk
 LOCAL_CERTIFICATE:=platform
 LOCAL_MODULE_PATH:=$(PRODUCT_OUT)/system/app
@@ -28,7 +28,7 @@ LOCAL_UNINSTALLABLE_MODULE:=
 LOCAL_SRC_FILES:=target/libwidiuibcjni.so
 LOCAL_BUILT_MODULE_STEM:=libwidiuibcjni.so
 LOCAL_STRIP_MODULE:=
-LOCAL_MODULE:=libwidiuibcjni
+LOCAL_MODULE := libwidiuibcjni
 LOCAL_MODULE_STEM:=libwidiuibcjni.so
 LOCAL_CERTIFICATE:=
 LOCAL_MODULE_PATH:=$(PRODUCT_OUT)/system/lib
@@ -37,13 +37,13 @@ LOCAL_SHARED_LIBRARIES:=libcutils libutils libbinder libandroid_runtime libnativ
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE:=widi
+LOCAL_MODULE := widi
 LOCAL_MODULE_TAGS:=optional
 LOCAL_REQUIRED_MODULES:=libhwcwidi widi.conf libwidiservice libwidiclient libwidimedia libwidirtsp libstagefright_hdcp libwidiuibc libwidiuibcjni WidiInputService widisink_support WidiReceiver
 include $(BUILD_PHONY_PACKAGE)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE:=widisink_support
+LOCAL_MODULE := widisink_support
 LOCAL_MODULE_TAGS:=optional
 LOCAL_REQUIRED_MODULES:=com.intel.widi.sink com.intel.widi.sink.xml libwidimediasink libwidirtspsink libwidirtspsink_jni
 include $(BUILD_PHONY_PACKAGE)
