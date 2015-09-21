@@ -336,8 +336,8 @@ system/lib/libtcs.so
 system/bin/gpsd
 #system/bin/gpslogd
 system/etc/gps.conf
-system/etc/gpsconfig_NoHULA.xml
-system/etc/gpsconfig_HULA.xml
+# make sure to copy and rename the gpsconfig_NoHULA.xml to gps.xml
+system/etc/gpsconfig_NoHULA.xml:system/etc/gps.xml
 
 system/etc/libgps.conf
 
