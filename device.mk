@@ -35,6 +35,9 @@ else
 endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
+    
+TARGET_RECOVERY_PREBUILT_KERNEL := $(LOCAL_KERNEL)
+
 
 # This device is xhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xhdpi density so
@@ -194,7 +197,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libhealthd.intel \
   power.$(TARGET_BOARD_PLATFORM) \
+  sensors.$(TARGET_DEVICE) \
+  lights.$(TARGET_DEVICE) 
 
+# libcamera2
+PRODUCT_PACKAGES += \
+  camera.$(TARGET_DEVICE)
+  
+# lib audio.codec.offload
+#PRODUCT_PACKAGES += \
+#  audio.codec_offload.$(TARGET_DEVICE)
+  
 #Touchfilter
 PRODUCT_PACKAGES += \
   libeventprocessing
@@ -225,6 +238,172 @@ PRODUCT_PACKAGES += \
 ENABLE_ITUXD := true
 PRODUCT_PACKAGES += \
   ituxd
+  
+# sbin/thermald
+PRODUCT_PACKAGES += \
+  thermald
+  
+PRODUCT_PACKAGES += \
+	libmorpho_image_stabilizer3 \
+	libtbd \
+	libtbd \
+	drvtool \
+	tbdtool \
+	telephony_scalability.xml \
+	libtcs \
+	libtcs \
+	CC6_ALL_BASIC_LIB \
+	CC6_UMIP_ACCESS \
+	libsepdrm \
+	libsepdrm \
+	libsecurity_api \
+	libdiskkeyencrypt \
+	libsecurity_api \
+	libsecurity_sectoken \
+	libsecurity_sectoken \
+	libmiscutils \
+	mediasdk_release_notes.pdf \
+	libmfxhw32 \
+	libmfx_omx_core \
+	libmfx_omx_components_hw \
+	libgabi++-mfx \
+	libstlport-mfx \
+	libmfx_mix_h264ve \
+	libstagefrighthw \
+	libjpegdec \
+	libjpeg_hw \
+	testjpegdec \
+	libva_videoencoder \
+	libintelmetadatabuffer \
+	libva_videodecoder \
+	libpvr2d \
+	libasfparser \
+	libmixvbp \
+	libmixvbp_mpeg4 \
+	libmixvbp_h264 \
+	libmixvbp_h264secure \
+	libmixvbp_vc1 \
+	libmixvbp_vp8 \
+	libia_redeye \
+	libia_ipf_engines \
+	libia_ipf \
+	libia_ipf_pipes \
+	libia_coordinate \
+	libpasses_host \
+	libpasses \
+	libmetadata_api_host \
+	libmetadata_api \
+	libreflection_module_host \
+	libreflection_module \
+	libLLVMVectorizer_host \
+	libLLVMVectorizer \
+	libname_mangle_host \
+	libname_mangle \
+	libaudioresample_static_host \
+	libaudioresample \
+	libsharedbuffer \
+	libm \
+	libm \
+	libhw-audience-manager \
+	libaudience-manager-base \
+	remote-process_host \
+	remote-process \
+	liblpe \
+	libxmlserializer_host \
+	libxmlserializer \
+	libremote-processor_host \
+	libremote-processor \
+	libparameter_host \
+	libparameter_includes_host \
+	libparameter \
+	libparameter_includes \
+	libproperty-subsystem \
+	liblpe-subsystem \
+	libutility_host \
+	libutility \
+	libmodem-audio-subsystem \
+	libfs-subsystem \
+	test-platform_host \
+	test-platform \
+	libtinyalsactl-subsystem \
+	libtinyamixer-subsystem \
+	libalsa-subsystem \
+	libmamgr-core \
+	widi.conf \
+	libwidimedia \
+	libwidiuibc \
+	WidiInputService \
+	libwidiuibcjni \
+	widi \
+	widisink_support \
+	libwidiclient \
+	libwidiservice \
+	libwidirtsp \
+	libwidirtspsink \
+	libwidirtspsink_jni \
+	libhwcwidi \
+	psh.bin \
+	psh_bk.bin \
+	fwupdatetool \
+	fwupdate_script.sh \
+	libstagefright_soft_aacdec_mdp \
+	libstagefright_soft_mp3dec_mdp \
+	lib_stagefright_mdp_wmadec \
+	lib_stagefright_mdp_amrnbdec \
+	libmc_amrcommon \
+	lib_stagefright_mdp_vp8dec \
+	lib_stagefright_mdp_aacdec \
+	lib_stagefright_mdp_mp3dec \
+	lib_stagefright_mdp_amrnbenc \
+	lib_stagefright_mdp_amrwbdec \
+	lib_stagefright_mdp_vorbisdec \
+	lib_stagefright_mdp_aacenc \
+	lib_stagefright_mdp_amrwbenc \
+	libmc_core \
+	libmc_codec_common \
+	libmc_mp3_dec \
+	libmc_aac_dec \
+	libmc_aac_enc \
+	libmc_gsmamr \
+	libmc_amrwb \
+	libmc_vorbis_dec \
+	libmc_wma_dec \
+	libmc_vp8_dec \
+	com.intel.android.meta \
+	libjni_eglfence2 \
+	libjni_filtershow_filters2 \
+	locationengine-api \
+	libBestGroupPhoto \
+	libvideoeditorsharing_core \
+	libvideoeditorsharing_osal \
+	libvideoeditorsharing_videofilters \
+	libvideoeditorsharing_jni \
+	libvideoeditorsharingplayer \
+	libia_face_jni \
+	com.intel.android.gallery3d.common2 \
+	libgesture \
+	libActivityInstant \
+	com.intel.aware.csp.provider \
+	com.intel.aware.csp.datalooper \
+	jansson \
+	libpluginapi \
+	libawarehubservice \
+	libandroidsupport \
+	libcsdk \
+	cacservice-x86 \
+	libclientapi \
+	libcu \
+	libcfcommon \
+	libcac \
+	libconfigurationmanager \
+	libjnitypesconversion \
+	libxsde \
+	CsmClient \
+	CWSClientService \
+	CwsServiceMgr \
+	CWS_SERVICE_MANAGER \
+
+
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay
@@ -422,7 +601,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
-$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
+#$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 
 #$(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 

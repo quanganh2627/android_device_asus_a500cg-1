@@ -25,7 +25,8 @@ LOCAL_CFLAGS += -DARCH_IA32
 TARGET_PRELINK_MODULE := false
 
 #add some intel BOOTCLASSPATH
-PRODUCT_BOOT_JARS += com.intel.config com.intel.multidisplay
+PRODUCT_BOOT_JARS += com.intel.multidisplay 
+#com.intel.config 
 
 # skip some proccess to speed up build
 BOARD_SKIP_ANDROID_DOC_BUILD := true
@@ -66,7 +67,7 @@ KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
-
+INSTALL_MOD_PATH := ../../root
 
 # Kernel Build from source inline
 # TARGET_KERNEL_CONFIG := a500cg_defconfig
@@ -192,7 +193,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-#TARGET_RECOVERY_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-recovery_60
+TARGET_RECOVERY_PREBUILT_KERNEL := $(TARGET_PREBUILT_KERNEL)
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
@@ -255,7 +256,8 @@ BOARD_SEPOLICY_UNION += \
     customize.te \
     untrusted_app.te \
     intel_prop.te \
-    gpsd.te
+    gpsd.te \
+    dpst.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
@@ -293,7 +295,7 @@ TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
     liboempartitioning_static \
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/egl:/system/vendor/lib/egl
 #RECOVERY_VARIANT := twrp
-TARGET_PROVIDES_INIT_RC := true
+#TARGET_PROVIDES_INIT_RC := true
 USE_OSIP := true
 REF_DEVICE_NAME := redhookbay
 
@@ -329,8 +331,10 @@ USE_CAMERA_STUB := false
 USE_CAMERA_HAL2 := true
 USE_CSS_1_5 := true
 USE_CSS_2_0 := true
+USE_CSS_2_1 := true
 USE_INTEL_METABUFFER := true
 USE_INTEL_JPEG := true
+USE_CAMERA_IO_BREAKDOWN := true
 
 
 # disable the new V3 HAL by default so it can be added to the tree without conflicts

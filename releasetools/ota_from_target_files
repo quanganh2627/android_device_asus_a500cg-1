@@ -529,8 +529,8 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   script.FormatPartition("/system")
   script.Mount("/system")
   if not OPTIONS.no_separate_recovery:
-    script.UnpackPackageDir("recovery", "/system")
-  script.UnpackPackageDir("system", "/system")
+    #script.UnpackPackageDir("recovery", "/system")
+    script.UnpackPackageDir("system", "/system")
 
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)

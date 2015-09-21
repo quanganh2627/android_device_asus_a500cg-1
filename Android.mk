@@ -74,5 +74,6 @@ ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
 include $(BUILD_PREBUILT)
 
 include $(call first-makefiles-under,$(LOCAL_PATH))
+include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif

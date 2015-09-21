@@ -33,3 +33,6 @@ allow servicemanager zygote:process getattr;
 
 #============= system_server ==============
 allow system_server zygote:binder call;
+
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel sysfs_devices_system_cpu:file write;

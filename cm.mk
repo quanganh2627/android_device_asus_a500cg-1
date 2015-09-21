@@ -15,14 +15,15 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/core_minimal.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
 # Get the long list of APNs
-PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+#PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES := device/asus/a500cg/configs/apns-conf.xml:system/etc/apns-conf.xml
 
 # Inherit device configuration change remove aosp full
 $(call inherit-product, device/asus/a500cg/full_a500cg.mk)
 # Vendor blob files
-$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
+#$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 # Gapps
-$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
+#$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 
 
 # Inherit device

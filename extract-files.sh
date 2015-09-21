@@ -36,7 +36,7 @@ else
     echo ""
     echo "If PATH_TO_EXPANDED_ROM is not specified, blobs will be extracted from"
     echo "the device using adb pull."
-    exit 1
+    #exit 1
   fi
 fi
 
