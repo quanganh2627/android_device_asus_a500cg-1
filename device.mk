@@ -600,9 +600,9 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 # setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
+#$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
 #$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 
 #$(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
