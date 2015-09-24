@@ -12,7 +12,11 @@ type sysfs_uart_power_ctrl, dev_type;
 type nvm_ctl_socket, file_type;
 type sensors_exec, exec_type;
 
-type crashlogd_exec, exec_type;
+type crashlogd, domain, mlstrustedsubject, unconfineddomain;
+type crashlogd_exec, exec_type, file_type;
+type crashlogd_tmpfs, file_type;
+
+
 type wlan_prov_exec, exec_type;
 
 type bd_prov_exec, exec_type;
@@ -33,6 +37,6 @@ type logbackup, domain, mlstrustedsubject;
 type logbackup_exec, exec_type, file_type;
 type logbackup_tmpfs, file_type;
 type themepack_module_file, data_file_type, file_type;
-#type misc_user_data_file, data_file_type, file_type;
-#type tun_device, dev_type, mlstrustedobject;
-#type pstorefs, fs_type;
+type fdctool, domain, mlstrustedsubject;
+type fdctool_exec, exec_type, file_type;
+type fdctool_tmpfs, file_type;

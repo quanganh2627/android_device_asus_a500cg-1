@@ -52,3 +52,5 @@ allow intel_prop rootfs:file entrypoint;
 allow ueventd sysfs_thermal_management:file { write open };
 #============= customize ==============
 allow customize sysfs:file write;
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel sysfs_devices_system_cpu:file write;

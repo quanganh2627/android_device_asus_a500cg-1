@@ -15,7 +15,7 @@
 #
 
 
-$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
+#$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 
@@ -414,8 +414,10 @@ PRODUCT_PACKAGES += \
 	CWSClientService \
 	CwsServiceMgr \
 	CWS_SERVICE_MANAGER \
-
-
+  
+# OemTelephony for OEM HOOK API
+PRODUCT_PACKAGES += \
+    OemTelephonyApp
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay
@@ -448,6 +450,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \
   ro.enable.native.bridge.exec=1
   
+# set USB OTG enabled to add support for USB storage type
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.isUsbOtgEnabled=1
+
 # Set default network type to LTE/GSM/WCDMA (9)
 PRODUCT_PROPERTY_OVERRIDES += ro.telephony.default_network=0
 # Signature compatibility validation
@@ -594,9 +599,9 @@ PRODUCT_PACKAGES += \
     libffmpeg_omx \
     media_codecs_ffmpeg.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.sf.omx-plugin=libffmpeg_omx.so \
-    media.sf.extractor-plugin=libffmpeg_extractor.so
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    media.sf.omx-plugin=libffmpeg_omx.so \
+#    media.sf.extractor-plugin=libffmpeg_extractor.so
 
 # These packages are excluded from user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
@@ -608,7 +613,7 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=1
+    persist.sys.root_access=3
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 
@@ -709,9 +714,6 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/common
 # setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-#$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor-blobs.mk)
 #$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 
-#$(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
-
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)

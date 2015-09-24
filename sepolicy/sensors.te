@@ -1,0 +1,20 @@
+type sensors, domain;
+#type sensors_device, dev_type;
+#type sensors_exec, exec_type, file_type;
+type sensors_tmpfs, file_type;
+allow dev_type tmpfs : filesystem associate ;
+allow file_type labeledfs : filesystem associate ;
+allow file_type rootfs : filesystem associate ;
+allow file_type tmpfs : filesystem associate ;
+allow unconfineddomain exec_type : file { ioctl read getattr lock execute open } ;
+allow unconfineddomain exec_type : dir { ioctl read getattr search open } ;
+allow unconfineddomain exec_type : lnk_file { ioctl read getattr lock open } ;
+allow sensors sensors_exec : file { read getattr execute entrypoint open } ;
+allow init sensors_exec : file { read getattr execute open } ;
+allow debuggerd exec_type : file { ioctl read getattr lock open } ;
+allow adbd exec_type : file { ioctl read getattr lock open } ;
+allow fdctool exec_type : file { ioctl read write create getattr setattr lock relabelfrom relabelto append unlink link rename execute swapon quotaon mounton execute_no_trans entrypoint execmod open audit_access } ;
+allow logtoold exec_type : file { ioctl read getattr lock execute execute_no_trans open } ;
+type_transition init sensors_exec : process sensors;
+
+

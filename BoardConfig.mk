@@ -61,11 +61,6 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
 TARGET_KERNEL_SOURCE := linux/kernel
 TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
-#TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
-#TARGET_KERNEL_CONFIG := i386_ctp_defconfig
-#TARGET_KERNEL_VARIANT_CONFIG := cm_a500cg_defconfig
-#TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
-#KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
 KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
@@ -279,7 +274,8 @@ BOARD_SEPOLICY_UNION += \
     intel_prop.te \
     gpsd.te \
     dpst.te \
-    pclink.te
+    pclink.te \
+    sensors.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
@@ -328,7 +324,8 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
 ENABLE_SENSOR_HUB := true
-ENABLE_SCALABLE_SENSOR_HAL := false
+#ENABLE_SCALABLE_SENSOR_HAL := false
+ENABLE_SCALABLE_SENSOR_HAL := true
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -390,7 +387,7 @@ endif
 USE_MDS_LEGACY := true
 BOARD_CAMERA_PLUGIN := vendor/intel/hardware/camera_extension
 #include $(COMMON_PATH)/BoardConfig.mk
-BOARD_USES_CYANOGEN_HARDWARE := true
+#BOARD_USES_CYANOGEN_HARDWARE := true
 
 # HWcomposer
 INTEL_HWC := true
@@ -399,7 +396,7 @@ TARGET_SUPPORT_HWC_SYS_LAYER := true
 TARGET_HAS_MULTIPLE_DISPLAY := true
 
 
-#INTEL_FEATURE_AWARESERVICE := true
+INTEL_FEATURE_AWARESERVICE := true
 
 # System's VSYNC phase offsets in nanoseconds
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
@@ -408,4 +405,15 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 # Allow HWC to perform a final CSC on virtual displays
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+INTEL_WIDI := true
+HWUI_IMG_FBO_CACHE_OPTIM := true
+TARGET_INTEL_HWCOMPOSER_FORCE_ONLY_ONE_RGB_LAYER := true
+BOARD_USE_VIBRATOR := true
+#BOARD_USES_VIBRATOR_HAL_XML := true
+
+USE_GENERAL_SENSOR_DRIVER := true
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+
 

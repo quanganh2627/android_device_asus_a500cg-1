@@ -225,11 +225,11 @@
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>  
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
-    <integer name="config_screenBrightnessSettingMinimum">15</integer>
+    <integer name="config_screenBrightnessSettingMinimum">30</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">71</integer>
     <integer name="config_screenBrightnessDoze">17</integer>
-    <integer name="config_screenBrightnessDim">10</integer>
+    <integer name="config_screenBrightnessDim">20</integer>
     <integer name="config_screenBrightnessDark">1</integer>
     
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
@@ -244,23 +244,53 @@
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
         <item>50</item>
+        <item>100</item>
+        <item>200</item>
         <item>300</item>
-        <item>720</item>
+        <item>400</item>
+        <item>500</item>
+        <item>650</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1500</item>
         <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+        <item>7000</item>
+        <item>10000</item>
+        <item>12500</item>
+        <item>15000</item>
+        <item>17500</item>
+        <item>20000</item>
     </integer-array>
-
     <!-- Array of output values for LCD backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>40</item>
-        <item>100</item>
-        <item>140</item>
-        <item>200</item>
-        <item>250</item>
+        <item>15</item>
+        <item>24</item>
+        <item>34</item>
+        <item>51</item>
+        <item>66</item>
+        <item>80</item>
+        <item>92</item>
+        <item>104</item>
+        <item>117</item>
+        <item>126</item>
+        <item>162</item>
+        <item>187</item>
+        <item>207</item>
+        <item>216</item>
+        <item>220</item>
+        <item>223</item>
+        <item>227</item>
+        <item>283</item>
+        <item>340</item>
+        <item>397</item>
+        <item>453</item>
     </integer-array>
-
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
@@ -280,18 +310,49 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
-
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
-        <item>60</item>
-        <item>100</item>
-        <item>140</item>
-        <item>200</item>
-        <item>250</item>
+        <item>50</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <string-array name="config_locationProviderPackageNames">
@@ -322,9 +383,8 @@
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveBatteryLed">false</bool>
     <bool name="config_enableMultiUserUI">true</bool>
-<!--
+    <add-resource type="bool" name="config_enableMultiUserUI_1G"/>
     <bool name="config_enableMultiUserUI_1G">false</bool>
--->
     
     <bool name="config_auto_attach_data_on_creation">false</bool>
     <bool name="config_enableGestureService">true</bool>
@@ -333,13 +393,16 @@
 -->
     
     <bool name="config_switch_phone_on_voice_reg_state_change">true</bool>
-<!--
+    <add-resource type="bool" name="config_wifi_multirole_multichannel_support"/>
     <bool name="config_wifi_multirole_multichannel_support">true</bool>
+    <add-resource type="bool" name="config_discard_scan_when_p2p_connected"/>
     <bool name="config_discard_scan_when_p2p_connected">true</bool>
+    <add-resource type="bool" name="config_TerminalDetectWindowOrientation" />
     <bool name="config_TerminalDetectWindowOrientation">false</bool>
+    <add-resource type="bool" name="config_nonPollingWindowOrientation"/>
     <bool name="config_nonPollingWindowOrientation">false</bool>
+    <add-resource type="bool" name="config_uninstallable_preloaded_app"/>
     <bool name="config_uninstallable_preloaded_app">true</bool>
--->
     <integer name="config_wifi_network_switching_blacklist_time">172800000</integer>
     <integer name="config_wifi_scan_interval_p2p_connected">360000</integer>
     <integer name="config_wifi_scan_interval_wfd_connected">300000</integer>    
@@ -360,9 +423,8 @@
     <bool name="config_enableMultiUserUI">true</bool>
     
     <integer name="config_multiuserMaximumUsers">2</integer>
-<!--
+    <add-resource type="integer" name="config_multiuserMaximumUsers_1G"/>
     <integer name="config_multiuserMaximumUsers_1G">1</integer>
--->
     <integer name="config_safe_media_volume_index">10</integer>
     <integer name="config_mobile_mtu">1358</integer>
 <!--
