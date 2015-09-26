@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Created-By: 1.7.0_65 (Oracle Corporation)
+
+Name: AndroidManifest.xml
+SHA1-Digest: V8k3fA7pumLvgzk2HvBzmUVPHto=
+
+Name: resources.arsc
+SHA1-Digest: ZaFqdg1x6w+UGgUxiAv3FXc1vEQ=
+
+Name: res/drawable-hdpi-v4/stat_sys_ciphering_disable.png
+SHA1-Digest: kHSgJTu7s0tLgoiZ7aYPZ28S7j8=
+
+Name: classes.dex
+SHA1-Digest: aaxJSJuUPZXmnxHtgt3D4v8bp3M=
+

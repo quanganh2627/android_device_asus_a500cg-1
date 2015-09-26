@@ -68,6 +68,7 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
+  wifi_bcm_4330 \
   libwpa_client \
   hostapd \
   dhcpcd.conf \
@@ -78,6 +79,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libtinycompress \
   libtinyalsa \
+  libtinymix \
   audio.a2dp.default \
   audio.primary.default \
   audio.r_submix.default \
@@ -192,21 +194,32 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libart-extension \
   libartd-extension
+#include vendor/intel/art-extension/Android.mk
 
 #Intel-sensors family
 PRODUCT_PACKAGES += \
   libhealthd.intel \
-  power.$(TARGET_BOARD_PLATFORM) \
-  sensors.$(TARGET_DEVICE) \
+
+PRODUCT_PACKAGES += \
+  sensors.$(TARGET_DEVICE)
+#include vendor/intel/hardware/sensors/Android.mk
+
+PRODUCT_PACKAGES += \
   lights.$(TARGET_DEVICE) 
+#include vendor/intel/hardware/liblights/Android.mk
+
+PRODUCT_PACKAGES += \
+  power.$(TARGET_BOARD_PLATFORM)
+#include hardware/intel/clovertrail/power/Android.mk
+
 
 # libcamera2
 PRODUCT_PACKAGES += \
   camera.$(TARGET_DEVICE)
   
 # lib audio.codec.offload
-#PRODUCT_PACKAGES += \
-#  audio.codec_offload.$(TARGET_DEVICE)
+PRODUCT_PACKAGES += \
+  audio.codec_offload.$(TARGET_DEVICE)
   
 #Touchfilter
 PRODUCT_PACKAGES += \
@@ -232,7 +245,9 @@ PRODUCT_PACKAGES += \
   AsusDrawRes \
   ASUSGallery \
   ASUSGalleryBurst \
-  AsusKeyboard
+  AsusKeyboard \
+  OemTelephonyApp \
+  SARManager
 
 #ituxd for intel thermal management
 ENABLE_ITUXD := true
@@ -242,6 +257,9 @@ PRODUCT_PACKAGES += \
 # sbin/thermald
 PRODUCT_PACKAGES += \
   thermald
+
+PRODUCT_PACKAGES += \
+  libproperty
   
 PRODUCT_PACKAGES += \
 	libmorpho_image_stabilizer3 \
@@ -302,8 +320,6 @@ PRODUCT_PACKAGES += \
 	libaudioresample_static_host \
 	libaudioresample \
 	libsharedbuffer \
-	libm \
-	libm \
 	libhw-audience-manager \
 	libaudience-manager-base \
 	remote-process_host \

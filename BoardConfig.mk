@@ -1,7 +1,7 @@
 
-include $(GENERIC_X86_CONFIG_MK)
 COMMON_PATH := device/intel/common
 SUPPORT_PATH := vendor/intel/support
+include $(COMMON_PATH)/BoardConfig.mk
 
 LOCAL_PATH := device/asus/a500cg
 
@@ -25,7 +25,7 @@ LOCAL_CFLAGS += -DARCH_IA32
 TARGET_PRELINK_MODULE := false
 
 #add some intel BOOTCLASSPATH
-PRODUCT_BOOT_JARS += com.intel.multidisplay 
+#PRODUCT_BOOT_JARS += com.intel.multidisplay 
 #com.intel.config 
 
 # skip some proccess to speed up build
@@ -58,16 +58,16 @@ BOARD_MALLOC_ALIGNMENT := 16
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
-TARGET_KERNEL_BUILT_FROM_SOURCE := true
-TARGET_KERNEL_SOURCE := linux/kernel
-TARGET_KERNEL_CONFIG := i386_ctp_defconfig
-TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
+#TARGET_KERNEL_BUILT_FROM_SOURCE := true
+#TARGET_KERNEL_SOURCE := linux/kernel
+#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
 KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
-INSTALL_MOD_PATH := ../../root
+#INSTALL_MOD_PATH := ../../root
 
 # Kernel Build from source inline
 # TARGET_KERNEL_CONFIG := a500cg_defconfig
@@ -82,7 +82,7 @@ INSTALL_MOD_PATH := ../../root
 # prebuild source kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
 BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage_60
+TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
 DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
 DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
 
@@ -102,6 +102,7 @@ ifeq ($(TARGET_BUILD_VARIANT),user)
 endif
 
 # Wifi
+BOARD_HAVE_WIFI := true
 BOARD_WLAN_DEVICE := bcmdhd
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -271,7 +272,7 @@ BOARD_USE_LIBMIX := true
 INTEL_VA := true
 TARGET_HAS_ISV := true
 USE_HW_VP8 := true
-TARGET_HAS_MULTIPLE_DISPLAY := true
+#TARGET_HAS_MULTIPLE_DISPLAY := true
 #USE_AVC_SHORT_FORMAT := true
 USE_SLICE_HEADER_PARSING := true
 USE_SW_MPEG4 := true
@@ -374,3 +375,17 @@ BOARD_USES_CYANOGEN_HARDWARE := true
 
 # HWcomposer
 INTEL_HWC := true
+INTEL_WIDI := true
+TARGET_SUPPORT_HWC_SYS_LAYER := true
+TARGET_HAS_MULTIPLE_DISPLAY := true
+
+
+INTEL_FEATURE_AWARESERVICE := true
+
+# System's VSYNC phase offsets in nanoseconds
+VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
+
+# Allow HWC to perform a final CSC on virtual displays
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
