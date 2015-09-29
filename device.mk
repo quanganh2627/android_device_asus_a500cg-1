@@ -68,7 +68,6 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-  wifi_bcm_4330 \
   libwpa_client \
   hostapd \
   dhcpcd.conf \

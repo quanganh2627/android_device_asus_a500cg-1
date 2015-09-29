@@ -1,47 +1,35 @@
 LOCAL_PATH := $(call my-dir)
 
 # Prebuilt com.asus.ime
-#include $(CLEAR_VARS)
-#LOCAL_MODULE := AsusKeyboard
-#LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-#LOCAL_MODULE_CLASS := APPS
-#LOCAL_CERTIFICATE := PRESIGNED
-#LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
-#LOCAL_PRIVILEGED_MODULE := true
-#LOCAL_SHARED_LIBRARIES := libjni_xt9input
-#LOCAL_REQUIRED_MODULES := libjni_xt9input
-#$(shell mkdir -p $(TARGET_OUT_SHARED_LIBRARIES))
-#$(shell cp $(LOCAL_PATH)/AsusKeyboard/lib/x86/libjni_xt9input.so $(TARGET_OUT_SHARED_LIBRARIES))
-#
-#$(shell mkdir -p $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86)
-#$(shell ln -sf ../../../../lib/libjni_xt9input.so $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86/libjni_xt9input.so)
-#ALL_DEFAULT_INSTALLED_MODULES += $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86/libjni_xt9input.so
-#include $(BUILD_PREBUILT)
-#
-#include $(CLEAR_VARS)
-#LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-#LOCAL_MODULE_TAGS:=optional
-#LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-#LOCAL_SRC_FILES := AsusKeyboard/lib/x86/libjni_xt9input.so
-#LOCAL_MODULE := libjni_xt9input
-#LOCAL_MODULE_STEM := libjni_xt9input.so
-#include $(BUILD_PREBUILT)
-#
-#
-###############################################################################
 include $(CLEAR_VARS)
-
-LOCAL_MODULE := AsusFMService
+LOCAL_MODULE := AsusKeyboard
+LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := AsusFMService/AsusFMService.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_SHARED_LIBRARIES := libjni_xt9input
+LOCAL_REQUIRED_MODULES := libjni_xt9input
+$(shell mkdir -p $(TARGET_OUT_SHARED_LIBRARIES))
+$(shell cp $(LOCAL_PATH)/AsusKeyboard/lib/x86/libjni_xt9input.so $(TARGET_OUT_SHARED_LIBRARIES))
 
+$(shell mkdir -p $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86)
+$(shell ln -sf ../../../../lib/libjni_xt9input.so $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86/libjni_xt9input.so)
+ALL_DEFAULT_INSTALLED_MODULES += $(TARGET_OUT_APPS_PRIVILEGED)/AsusKeyboard/lib/x86/libjni_xt9input.so
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS:=optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_SRC_FILES := AsusKeyboard/lib/x86/libjni_xt9input.so
+LOCAL_MODULE := libjni_xt9input
+LOCAL_MODULE_STEM := libjni_xt9input.so
+include $(BUILD_PREBUILT)
+#
+#
 ###############################################################################
 include $(CLEAR_VARS)
 
@@ -232,18 +220,6 @@ include $(BUILD_PREBUILT)
 ###############################################################################
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := AsusFMRadio
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := AsusFMRadio/AsusFMRadio.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
-###############################################################################
-include $(CLEAR_VARS)
-
 LOCAL_MODULE := AsusLauncher
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusLauncher/AsusLauncher.apk
@@ -262,29 +238,6 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
 LOCAL_SRC_FILES := AsusLauncher/lib/arm/libkcmutil.so
 LOCAL_MODULE := libkcmutil
 LOCAL_MODULE_STEM := libkcmutil.so
-include $(BUILD_PREBUILT)
-
-###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := AsusKeyboard
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := AsusKeyboard/AsusKeyboard.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_REQUIRED_MODULES := libjni_xt9input 
-
-include $(BUILD_PREBUILT)
-#Dependencies libs
-include $(CLEAR_VARS)
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-LOCAL_SRC_FILES := AsusKeyboard/lib/x86/libjni_xt9input.so
-LOCAL_MODULE := libjni_xt9input
-LOCAL_MODULE_STEM := libjni_xt9input.so
 include $(BUILD_PREBUILT)
 
 ###############################################################################

@@ -1,7 +1,7 @@
 
 COMMON_PATH := device/intel/common
 SUPPORT_PATH := vendor/intel/support
-include $(COMMON_PATH)/BoardConfig.mk
+#include $(COMMON_PATH)/BoardConfig.mk
 
 LOCAL_PATH := device/asus/a500cg
 
@@ -58,10 +58,11 @@ BOARD_MALLOC_ALIGNMENT := 16
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
-#TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+TARGET_KERNEL_BUILT_FROM_SOURCE := true
+TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_CONFIG := i386_ctp_defconfig
 #TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
+KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
 KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
@@ -140,6 +141,7 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_USES_ALSA_AUDIO := true
 #BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
+#BOARD_USES_AUDIO_HAL_XML := true
 
 # DRM Protected Video
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
@@ -388,4 +390,5 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 
 # Allow HWC to perform a final CSC on virtual displays
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 

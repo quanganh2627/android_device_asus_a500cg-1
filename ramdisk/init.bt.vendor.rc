@@ -3,7 +3,7 @@
 ########################################################
 
 on init
-    insmod /system/lib/modules/bcm_bt_lpm.ko
+    insmod /lib/modules/bcm_bt_lpm.ko
 
 on post-fs
     mkdir /config/bt

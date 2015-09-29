@@ -209,8 +209,8 @@ on post-fs-data
     chown system system /sys/class/drm/card0/gt_max_freq_mhz
 
     #support Exfat ntfs format
-    insmod /system/lib/modules/texfat.ko
-    insmod /system/lib/modules/tntfs.ko
+    insmod /lib/modules/texfat.ko
+    insmod /lib/modules/tntfs.ko
 
     #support emmc_total_size
     symlink /sys/devices/pci0000:00/0000:00:01.0/emmc_total_size /data/data/emmc_total_size
