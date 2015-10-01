@@ -21,6 +21,9 @@ $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
 $(call inherit-product, device/asus/a500cg/intel-prebuilt/Android.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+# Inherit common CM stuff
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+
 
 LOCAL_PATH := device/asus/a500cg
 
@@ -47,7 +50,7 @@ PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 
-CUSTOM_SUPERUSER = Superuser
+CUSTOM_SUPERUSER = SuperSu
 
 # specific management of audio_policy.conf
 PRODUCT_COPY_FILES += \
@@ -78,7 +81,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libtinycompress \
   libtinyalsa \
-  libtinymix \
   audio.a2dp.default \
   audio.primary.default \
   audio.r_submix.default \
@@ -218,8 +220,8 @@ PRODUCT_PACKAGES += \
   camera.$(TARGET_DEVICE)
   
 # lib audio.codec.offload
-PRODUCT_PACKAGES += \
-  audio.codec_offload.$(TARGET_DEVICE)
+#PRODUCT_PACKAGES += \
+#  audio.codec_offload.$(TARGET_DEVICE)
   
 #Touchfilter
 PRODUCT_PACKAGES += \
@@ -337,13 +339,8 @@ PRODUCT_PACKAGES += \
 	liblpe-subsystem \
 	libutility_host \
 	libutility \
-	libmodem-audio-subsystem \
-	libfs-subsystem \
 	test-platform_host \
 	test-platform \
-	libtinyalsactl-subsystem \
-	libtinyamixer-subsystem \
-	libalsa-subsystem \
 	libmamgr-core \
 	widi.conf \
 	libwidimedia \

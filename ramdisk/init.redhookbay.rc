@@ -9,6 +9,7 @@ import init.config_init.rc
 import init.wifi.rc
 #import init.widi.rc
 import init.a500cg.usb.rc
+import init.a600cg.usb.rc
 import init.wl128x.rc
 import init.gps.rc
 import init.bt.rc
