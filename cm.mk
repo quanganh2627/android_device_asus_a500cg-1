@@ -6,6 +6,7 @@ TARGET_SCREEN_WIDTH := 720
 
 # Release name
 PRODUCT_RELEASE_NAME := a500cg
+MAKE_CHANGELOG := true
 
 # Inherit some common CM stuff.
 #$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
