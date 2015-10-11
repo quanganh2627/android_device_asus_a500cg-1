@@ -59,10 +59,10 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_SOURCE := linux/kernel
 #TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
-TARGET_KERNEL_SOURCE := kernel/asus/T00F
-TARGET_KERNEL_CONFIG := T00F_defconfig
+#TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
+TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
@@ -70,7 +70,14 @@ KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
-#INSTALL_MOD_PATH := ../../root
+KERNEL_SOC := ctp
+KERNEL_BLD_FLAGS := \
+    ARCH=$(KERNEL_ARCH) \
+    INSTALL_MOD_PATH=../modules_install \
+    INSTALL_MOD_STRIP=1 \
+    LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
+    $(KERNEL_EXTRA_FLAGS)
+
 
 # Kernel Build from source inline
 # TARGET_KERNEL_CONFIG := a500cg_defconfig
@@ -141,9 +148,9 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
-#BUILD_WITH_ALSA_UTILS := true
+BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
-#BOARD_USES_AUDIO_HAL_XML := true
+BOARD_USES_AUDIO_HAL_XML := true
 
 # DRM Protected Video
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
@@ -273,7 +280,6 @@ BOARD_USES_WRS_OMXIL_CORE := true
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
-<<<<<<< HEAD
 INTEL_VA := true
 TARGET_HAS_ISV := true
 USE_HW_VP8 := true
@@ -281,10 +287,7 @@ USE_HW_VP8 := true
 #USE_AVC_SHORT_FORMAT := true
 USE_SLICE_HEADER_PARSING := true
 USE_SW_MPEG4 := true
-=======
-#INTEL_VA := true
 
->>>>>>> parent of c783cbe... Add intel-prebuilts src
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
 
@@ -331,17 +334,11 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
 BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
 SIM_COUNT := 2
-<<<<<<< HEAD
-
-
-=======
->>>>>>> parent of c783cbe... Add intel-prebuilts src
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
 
 # select libcamera2 as the camera HAL
 USE_CAMERA_HAL2 := true
-<<<<<<< HEAD
 USE_CSS_1_5 := true
 USE_CSS_2_0 := true
 USE_CSS_2_1 := true
@@ -349,8 +346,6 @@ USE_INTEL_METABUFFER := true
 USE_INTEL_JPEG := true
 USE_CAMERA_IO_BREAKDOWN := true
 
-=======
->>>>>>> parent of c783cbe... Add intel-prebuilts src
 
 # disable the new V3 HAL by default so it can be added to the tree without conflicts
 # it will be enabled in selected platforms
@@ -377,7 +372,6 @@ TARGET_USE_GR_STATIC_RECT_VB := true
 ifeq ($(TARGET_RIL_DISABLE_STATUS_POLLING),true)
 ADDITIONAL_BUILD_PROPERTIES += ro.ril.status.polling.enable=0
 endif
-<<<<<<< HEAD
 
 # Libm
 #TARGET_USE_PRIVATE_LIBM := true
@@ -390,12 +384,12 @@ BOARD_USES_CYANOGEN_HARDWARE := true
 
 # HWcomposer
 INTEL_HWC := true
-INTEL_WIDI := true
+INTEL_WIDI := false
 TARGET_SUPPORT_HWC_SYS_LAYER := true
 TARGET_HAS_MULTIPLE_DISPLAY := true
 
 
-INTEL_FEATURE_AWARESERVICE := true
+#INTEL_FEATURE_AWARESERVICE := true
 
 # System's VSYNC phase offsets in nanoseconds
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
@@ -405,5 +399,3 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
-=======
->>>>>>> parent of c783cbe... Add intel-prebuilts src

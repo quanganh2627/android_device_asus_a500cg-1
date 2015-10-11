@@ -18,7 +18,6 @@
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
-$(call inherit-product, device/asus/a500cg/intel-prebuilt/Android.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit common CM stuff
