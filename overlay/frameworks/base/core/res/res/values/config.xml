@@ -59,7 +59,7 @@
     </integer-array>
 
     <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">4</integer>
+    <integer name="config_multiuserMaximumUsers">2</integer>
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
     <!-- Is the device capable of hot swapping an UICC Card -->
@@ -141,6 +141,7 @@
         <item>SUPL_ES=0</item>
     </string-array>
 -->
+<!--
     <string-array name="origin_carrier_names">
         <item>@null</item>
         <item>Searching for Service</item>
@@ -149,6 +150,7 @@
         <item>@null</item>
         <item>roamingTextSearching</item>
     </string-array>
+-->
     
       <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.
@@ -216,13 +218,17 @@
         <item>1</item>
         <item>7</item>
     </integer-array>
-
+    
+    <!-- Ambient Display -->
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>  
+    <bool name="config_dozeAfterScreenOff">true</bool>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>  
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">15</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">71</integer>
-    <integer name="config_screenBrightnessDoze">1</integer>
+    <integer name="config_screenBrightnessDoze">17</integer>
     <integer name="config_screenBrightnessDim">10</integer>
     <integer name="config_screenBrightnessDark">1</integer>
     
@@ -305,7 +311,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">71</integer>
+    <integer name="config_deviceHardwareKeys">95</integer>
     <!-- Device configuration indicating whether we should avoid using accelerated graphics
          in certain places to reduce RAM footprint.  This is ignored if ro.config.low_ram
          is true (in that case this is assumed true as well).  It can allow you to tune down
@@ -322,7 +328,9 @@
     
     <bool name="config_auto_attach_data_on_creation">false</bool>
     <bool name="config_enableGestureService">true</bool>
+<!--
     <bool name="config_legacyGpsHAL">true</bool>
+-->
     
     <bool name="config_switch_phone_on_voice_reg_state_change">true</bool>
 <!--
@@ -347,7 +355,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">71</integer>
+    <integer name="config_deviceHardwareWakeKeys">95</integer>
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
     
