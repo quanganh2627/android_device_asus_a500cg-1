@@ -33,10 +33,6 @@ type logbackup, domain, mlstrustedsubject;
 type logbackup_exec, exec_type, file_type;
 type logbackup_tmpfs, file_type;
 type themepack_module_file, data_file_type, file_type;
-type pclink_device, dev_type;
-type pclinkd, domain, netdomain;
-
-type pclinkd_socket, file_type;
-
-
-
+#type misc_user_data_file, data_file_type, file_type;
+#type tun_device, dev_type, mlstrustedobject;
+#type pstorefs, fs_type;

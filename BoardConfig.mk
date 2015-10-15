@@ -60,9 +60,10 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
 TARGET_KERNEL_SOURCE := linux/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
-#TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
 TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
+#TARGET_KERNEL_CONFIG := i386_ctp_defconfig
+#TARGET_KERNEL_VARIANT_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_DIFFCONFIG := device/asus/a500cg/asusctp_hd_diffconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
@@ -77,6 +78,12 @@ KERNEL_BLD_FLAGS := \
     INSTALL_MOD_STRIP=1 \
     LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
+    
+# PRODUCT_OUT and HOST_OUT are now defined after BoardConfig is included.
+# Add early definition here
+PRODUCT_OUT ?= out/target/product/$(TARGET_DEVICE)
+HOST_OUT ?= out/host/$(HOST_OS)-$(HOST_PREBUILT_ARCH)
+
 
 
 # Kernel Build from source inline
@@ -151,6 +158,7 @@ BOARD_USES_ALSA_AUDIO := true
 BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
 BOARD_USES_AUDIO_HAL_XML := true
+BOARD_USES_AUDIO_HAL_CONFIGURABLE := true
 
 # DRM Protected Video
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
@@ -205,11 +213,12 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #TARGET_RECOVERY_INITRC := device/asus/a500cg/ramdisk/recovery.init.redhookbay.rc
 BOARD_RECOVERY_SWIPE := true
 BOARD_UMS_LUNFILE := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file"
-TARGET_RECOVERY_PREBUILT_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#TARGET_RECOVERY_PREBUILT_KERNEL := $(PRODUCT_OUT)/kernel
 # TWR
 # Recovery options TWRP
 DEVICE_RESOLUTION := 720x1280
 TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_L_CRYPTO := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_RECOVERY_SCREEN_WIDTH := 720
@@ -269,7 +278,8 @@ BOARD_SEPOLICY_UNION += \
     untrusted_app.te \
     intel_prop.te \
     gpsd.te \
-    dpst.te
+    dpst.te \
+    pclink.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
