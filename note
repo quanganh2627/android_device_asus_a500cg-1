@@ -30,3 +30,14 @@ git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_hardw
 #framework/base
 git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_frameworks_base refs/changes/28/107828/1 && git cherry-pick FETCH_HEAD
 
+#Prevent windows from freezing screen while timeout
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_base refs/changes/20/98620/1 && git cherry-pick FETCH_HEAD
+
+Repopick: 
+97125	libpixelflinger
+101506	ffmpeg
+110329	package/apps/Settings: Batterry
+103343	ril
+101970	recovery: intel superspeed
+
+	
