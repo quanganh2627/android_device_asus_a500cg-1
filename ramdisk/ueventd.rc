@@ -21,7 +21,7 @@ subsystem adf
 /dev/msm_hw3dc            0666   root       root
 
 # the DIAG device node is not world writable/readable.
-/dev/diag                 0660   radio      radio
+/dev/diag                 0660   system     qcom_diag
 
 # gpu driver for adreno200 is globally accessible
 /dev/kgsl                 0666   root       root
