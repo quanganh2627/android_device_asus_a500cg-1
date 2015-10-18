@@ -202,15 +202,15 @@ PRODUCT_PACKAGES += \
   libhealthd.intel \
 
 PRODUCT_PACKAGES += \
-  sensors.$(TARGET_DEVICE)
+  sensors.a500cg
 #include vendor/intel/hardware/sensors/Android.mk
 
 PRODUCT_PACKAGES += \
-  lights.$(TARGET_DEVICE) 
+  lights.a500cg 
 #include vendor/intel/hardware/liblights/Android.mk
 
 PRODUCT_PACKAGES += \
-  power.$(TARGET_BOARD_PLATFORM)
+  power.clovertrail
 #include hardware/intel/clovertrail/power/Android.mk
 
 
