@@ -381,7 +381,12 @@
     <bool name="config_avoidGfxAccel">false</bool>
     <bool name="config_batterySdCardAccessibility">false</bool>
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveNotificationLed">true</bool>
+    <bool name="config_multiColorNotificationLed">true</bool>
     <bool name="config_intrusiveBatteryLed">false</bool>
+    <bool name="config_multiColorBatteryLed">true</bool>
+
+
     <bool name="config_enableMultiUserUI">true</bool>
     <add-resource type="bool" name="config_enableMultiUserUI_1G"/>
     <bool name="config_enableMultiUserUI_1G">false</bool>
@@ -450,9 +455,34 @@
          performance profiles  
 -->
     <string name="config_perf_profile_default_entry">1</string>
-<!--
-         Is the device LTE capable 
--->
-    <bool name="config_lte_capable">true</bool>
+        <!-- Enable the option to check proximity sensor when deciding whether to
+         turn the screen on
+         NOTE ! - Enable for devices that have a fast response proximity sensor
+    -->
+    <bool name="config_proximityCheckOnWake">true</bool>
+    <integer name="config_proximityCheckTimeout">100</integer>
+    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+    <bool name="config_lidControlsSleep">true</bool>
+    <integer name="config_lightSensorWarmupTime">0</integer>
+    <integer name="config_virtualKeyQuietTimeMillis">0</integer>
+    <integer name="config_bluetooth_max_scan_filters">0</integer>
+    <integer name="config_bluetooth_max_advertisers">0</integer>
+    <integer name="config_datause_polling_period_sec">600</integer>
+    <integer name="config_datause_threshold_bytes">0</integer>
+    <integer name="config_datause_throttle_kbitsps">300</integer>
+    <integer name="config_datause_notification_type">2</integer>
+    <integer name="config_volte_replacement_rat">0</integer>
+    <integer name="db_connection_pool_size">4</integer>
+    <integer name="db_journal_size_limit">524288</integer>
+    <integer name="db_wal_autocheckpoint">100</integer>
+    <integer name="config_downloadDataDirSize">200</integer>
+    <integer name="config_MaxConcurrentDownloadsAllowed">5</integer>
+    <integer name="config_downloadDataDirLowSpaceThreshold">10</integer>
+    <integer name="config_cursorWindowSize">2048</integer>
+    <integer name="config_ntpPollingInterval">864000000</integer>
+    <integer name="config_ntpPollingIntervalShorter">60000</integer>
+    <integer name="config_ntpRetry">3</integer>
+    <integer name="config_ntpThreshold">5000</integer>
+    <integer name="config_ntpTimeout">20000</integer>
 
 </resources>
