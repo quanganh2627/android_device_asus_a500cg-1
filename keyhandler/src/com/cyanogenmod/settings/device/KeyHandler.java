@@ -220,18 +220,18 @@ public class KeyHandler implements DeviceKeyHandler {
         }, mProximitySensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
-/*    private void dispatchMediaKeyWithWakeLockToMediaSession(int keycode) {
-        MediaSessionLegacyHelper helper = MediaSessionLegacyHelper.getHelper(mContext);
-        if (helper != null) {
-            KeyEvent event = new KeyEvent(SystemClock.uptimeMillis(),
-                    SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, keycode, 0);
-            helper.sendMediaButtonEvent(event, true);
-            event = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
-            helper.sendMediaButtonEvent(event, true);
-        } else {
-            Log.w(TAG, "Unable to send media key event");
-        }
-    }
+    //private void dispatchMediaKeyWithWakeLockToMediaSession(int keycode) {
+        //MediaSessionLegacyHelper helper = MediaSessionLegacyHelper.getHelper(mContext);
+        //if (helper != null) {
+            //KeyEvent event = new KeyEvent(SystemClock.uptimeMillis(),
+                    //SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, keycode, 0);
+            //helper.sendMediaButtonEvent(event, true);
+            //event = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
+            //helper.sendMediaButtonEvent(event, true);
+        //} else {
+            //Log.w(TAG, "Unable to send media key event");
+        //}
+    //}
 
     private void startActivitySafely(Intent intent) {
         intent.addFlags(
@@ -242,7 +242,7 @@ public class KeyHandler implements DeviceKeyHandler {
             UserHandle user = new UserHandle(UserHandle.USER_CURRENT);
             mContext.startActivityAsUser(intent, null, user);
         } catch (ActivityNotFoundException e) {
-            // Ignore
+             //Ignore
         }
-    }*/
+    }
 }
