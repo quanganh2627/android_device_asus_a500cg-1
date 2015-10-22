@@ -115,16 +115,20 @@ on fs
     restorecon_recursive /factory
     restorecon_recursive /logs
     #UPI gauge daemon
-    exec /system/bin/touch /config/upi_gg
+    asus_exec /system/bin/touch /config/upi_gg
     chown system system /config/upi_gg
     chmod 0660 /config/upi_gg
-    exec /system/bin/touch /config/upi_bo
+    asus_exec /system/bin/touch /config/upi_bo
     chown system system /config/upi_bo
     chmod 0660 /config/upi_bo
-    exec /system/bin/touch /config/upi_bo_auto
+    asus_exec /system/bin/touch /config/upi_bo_auto
     chown system system /config/upi_bo_auto
     chmod 0660 /config/upi_bo_auto
 
+on post-fs
+# create virtual SD card at /mnt/sdcard, based on the /data/media directory
+# daemon will drop to user/group system/media_rw after initializing
+# underlying files in /data/media will be created with user and group media_rw (1023)
 
 # Performance tweaks for interactive governor
     chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
@@ -142,10 +146,6 @@ on fs
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1330000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1330000
 
-on post-fs
-# create virtual SD card at /mnt/sdcard, based on the /data/media directory
-# daemon will drop to user/group system/media_rw after initializing
-# underlying files in /data/media will be created with user and group media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
