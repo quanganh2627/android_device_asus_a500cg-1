@@ -450,6 +450,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \
   ro.enable.native.bridge.exec=1
   
+DEX2OAT_TARGET_INSTRUCTION_SET_FEATURES := ssse3 movbe
+ADDITIONAL_DEFAULT_PROPERTIES += dalvik.vm.isa.x86.features=ssse3,movbe 
+  
 # set USB OTG enabled to add support for USB storage type
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.isUsbOtgEnabled=1
 
