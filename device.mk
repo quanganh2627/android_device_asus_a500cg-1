@@ -157,8 +157,8 @@ PRODUCT_PACKAGES += \
   gps_bcm_4752
 
 # Keyhandler
-PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
+#PRODUCT_PACKAGES += \
+#    com.cyanogenmod.keyhandler
 
 
 # Filesystem management tools
@@ -232,8 +232,8 @@ PRODUCT_PACKAGES += \
   
 #ZenUI set
 PRODUCT_PACKAGES += \
-  AsusBackup \
   PCLinkManager \
+  PCLinkBinary \
   AsusCalculator \
   AsusCamera \
   SMMI_TEST \
@@ -241,14 +241,21 @@ PRODUCT_PACKAGES += \
   AsusFMService \
   AsusKeyboard \
   3CToolbox \
-  PCLinkBinary \
   ASUSBrowser \
   AsusDrawRes \
   ASUSGallery \
   ASUSGalleryBurst \
   AsusKeyboard \
   OemTelephonyApp \
-  SARManager
+  SARManager \
+  CWSClientService \
+  ICEsoundService  \
+  MyASUS \
+  SensorCal \
+  SepService \
+  Themer \
+  ZooperWidget
+
 
 #ituxd for intel thermal management
 ENABLE_ITUXD := true
