@@ -48,24 +48,24 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := OemTelephonyApp
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := OemTelephonyApp/OemTelephonyApp.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+LOCAL_MODULE_CLASS := platform
+LOCAL_MODULE_PATH := $(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
 ###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := AsusBackup
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := AsusBackup/AsusBackup.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#
+#LOCAL_MODULE := AsusBackup
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_SRC_FILES := AsusBackup/AsusBackup.apk
+#LOCAL_MODULE_CLASS := APPS
+#LOCAL_MODULE_PATH := $(TARGET_OUT_APPS_PRIVILEGED)
+#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+#LOCAL_CERTIFICATE := PRESIGNED
+#
+#include $(BUILD_PREBUILT)
 ###############################################################################
 include $(CLEAR_VARS)
 
@@ -162,7 +162,7 @@ LOCAL_MODULE := AsusCamera
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusCamera/AsusCamera.apk
 LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+LOCAL_MODULE_PATH := $(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 
@@ -174,7 +174,7 @@ LOCAL_MODULE := ASUSGallery
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := ASUSGallery/ASUSGallery.apk
 LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+LOCAL_MODULE_PATH := $(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_REQUIRED_MODULES := libjni_face_effect libgif libjni_face_detection libjni_filter_show 
@@ -279,37 +279,14 @@ include $(BUILD_PREBUILT)
 #
 #include $(BUILD_PREBUILT)
 #Dependencies libs
-include $(CLEAR_VARS)
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
-LOCAL_SRC_FILES := AsusLauncher/lib/arm/libkcmutil.so
-LOCAL_MODULE := libkcmutil
-LOCAL_MODULE_STEM := libkcmutil.so
-include $(BUILD_PREBUILT)
-
-###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := AsusKeyboard
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := AsusKeyboard/AsusKeyboard.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_REQUIRED_MODULES := libjni_xt9input 
-
-include $(BUILD_PREBUILT)
-#Dependencies libs
-include $(CLEAR_VARS)
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_TAGS:=optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-LOCAL_SRC_FILES := AsusKeyboard/lib/x86/libjni_xt9input.so
-LOCAL_MODULE := libjni_xt9input
-LOCAL_MODULE_STEM := libjni_xt9input.so
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+#LOCAL_MODULE_TAGS:=optional
+#LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/arm
+#LOCAL_SRC_FILES := AsusLauncher/lib/arm/libkcmutil.so
+#LOCAL_MODULE := libkcmutil
+#LOCAL_MODULE_STEM := libkcmutil.so
+#include $(BUILD_PREBUILT)
 
 ###############################################################################
 include $(CLEAR_VARS)
