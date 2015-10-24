@@ -158,8 +158,8 @@ PRODUCT_PACKAGES += \
 
 # Keyhandler
 PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
-
+    com.cyanogenmod.keyhandler \
+    CMActions
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

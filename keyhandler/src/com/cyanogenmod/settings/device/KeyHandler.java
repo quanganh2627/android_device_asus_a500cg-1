@@ -16,12 +16,12 @@
 
 package com.cyanogenmod.settings.device;
 
-import android.app.ActivityManagerNative;
 import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -40,10 +40,13 @@ import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.provider.Settings.Global;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
 
+import com.android.internal.R;
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
 
@@ -54,26 +57,27 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String ACTION_DISMISS_KEYGUARD =
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
-
+    public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
+    
     // Supported scancodes
-    //private static final int FLIP_CAMERA_SCANCODE = 249;
-    //private static final int GESTURE_CIRCLE_SCANCODE = 250;
-    //private static final int GESTURE_SWIPE_DOWN_SCANCODE = 251;
-    //private static final int GESTURE_V_SCANCODE = 252;
-    //private static final int GESTURE_LTR_SCANCODE = 253;
-    //private static final int GESTURE_GTR_SCANCODE = 254;
     private static final int KEY_GESTURE_DOUBLECLICK = 256;
+    private static final int KEY_GESTURE_C = 257;
+    private static final int KEY_GESTURE_E = 258;
+    private static final int KEY_GESTURE_S = 259;
+    private static final int KEY_GESTURE_V = 260;
+    private static final int KEY_GESTURE_W = 261;
+    private static final int KEY_GESTURE_Z = 262;
 
     private static final int GESTURE_WAKELOCK_DURATION = 3000;
 
     private static final int[] sSupportedGestures = new int[] {
-     /* FLIP_CAMERA_SCANCODE,
-        GESTURE_CIRCLE_SCANCODE,
-        GESTURE_SWIPE_DOWN_SCANCODE,
-        GESTURE_V_SCANCODE,
-        GESTURE_LTR_SCANCODE,
-        GESTURE_GTR_SCANCODE,*/
-        KEY_GESTURE_DOUBLECLICK
+        KEY_GESTURE_DOUBLECLICK,
+        KEY_GESTURE_C,
+        KEY_GESTURE_E,
+        KEY_GESTURE_S,
+        KEY_GESTURE_V,
+        KEY_GESTURE_W,
+        KEY_GESTURE_Z,        
     };
 
     private final Context mContext;
@@ -109,31 +113,28 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
-/*    private void ensureKeyguardManager() {
+    private void ensureKeyguardManager() {
         if (mKeyguardManager == null) {
             mKeyguardManager =
                     (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
         }
-    }*/
-/*
+    }
+
     private void ensureTorchManager() {
         if (mTorchManager == null) {
             mTorchManager = (TorchManager) mContext.getSystemService(Context.TORCH_SERVICE);
         }
-    }*/
+    }
 
     private class EventHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             KeyEvent event = (KeyEvent) msg.obj;
+            String action = null;
+            
             switch (event.getScanCode()) {
-            /*case FLIP_CAMERA_SCANCODE:
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    break;
-                }
-            case GESTURE_CIRCLE_SCANCODE:
+            case KEY_GESTURE_C:
                 ensureKeyguardManager();
-                String action = null;
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
@@ -143,32 +144,69 @@ public class KeyHandler implements DeviceKeyHandler {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
                 }
                 mPowerManager.wakeUp(SystemClock.uptimeMillis());
-                Intent intent = new Intent(action, null);
-                startActivitySafely(intent);
+                Intent c_intent = new Intent(action, null);
+                startActivitySafely(c_intent);
                 break;
-            case GESTURE_SWIPE_DOWN_SCANCODE:
-                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+            case KEY_GESTURE_E:
+                ensureKeyguardManager();
+                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                if (!mKeyguardManager.isKeyguardSecure()) {
+                    mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
+                            UserHandle.CURRENT);
+                }
+                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                Intent e_intent = new Intent(Intent.ACTION_MAIN, null);
+                e_intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                startActivitySafely(e_intent);
                 break;
-            case GESTURE_V_SCANCODE:
+            case KEY_GESTURE_S:
+                ensureKeyguardManager();
+                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                if (!mKeyguardManager.isKeyguardSecure()) {
+                    mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
+                            UserHandle.CURRENT);
+                }
+                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                String defaultApplication = Settings.Secure.getString(mContext.getContentResolver(),
+                    SMS_DEFAULT_APPLICATION);
+                PackageManager pm = mContext.getPackageManager();
+                Intent s_intent = pm.getLaunchIntentForPackage(defaultApplication );
+                if (s_intent != null) {
+                    startActivitySafely(s_intent);
+                }
+                break;
+            case KEY_GESTURE_V:
+                ensureKeyguardManager();
+                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                if (!mKeyguardManager.isKeyguardSecure()) {
+                    mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
+                            UserHandle.CURRENT);
+                }
+                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                Intent v_intent = new Intent(Intent.ACTION_DIAL, null);
+                startActivitySafely(v_intent);
+                break;
+            case KEY_GESTURE_W:
+                ensureKeyguardManager();
+                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                if (!mKeyguardManager.isKeyguardSecure()) {
+                    mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
+                            UserHandle.CURRENT);
+                }
+                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                Intent w_intent = new Intent(Intent.ACTION_WEB_SEARCH, null);
+                startActivitySafely(w_intent);
+                break;
+            case KEY_GESTURE_Z:
                 ensureTorchManager();
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                 mTorchManager.toggleTorch();
                 break;
-            case GESTURE_LTR_SCANCODE:
-                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
-                break;
-            case GESTURE_GTR_SCANCODE:
-                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_NEXT);
-                break;*/
             }
         }
     }
 
     public boolean handleKeyEvent(KeyEvent event) {
-        /*if (event.getAction() != KeyEvent.ACTION_UP
-                && event.getScanCode() != FLIP_CAMERA_SCANCODE) {
-            return false;
-        }*/
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
             if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
@@ -220,29 +258,16 @@ public class KeyHandler implements DeviceKeyHandler {
         }, mProximitySensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
-    //private void dispatchMediaKeyWithWakeLockToMediaSession(int keycode) {
-        //MediaSessionLegacyHelper helper = MediaSessionLegacyHelper.getHelper(mContext);
-        //if (helper != null) {
-            //KeyEvent event = new KeyEvent(SystemClock.uptimeMillis(),
-                    //SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, keycode, 0);
-            //helper.sendMediaButtonEvent(event, true);
-            //event = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
-            //helper.sendMediaButtonEvent(event, true);
-        //} else {
-            //Log.w(TAG, "Unable to send media key event");
-        //}
-    //}
-
-    //private void startActivitySafely(Intent intent) {
-        //intent.addFlags(
-                //Intent.FLAG_ACTIVITY_NEW_TASK
-                //| Intent.FLAG_ACTIVITY_SINGLE_TOP
-                //| Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //try {
-            //UserHandle user = new UserHandle(UserHandle.USER_CURRENT);
-            //mContext.startActivityAsUser(intent, null, user);
-        //} catch (ActivityNotFoundException e) {
-             ////Ignore
-        //}
-    //}
+    private void startActivitySafely(Intent intent) {
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        try {
+            UserHandle user = new UserHandle(UserHandle.USER_CURRENT);
+            mContext.startActivityAsUser(intent, null, user);
+        } catch (ActivityNotFoundException e) {
+            // Ignore
+        }
+    }
 }
