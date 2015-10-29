@@ -153,8 +153,11 @@ include vendor/intel/houdini/houdini.mk
 PRODUCT_PACKAGES += \
   com.android.future.usb.accessory
 
+COMBO_CHIP_VENDOR := bcm
 PRODUCT_PACKAGES += \
-  gps_bcm_4752
+  gps_bcm_4752 \
+  wifi_bcm_4330 \
+  bt_bcm4330
 
 # Keyhandler
 PRODUCT_PACKAGES += \
