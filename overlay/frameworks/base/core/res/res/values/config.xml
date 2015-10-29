@@ -82,15 +82,16 @@
 <!--
      This is the original from stoxk zenfone 5 below is a test speed up mobile net its to slow
 -->
+<!--
     <string-array name="config_mobile_tcp_buffers">
         <item>gprs:4092,8760,65536,4096,8760,65536</item>
         <item>edge:4093,26280,110208,4096,16384,110208</item>
         <item>hspap:32768,262144,1048576,4096,16384,262144</item>
         <item>lte:655360,1310720,2621440,327680,655360,1310720</item>
     </string-array>
+-->
 
 
-<!--
     <string-array name="config_mobile_tcp_buffers">
         <item>umts:131072,262144,1452032,4096,16384,399360</item>
         <item>hspa:131072,262144,2441216,4096,16384,399360</item>
@@ -103,7 +104,6 @@
         <item>evdo:131072,262144,1048576,4096,16384,524288</item>
         <item>lte:524288,1048576,8388608,262144,524288,4194304</item>
     </string-array>
--->
     <!-- Config determines whether to update phone object when voice registration
          state changes. Voice radio tech change will always trigger an update of
          phone object irrespective of this config -->
@@ -412,7 +412,6 @@
     <bool name="config_legacyGpsHAL">true</bool>
 -->
     
-    <bool name="config_switch_phone_on_voice_reg_state_change">true</bool>
     <add-resource type="bool" name="config_wifi_multirole_multichannel_support"/>
     <bool name="config_wifi_multirole_multichannel_support">true</bool>
     <add-resource type="bool" name="config_discard_scan_when_p2p_connected"/>
@@ -434,9 +433,6 @@
     <integer name="config_multiuserMaximumUsers_1G">1</integer>
     <integer name="config_safe_media_volume_index">10</integer>
     <integer name="config_mobile_mtu">1358</integer>
-<!--
-    <integer name="config_groupOwnerIntentWifiDisplay">14</integer>
--->
  
 <!--
     <integer name="config_overrideHasPermanentMenuKey">2</integer>
@@ -468,25 +464,6 @@
     <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
     <bool name="config_lidControlsSleep">true</bool>
     <integer name="config_lightSensorWarmupTime">0</integer>
-    <integer name="config_bluetooth_max_scan_filters">0</integer>
-    <integer name="config_bluetooth_max_advertisers">0</integer>
-    <integer name="config_datause_polling_period_sec">600</integer>
-    <integer name="config_datause_threshold_bytes">0</integer>
-    <integer name="config_datause_throttle_kbitsps">300</integer>
-    <integer name="config_datause_notification_type">2</integer>
-    <integer name="config_volte_replacement_rat">0</integer>
-    <integer name="db_connection_pool_size">4</integer>
-    <integer name="db_journal_size_limit">524288</integer>
-    <integer name="db_wal_autocheckpoint">100</integer>
-    <integer name="config_downloadDataDirSize">200</integer>
-    <integer name="config_MaxConcurrentDownloadsAllowed">5</integer>
-    <integer name="config_downloadDataDirLowSpaceThreshold">10</integer>
-    <integer name="config_cursorWindowSize">2048</integer>
-    <integer name="config_ntpPollingInterval">864000000</integer>
-    <integer name="config_ntpPollingIntervalShorter">60000</integer>
-    <integer name="config_ntpRetry">3</integer>
-    <integer name="config_ntpThreshold">5000</integer>
-    <integer name="config_ntpTimeout">20000</integer>
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
          delimited by File.pathSeparator, which defaults to ":" on Android -->
     <string name="config_deviceKeyHandlerLib" translatable="false">/system/framework/com.cyanogenmod.keyhandler.jar</string>
@@ -550,6 +527,7 @@
     <integer name="config_longPressOnAppSwitchBehavior">8</integer>
     
         <!-- Configure Group Owner Intent used to perform WiFi Display P2P connection. -->
+    <add-resource type="integer" name="config_groupOwnerIntentWifiDisplay"></add-resource>
     <integer name="config_groupOwnerIntentWifiDisplay">14</integer>
     <!-- Boolean indicating whether the wifi chipset supports multi-role multi-channel -->
     <add-resource type="bool" name="config_wifi_multirole_multichannel_support"></add-resource>
