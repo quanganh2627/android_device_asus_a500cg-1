@@ -427,7 +427,11 @@ PRODUCT_PACKAGES += \
   
 # OemTelephony for OEM HOOK API
 PRODUCT_PACKAGES += \
-    OemTelephonyApp
+    OemTelephonyApp \
+    com.intel.internal.telephony.MmgrClient
+
+PRODUCT_PACKAGE_OVERLAYS := \
+  device/intel/common/overlays_extensions
 
 DEVICE_PACKAGE_OVERLAYS := \
   device/asus/a500cg/overlay
