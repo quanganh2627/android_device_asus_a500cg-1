@@ -43,7 +43,7 @@
 /dev/asus_gsensor                       u:object_r:sensors_device:s0
 /dev/lightsensor                        u:object_r:sensors_device:s0
 /system/bin/akmd09911                   u:object_r:akmd_exec:s0
-/system/bin/a600cg_akmd09911            u:object_r:sensors_exec:s0
+/system/bin/a600cg_akmd09911            u:object_r:akmd_exec:s0
 /dev/i2c(.*)?                           u:object_r:i2c_device:s0
 
 # GPU
