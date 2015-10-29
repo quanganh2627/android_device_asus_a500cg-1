@@ -38,7 +38,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
     
-TARGET_RECOVERY_PREBUILT_KERNEL := $(LOCAL_KERNEL)
+#TARGET_RECOVERY_PREBUILT_KERNEL := $(LOCAL_KERNEL)
 
 
 # This device is xhdpi.  However the platform doesn't
