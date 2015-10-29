@@ -24,7 +24,7 @@ on early-init
     setprop ro.boot.min.cap 0
     setprop persist.ims_support 0
     setprop persist.radio.multisim.config dsds
-    setprop ro.swconf.info DSDS_A500CG
+#    #setprop ro.swconf.info DSDS_A500CG
 
 on init
     chmod 0770 /system/bin/upi_ug31xx
