@@ -202,10 +202,15 @@ PRODUCT_PACKAGES += \
 
 #Intel-sensors family
 PRODUCT_PACKAGES += \
+  gps.a500cg
+
+#Intel-sensors family
+PRODUCT_PACKAGES += \
   libhealthd.intel \
 
 PRODUCT_PACKAGES += \
-  sensors.a500cg
+  sensors.a500cg \
+  libaccelerometersimplecalibration
 #include vendor/intel/hardware/sensors/Android.mk
 
 PRODUCT_PACKAGES += \
