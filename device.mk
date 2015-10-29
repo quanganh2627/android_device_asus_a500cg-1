@@ -240,13 +240,10 @@ PRODUCT_PACKAGES += \
   
 #ZenUI set
 PRODUCT_PACKAGES += \
-  AsusBackup \
   PCLinkManager \
   AsusCalculator \
   AsusCamera \
   SMMI_TEST \
-  AsusFMRadio \
-  AsusFMService \
   AsusKeyboard \
   3CToolbox \
   PCLinkBinary \
@@ -254,9 +251,14 @@ PRODUCT_PACKAGES += \
   AsusDrawRes \
   ASUSGallery \
   ASUSGalleryBurst \
-  AsusKeyboard \
   OemTelephonyApp \
-  SARManager
+  SARManager \
+  SensorCal \
+  SepService \
+  CWSClientService \
+  Themer \
+  ZooperWidget \
+  ICEsoundService
 
 #ituxd for intel thermal management
 ENABLE_ITUXD := true
