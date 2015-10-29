@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (c) 2012 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,61 +18,58 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <dirent.h>
-#include <sys/param.h>
-#include <sys/stat.h>
 #include <fcntl.h>
-#include<time.h>
-#include <limits.h>
 
-
-#define LOG_TAG "PowerHAL"
+#define LOG_TAG "CM PowerHAL"
 #include <utils/Log.h>
 
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
-#define TIMER_RATE_SYSFS    "/sys/devices/system/cpu/cpufreq/interactive/timer_rate"
-#define BOOST_PULSE_SYSFS    "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
-#define TOUCHBOOST_SYSFS    "/sys/devices/system/cpu/cpufreq/interactive/touchboost_freq"
+#define SCALING_GOVERNOR_PATH "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+#define BOOSTPULSE_ONDEMAND "/sys/devices/system/cpu/cpufreq/ondemand/boostpulse"
+#define BOOSTPULSE_INTERACTIVE "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
+#define SAMPLING_RATE_SCREEN_ON "50000"
+#define SAMPLING_RATE_SCREEN_OFF "500000"
+#define TIMER_RATE_SCREEN_ON "30000"
+#define TIMER_RATE_SCREEN_OFF "500000"
 
-#define EARLY_SUSPEND_SYSFS_DIR    "/sys/power/early_suspend"
-#define EARLY_SUSPEND_SYSFS_NAME   "early_suspend"
-#define EARLY_SUSPEND_OFF          "0"
-#define EARLY_SUSPEND_ON           "1"
-
-/*
- * This parameter is to identify continuous touch/scroll events.
- * Any two touch hints received between a 20 interval ms is
- * considered as a scroll event.
- */
-#define SHORT_TOUCH_TIME 20
-
-/*
- * This parameter is to identify first touch events.
- * Any two touch hints received after 100 ms is considered as
- * a first touch event.
- */
-#define LONG_TOUCH_TIME 100
-
-/*
- * This parameter defines the number of vsync boost to be
- * done after the finger release event.
- */
-#define VSYNC_BOOST_COUNT 4
-
-/*
- * This parameter defines the time between a touch and a vsync
- * hint. the time if is > 30 ms, we do a vsync boost.
- */
-#define VSYNC_TOUCH_TIME 30
-
-struct intel_power_module{
-    struct power_module container;
-    int touchboost_disable;
-    int timer_set;
-    int vsync_boost;
+struct cm_power_module {
+    struct power_module base;
+    pthread_mutex_t lock;
+    int boostpulse_fd;
+    int boostpulse_warned;
 };
+
+static char governor[20];
+
+static int sysfs_read(char *path, char *s, int num_bytes)
+{
+    char buf[80];
+    int count;
+    int ret = 0;
+    int fd = open(path, O_RDONLY);
+
+    if (fd < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error opening %s: %s\n", path, buf);
+
+        return -1;
+    }
+
+    if ((count = read(fd, s, num_bytes - 1)) < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error writing to %s: %s\n", path, buf);
+
+        ret = -1;
+    } else {
+        s[count] = '\0';
+    }
+
+    close(fd);
+
+    return ret;
+}
 
 static void sysfs_write(char *path, char *s)
 {
@@ -93,215 +91,149 @@ static void sysfs_write(char *path, char *s)
 
     close(fd);
 }
-static int sysfs_read(char *path, char *s, int num_bytes)
+
+static int get_scaling_governor() {
+    if (sysfs_read(SCALING_GOVERNOR_PATH, governor,
+                sizeof(governor)) == -1) {
+        return -1;
+    } else {
+        // Strip newline at the end.
+        int len = strlen(governor);
+
+        len--;
+
+        while (len >= 0 && (governor[len] == '\n' || governor[len] == '\r'))
+            governor[len--] = '\0';
+    }
+
+    return 0;
+}
+
+static void cm_power_set_interactive(struct power_module *module, int on)
+{
+    if (strncmp(governor, "ondemand", 8) == 0)
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_rate",
+                on ? SAMPLING_RATE_SCREEN_ON : SAMPLING_RATE_SCREEN_OFF);
+    else if (strncmp(governor, "interactive", 11) == 0)
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/timer_rate",
+                on ? TIMER_RATE_SCREEN_ON : TIMER_RATE_SCREEN_OFF);
+}
+
+
+static void configure_governor()
+{
+    cm_power_set_interactive(NULL, 1);
+
+    if (strncmp(governor, "ondemand", 8) == 0) {
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/up_threshold", "90");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/io_is_busy", "1");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor", "4");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/ondemand/down_differential", "10");
+
+    } else if (strncmp(governor, "interactive", 11) == 0) {
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/min_sample_time", "90000");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq", "1134000");
+        sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay", "30000");
+    }
+}
+
+static int boostpulse_open(struct cm_power_module *cm)
 {
     char buf[80];
-    int count;
-    int ret = 0;
-    int fd = open(path, O_RDONLY);
-     if (fd < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error reading from %s: %s\n", path, buf);
-        return -1;
-    }
-    if ((count = read(fd, s, (num_bytes - 1))) < 0) {
-        strerror_r(errno, buf, sizeof(buf));
-        ALOGE("Error reading from  %s: %s\n", path, buf);
-        ret = -1;
-    } else {
-        s[count] = '\0';
-    }
-    close(fd);
-    return ret;
-}
 
-static int filter_non_suspend(const struct dirent *d)
-{
-    return !(strcmp(d->d_name, EARLY_SUSPEND_SYSFS_NAME));
-}
+    pthread_mutex_lock(&cm->lock);
 
-static void free_dir_list(struct dirent **dir_list, int entries)
-{
-    int index;
+    if (cm->boostpulse_fd < 0) {
+        if (get_scaling_governor() < 0) {
+            ALOGE("Can't read scaling governor.");
+            cm->boostpulse_warned = 1;
+        } else {
+            if (strncmp(governor, "ondemand", 8) == 0)
+                cm->boostpulse_fd = open(BOOSTPULSE_ONDEMAND, O_WRONLY);
+            else if (strncmp(governor, "interactive", 11) == 0)
+                cm->boostpulse_fd = open(BOOSTPULSE_INTERACTIVE, O_WRONLY);
 
-    for (index = 0; index < entries; index++)
-        free(dir_list[index]);
-
-    free(dir_list);
-}
-
-static int select_suspend_dir(const struct dirent *d)
-{
-    struct dirent **device_list = NULL;
-    int i, entries = 0;
-    char path[PATH_MAX];
-
-    /* filter non dir except symlink*/
-    if (!((d->d_type & DT_DIR) || (d->d_type & DT_LNK)))
-        return 0;
-
-    /* filter dot dir */
-    if (!(strcmp(d->d_name, "..") && strcmp(d->d_name, ".")))
-        return 0;
-
-    snprintf(path, PATH_MAX, "%s/%s", EARLY_SUSPEND_SYSFS_DIR, d->d_name);
-
-    /* scan every dir and look for suspend file */
-    entries = scandir(path, &device_list, filter_non_suspend, NULL);
-
-    /* free device_list */
-    free_dir_list(device_list, entries);
-
-    /* return 0 for non suspend dir*/
-    if (entries < 0)
-        return 0;
-
-    return 1;
-}
-
-static int get_early_suspend_devices(struct dirent ***dir_list)
-{
-    struct dirent **device_list = NULL;
-    int i, entries = 0;
-
-    entries = scandir(EARLY_SUSPEND_SYSFS_DIR, &device_list,
-                    select_suspend_dir, NULL);
-
-    if ( entries < 0 ) {
-        ALOGE("Error scanning early suspend sysfs\n");
-        goto out;
+            if (cm->boostpulse_fd < 0 && !cm->boostpulse_warned) {
+                strerror_r(errno, buf, sizeof(buf));
+                ALOGV("Error opening boostpulse: %s\n", buf);
+                cm->boostpulse_warned = 1;
+            } else if (cm->boostpulse_fd > 0) {
+                configure_governor();
+                ALOGD("Opened %s boostpulse interface", governor);
+            }
+        }
     }
 
-    *dir_list = device_list;
-
-out:
-    return entries;
+    pthread_mutex_unlock(&cm->lock);
+    return cm->boostpulse_fd;
 }
 
-static void handle_device_suspend(struct dirent **device_list,
-                    int entries, int on)
+static void cm_power_hint(struct power_module *module, power_hint_t hint,
+                            void *data)
 {
-    int i;
-    char path[PATH_MAX];
-
-    for (i = 0; i < entries; i++) {
-        snprintf(path, PATH_MAX, "%s/%s/%s",
-                EARLY_SUSPEND_SYSFS_DIR,
-                device_list[i]->d_name,
-                EARLY_SUSPEND_SYSFS_NAME);
-
-        if (on)
-            sysfs_write(path, EARLY_SUSPEND_OFF);
-        else
-            sysfs_write(path, EARLY_SUSPEND_ON);
-    }
-}
-
-static void intel_power_init(struct power_module *module)
-{
-    ALOGW("**Intel Power HAL initialisation**\n");
-
-    sysfs_write(TOUCHBOOST_SYSFS, "1333000");
-}
-
-static void intel_power_set_interactive(struct power_module *module, int on)
-{
-    struct dirent **device_list = NULL;
-    int entries = 0;
-
-    entries = get_early_suspend_devices(&device_list);
-
-    handle_device_suspend(device_list, entries, on);
-
-    free_dir_list(device_list, entries);
-}
-
-static void intel_power_hint(struct power_module *module, power_hint_t hint,
-                       void *data) {
-    struct intel_power_module *intel = (struct intel_power_module *) module;
-    char sysfs_val[80];
-    static clock_t curr_time, prev_time , vsync_time;
-    float diff;
-    static int vsync_count;
-    static int consecutive_touch_int;
+    struct cm_power_module *cm = (struct cm_power_module *) module;
+    char buf[80];
+    int len;
+    int duration = 1;
 
     switch (hint) {
-        case POWER_HINT_INTERACTION:
-            curr_time = clock();
-            diff = (((float)curr_time -
-                            (float)prev_time) / CLOCKS_PER_SEC ) * 1000;
-            prev_time = curr_time;
-            if(diff < SHORT_TOUCH_TIME)
-                consecutive_touch_int ++;
-            else if (diff > LONG_TOUCH_TIME) {
-                intel->vsync_boost = 0;
-                intel->timer_set = 0;
-                intel->touchboost_disable = 0;
-                vsync_count = 0;
-                consecutive_touch_int = 0;
+    case POWER_HINT_INTERACTION:
+    case POWER_HINT_CPU_BOOST:
+        if (boostpulse_open(cm) >= 0) {
+            if (data != NULL)
+                duration = (int) data;
+
+            snprintf(buf, sizeof(buf), "%d", duration);
+            len = write(cm->boostpulse_fd, buf, strlen(buf));
+
+            if (len < 0) {
+                strerror_r(errno, buf, sizeof(buf));
+	            ALOGE("Error writing to boostpulse: %s\n", buf);
+
+                pthread_mutex_lock(&cm->lock);
+                close(cm->boostpulse_fd);
+                cm->boostpulse_fd = -1;
+                cm->boostpulse_warned = 0;
+                pthread_mutex_unlock(&cm->lock);
             }
-            /* Simple touch: timer rate need not be changed here */
-            if((diff < SHORT_TOUCH_TIME) && (intel->touchboost_disable == 0)
-                            && (consecutive_touch_int > 4))
-                intel->touchboost_disable = 1;
-            /*
-            *Scrolling: timer rate reduced to increase sensitivity. No more touch
-            *boost after this
-            */
-            if((intel->touchboost_disable == 1) && (consecutive_touch_int > 15)
-                            && (intel->timer_set == 0)) {
-                intel->timer_set = 1;
-            }
-            if (!intel->touchboost_disable) {
-                sysfs_write(BOOST_PULSE_SYSFS,"1");
-            }
-            break;
-        case POWER_HINT_VSYNC:
-            if(intel->touchboost_disable == 1) {
-                vsync_time = clock();
-                diff = (((float)vsync_time -
-                            (float)curr_time) / CLOCKS_PER_SEC ) * 1000;
-                if(diff > VSYNC_TOUCH_TIME) {
-                    intel->timer_set = 0;
-                    intel->vsync_boost = 1;
-                    intel->touchboost_disable = 0;
-                    vsync_count = VSYNC_BOOST_COUNT;
-                }
-            }
-            if(intel->vsync_boost) {
-                if((data == 1) && (vsync_count > 0)) {
-                    sysfs_write(BOOST_PULSE_SYSFS,"1");
-                    vsync_count -- ;
-                if(vsync_count == 0)
-                   intel->vsync_boost = 0;
-                }
-            }
-            break;
-            default:
-            break;
+        }
+        break;
+
+    case POWER_HINT_VSYNC:
+        break;
+
+    default:
+        break;
     }
+}
+
+static void cm_power_init(struct power_module *module)
+{
+    get_scaling_governor();
+    configure_governor();
 }
 
 static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
-struct intel_power_module HAL_MODULE_INFO_SYM = {
-    container:{
-            common: {
+struct cm_power_module HAL_MODULE_INFO_SYM = {
+    base: {
+        common: {
             tag: HARDWARE_MODULE_TAG,
             module_api_version: POWER_MODULE_API_VERSION_0_2,
             hal_api_version: HARDWARE_HAL_API_VERSION,
             id: POWER_HARDWARE_MODULE_ID,
-            name: "Power HAL",
-            author: "Power Management Team",
+            name: "CM Power HAL",
+            author: "The CyanogenMod Project",
             methods: &power_module_methods,
         },
-    init: intel_power_init,
-    setInteractive: intel_power_set_interactive,
-    powerHint: intel_power_hint,
+       init: cm_power_init,
+       setInteractive: cm_power_set_interactive,
+       powerHint: cm_power_hint,
     },
-        touchboost_disable: 0,
-        timer_set: 0,
-        vsync_boost: 0,
+
+    lock: PTHREAD_MUTEX_INITIALIZER,
+    boostpulse_fd: -1,
+    boostpulse_warned: 0,
 };
