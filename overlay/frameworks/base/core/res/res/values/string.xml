@@ -4,4 +4,10 @@
     <string name="config_geofenceServicesProvider">@null</string>
     <string name="config_comboNetworkLocationProvider">@null</string>
     <string name="config_wifi_tcp_buffers">524288,1048576,2097152,262144,524288,1048576</string>
+    <!-- Displayed when a phone feature is at unknown state. -->
+    <add-resource type="string" name="serviceUnknown" />
+    <string name="serviceUnknown">Service state is unknown.</string>
+    <!-- Displayed as the title for a caller name presentation query. -->
+    <add-resource type="string" name="CnapMmi" />
+    <string name="CnapMmi">Incoming caller name presentation service</string>
 </resources>

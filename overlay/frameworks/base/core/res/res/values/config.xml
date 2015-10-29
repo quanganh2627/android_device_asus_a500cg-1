@@ -548,6 +548,25 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_longPressOnAppSwitchBehavior">8</integer>
+    
+        <!-- Configure Group Owner Intent used to perform WiFi Display P2P connection. -->
+    <integer name="config_groupOwnerIntentWifiDisplay">14</integer>
+    <!-- Boolean indicating whether the wifi chipset supports multi-role multi-channel -->
+    <add-resource type="bool" name="config_wifi_multirole_multichannel_support"></add-resource>
+    <bool translatable="false" name="config_wifi_multirole_multichannel_support">true</bool>
+
+    <!-- Configure discarding WiFi scanning when P2P connected. -->
+    <add-resource type="bool" name="config_discard_scan_when_p2p_connected" />
+    <bool name="config_discard_scan_when_p2p_connected">true</bool>
+
+    <add-resource type="bool" name="config_TerminalDetectWindowOrientation" />
+    <bool name="config_TerminalDetectWindowOrientation">false</bool>
+
+    <!-- Controls whether window orientation should use non-polling mode accelerometer.
+         set default to false to use polling mode. -->
+    <add-resource type="bool" name="config_nonPollingWindowOrientation" />
+    <bool name="config_nonPollingWindowOrientation">false</bool>
+
 
 
 </resources>
