@@ -68,6 +68,10 @@ BOARD_KERNEL_IMAGE_NAME := bzImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 KERNEL_SOC := ctp
+#remove time_macros from ccache options, it breaks signing process
+KERNEL_CCSLOP := $(filter-out time_macros,$(subst $(comma), ,$(CCACHE_SLOPPINESS)))
+KERNEL_CCSLOP := $(subst $(space),$(comma),$(KERNEL_CCSLOP))
+CCACHE_SLOPPINESS := $(KERNEL_CCSLOP)
 KERNEL_BLD_FLAGS := \
     ARCH=$(KERNEL_ARCH) \
     INSTALL_MOD_PATH=../modules_install \
