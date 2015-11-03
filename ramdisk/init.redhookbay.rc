@@ -531,7 +531,7 @@ on post-fs
     chown system system /sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/input/input1/dclick_mode
     chown system system /sys/android_touch/dclick_mode
 
-    setprop persist.asus.dclick 1
+    setprop persist.asus.dclick 0
 
 on property:persist.asus.glove=0
     write /sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/input/input1/glove_mode 0
