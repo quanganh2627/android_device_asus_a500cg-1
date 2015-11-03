@@ -35,6 +35,10 @@ BUILD_EMULATOR := false
 
 # enable ARM codegen for x86 with Houdini
 BUILD_ARM_FOR_X86 := true
+ADDITIONAL_BUILD_PROPERTIES += 
+    ro.dalvik.vm.isa.arm=x86 \
+    ro.enable.native.bridge.exec=1 \
+    ro.dalvik.vm.native.bridge=libhoudini.so
 
 # Atom optimizations to improve memory benchmarks.
 -include device/asus/a500cg/OptAtom.mk
