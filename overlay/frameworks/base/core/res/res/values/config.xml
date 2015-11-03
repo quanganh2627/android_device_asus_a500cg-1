@@ -189,18 +189,24 @@
          does not require auto-restore. -->
     <!-- the 6th element indicates boot-time dependency-met value. -->
     <string-array translatable="false" name="networkAttributes">
-        <item>wifi,1,1,1,-1,true</item>
-        <item>mobile,0,0,0,-1,true</item>
-        <item>mobile_mms,2,0,2,60000,true</item>
-        <item>mobile_supl,3,0,2,60000,true</item>
-        <item>mobile_hipri,5,0,3,60000,true</item>
-        <item>mobile_fota,10,0,2,60000,true</item>
-        <item>mobile_ims,11,0,2,60000,true</item>
-        <item>mobile_cbs,12,0,2,60000,true</item>
-        <item>wifi_p2p,13,1,0,-1,true</item>
-        <item>bluetooth,7,7,1,-1,true</item>
-        <item>mobile_ia,14,0,2,-1,true</item>
-        <item>mobile_dun,4,0,2,-1,true</item>
+        <item>"wifi,1,1,1,-1,true"</item>
+        <item>"mobile,0,0,0,-1,true"</item>
+        <item>"mobile_mms,2,0,2,60000,true"</item>
+        <item>"mobile_supl,3,0,2,60000,true"</item>
+        <item>"mobile_dun,4,0,2,60000,true"</item>
+        <item>"mobile_hipri,5,0,3,60000,true"</item>
+        <item>"bluetooth,7,7,1,-1,true"</item>
+        <item>"ethernet,9,9,1,-1,true"</item>
+        <item>"mobile_fota,10,0,2,60000,true"</item>
+        <item>"mobile_ims,11,0,2,60000,true"</item>
+        <item>"mobile_cbs,12,0,2,60000,true"</item>
+        <item>"wifi_p2p,13,1,0,-1,true"</item>
+        <item>"mobile_ia,14,0,2,-1,true"</item>
+        <item>"mobile_agps,30,0,2,60000,true"</item>
+        <item>"mobile_entitle,34,0,2,60000,true"</item>
+        <item>"mobile_corpsync,35,0,2,60000,true"</item>
+        <item>"mobile_stdhipri,36,0,2,60000,true"</item>
+        <item>"mobile_800apn,37,0,2,60000,true"</item>
     </string-array>
     <string-array name="config_tether_usb_regexs">
         <item>rndis0</item>
@@ -227,10 +233,10 @@
     
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
-    <integer name="config_screenBrightnessSettingMinimum">15</integer>
+    <integer name="config_screenBrightnessSettingMinimum">10</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">71</integer>
-    <integer name="config_screenBrightnessDoze">17</integer>
+    <integer name="config_screenBrightnessDoze">3</integer>
     <integer name="config_screenBrightnessDim">20</integer>
     <integer name="config_screenBrightnessDark">1</integer>
     
@@ -376,7 +382,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">83</integer>
+    <integer name="config_deviceHardwareKeys">71</integer>
         <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -389,7 +395,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">64</integer>
+    <integer name="config_deviceHardwareWakeKeys">71</integer>
     <!-- Device configuration indicating whether we should avoid using accelerated graphics
          in certain places to reduce RAM footprint.  This is ignored if ro.config.low_ram
          is true (in that case this is assumed true as well).  It can allow you to tune down
@@ -409,10 +415,6 @@
     <bool name="config_enableMultiUserUI_1G">false</bool>
     
     <bool name="config_auto_attach_data_on_creation">false</bool>
-    <bool name="config_enableGestureService">true</bool>
-<!--
-    <bool name="config_legacyGpsHAL">true</bool>
--->
     
     <add-resource type="bool" name="config_wifi_multirole_multichannel_support"/>
     <bool name="config_wifi_multirole_multichannel_support">true</bool>
@@ -461,10 +463,15 @@
          turn the screen on
          NOTE ! - Enable for devices that have a fast response proximity sensor
     -->
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
     <bool name="config_proximityCheckOnWake">true</bool>
     <integer name="config_proximityCheckTimeout">100</integer>
     <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+<!--
     <bool name="config_lidControlsSleep">true</bool>
+-->
     <integer name="config_lightSensorWarmupTime">0</integer>
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
          delimited by File.pathSeparator, which defaults to ":" on Android -->
