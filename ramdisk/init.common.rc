@@ -56,7 +56,7 @@ on init
     mkdir /storage/USBdisk5 0700 root root
 
     #symlink for ASUS APP
-    mkdir   /Removable 0751 root sdcard_r
+    mkdir   /Removable 0756 root sdcard_r
     symlink /storage/MicroSD  /Removable/MicroSD
     symlink /storage/USBdisk1 /Removable/USBdisk1
     symlink /storage/USBdisk2 /Removable/USBdisk2
@@ -103,7 +103,7 @@ on fs
     mkdir /factory 0775 system system
     mkdir /config 0775 system system
     mkdir /media 0775 media media
-    mount_all /fstab
+    mount_all /fstab.redhookbay
     mkdir /config/wifi
     chown system wifi /config/wifi
     chmod 0770 /config/wifi
@@ -115,13 +115,13 @@ on fs
     restorecon_recursive /factory
     restorecon_recursive /logs
     #UPI gauge daemon
-    asus_exec /system/bin/touch /config/upi_gg
+    exec /system/bin/touch /config/upi_gg
     chown system system /config/upi_gg
     chmod 0660 /config/upi_gg
-    asus_exec /system/bin/touch /config/upi_bo
+    exec /system/bin/touch /config/upi_bo
     chown system system /config/upi_bo
     chmod 0660 /config/upi_bo
-    asus_exec /system/bin/touch /config/upi_bo_auto
+    exec /system/bin/touch /config/upi_bo_auto
     chown system system /config/upi_bo_auto
     chmod 0660 /config/upi_bo_auto
 
@@ -149,27 +149,27 @@ on post-fs
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_MicroSD /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/MicroSD /storage/MicroSD
+service fuse_MicroSD /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/MicroSD /storage/MicroSD
     class late_start
     disabled
 
-service fuse_USBdisk1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk1 /storage/USBdisk1
+service fuse_USBdisk1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk1 /storage/USBdisk1
     class late_start
     disabled
 
-service fuse_USBdisk2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk2 /storage/USBdisk2
+service fuse_USBdisk2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk2 /storage/USBdisk2
     class late_start
     disabled
 
-service fuse_USBdisk3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk3 /storage/USBdisk3
+service fuse_USBdisk3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk3 /storage/USBdisk3
     class late_start
     disabled
 
-service fuse_USBdisk4 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk4 /storage/USBdisk4
+service fuse_USBdisk4 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk4 /storage/USBdisk4
     class late_start
     disabled
 
-service fuse_USBdisk5 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk5 /storage/USBdisk5
+service fuse_USBdisk5 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk5 /storage/USBdisk5
     class late_start
     disabled
 
