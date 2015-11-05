@@ -382,7 +382,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">71</integer>
+    <integer name="config_deviceHardwareKeys">83</integer>
         <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
@@ -395,7 +395,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareWakeKeys">71</integer>
+    <integer name="config_deviceHardwareWakeKeys">83</integer>
     <!-- Device configuration indicating whether we should avoid using accelerated graphics
          in certain places to reduce RAM footprint.  This is ignored if ro.config.low_ram
          is true (in that case this is assumed true as well).  It can allow you to tune down
@@ -438,9 +438,7 @@
     <integer name="config_safe_media_volume_index">10</integer>
     <integer name="config_mobile_mtu">1358</integer>
  
-<!--
     <integer name="config_overrideHasPermanentMenuKey">2</integer>
--->
     
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
@@ -464,14 +462,12 @@
          NOTE ! - Enable for devices that have a fast response proximity sensor
     -->
     <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
     <bool name="config_proximityCheckOnWake">true</bool>
     <integer name="config_proximityCheckTimeout">100</integer>
     <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
-<!--
     <bool name="config_lidControlsSleep">true</bool>
--->
     <integer name="config_lightSensorWarmupTime">0</integer>
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
          delimited by File.pathSeparator, which defaults to ":" on Android -->
@@ -547,7 +543,7 @@
     <bool name="config_discard_scan_when_p2p_connected">true</bool>
 
     <add-resource type="bool" name="config_TerminalDetectWindowOrientation" />
-    <bool name="config_TerminalDetectWindowOrientation">false</bool>
+    <bool name="config_TerminalDetectWindowOrientation">true</bool>
 
     <!-- Controls whether window orientation should use non-polling mode accelerometer.
          set default to false to use polling mode. -->
