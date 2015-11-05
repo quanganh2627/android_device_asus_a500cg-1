@@ -35,11 +35,11 @@ on property:ro.spid.gps.tty=ttyS2
     symlink /dev/ttyS2 /dev/gps/ttyGPS
     symlink /sys/class/tty/ttyS2/../../power/control /dev/gps/ttyGPSPowerControl
 
-service gpscerd /system/bin/gpscerd /data/gps/gps.cer
-    class main
-    user system
-    group system
-    oneshot
+#service gpscerd /system/bin/gpscerd /data/gps/gps.cer
+#    class main
+#    user system
+#    group system
+#    oneshot
 
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
