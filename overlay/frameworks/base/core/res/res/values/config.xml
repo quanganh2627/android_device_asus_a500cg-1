@@ -230,9 +230,11 @@
     <bool name="config_dozeAfterScreenOff">true</bool>
     <!-- Doze: force using accelerometer as pick up sensor -->
     <bool name="config_dozeUseAccelerometer">true</bool>
+    <!-- enable doze powersaving mode -->
+    <bool name="config_enableAutoPowerModes">true</bool>
     
     <!-- Minimum screen brightness setting allowed by the power manager.
-         The user is forbidden from setting the brightness below this level. -->
+     The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">10</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">71</integer>
@@ -251,6 +253,7 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>30</item>
         <item>50</item>
         <item>100</item>
         <item>200</item>
@@ -277,11 +280,7 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-<!--
-        <item>15</item>
-        <item>24</item>
         <item>34</item>
--->
         <item>51</item>
         <item>66</item>
         <item>80</item>
@@ -420,10 +419,12 @@
     <bool name="config_wifi_multirole_multichannel_support">true</bool>
     <add-resource type="bool" name="config_discard_scan_when_p2p_connected"/>
     <bool name="config_discard_scan_when_p2p_connected">true</bool>
+<!--
     <add-resource type="bool" name="config_TerminalDetectWindowOrientation" />
     <bool name="config_TerminalDetectWindowOrientation">false</bool>
     <add-resource type="bool" name="config_nonPollingWindowOrientation"/>
     <bool name="config_nonPollingWindowOrientation">false</bool>
+-->
     <add-resource type="bool" name="config_uninstallable_preloaded_app"/>
     <bool name="config_uninstallable_preloaded_app">true</bool>
     <integer name="config_wifi_network_switching_blacklist_time">172800000</integer>
