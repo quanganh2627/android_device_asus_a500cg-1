@@ -64,8 +64,12 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
-TARGET_KERNEL_SOURCE := linux/kernel
-TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_SOURCE := linux/kernel
+#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
+#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_CONFIG := i386_ctp_defconfig
+#KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := x86
 KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
