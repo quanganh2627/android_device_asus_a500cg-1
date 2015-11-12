@@ -578,7 +578,7 @@ service surfaceflinger /system/bin/surfaceflinger
 service drm /system/bin/drmserver
     class main
     user drm
-    group drm system inet drmrpc sdcard_r security
+    group drm system inet drmrpc
 
 #service media /system/bin/mediaserver
 #    class main
