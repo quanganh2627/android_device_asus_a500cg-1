@@ -290,7 +290,9 @@ BOARD_SEPOLICY_UNION += \
     gpsd.te \
     dpst.te \
     pclink.te \
-    sensors.te
+    sensors.te \
+    isolated_app.te \
+    app.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true

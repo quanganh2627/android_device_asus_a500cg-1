@@ -1,0 +1,2 @@
+#need refine the "device"
+allow appdomain device:chr_file { read write ioctl open getattr };
