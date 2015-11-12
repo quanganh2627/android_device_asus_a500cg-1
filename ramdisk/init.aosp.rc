@@ -542,7 +542,7 @@ service servicemanager /system/bin/servicemanager
     onrestart restart zygote
     onrestart restart media
     onrestart restart surfaceflinger
-    onrestart restart drm
+#    onrestart restart drm
 
 service vold /system/bin/vold
     class core
@@ -575,10 +575,10 @@ service surfaceflinger /system/bin/surfaceflinger
     group graphics drmrpc
     onrestart restart zygote
 
-service drm /system/bin/drmserver
-    class main
-    user drm
-    group drm system inet drmrpc
+#service drm /system/bin/drmserver
+#    class main
+#    user drm
+#    group drm system inet drmrpc
 
 #service media /system/bin/mediaserver
 #    class main
