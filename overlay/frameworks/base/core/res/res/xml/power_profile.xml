@@ -19,12 +19,19 @@
             <value>14</value>
         </array>
         <array name="cpu.speeds">
+            <value>400000</value>
+            <value>534000</value>
+            <value>666000</value>
             <value>800000</value>
             <value>933000</value>
             <value>1333000</value>
             <value>1600000</value>
             <value>1866000</value>
             <value>2000000</value>
+            <value>2083000</value>
+            <value>2166000</value>
+            <value>2250000</value>
+            <value>2333000</value>
         </array>
         <item name="cpu.idle">5.2</item>
         <item name="cpu.awake">17.4</item>
@@ -57,12 +64,19 @@
             <value>10.2</value>
         </array>
         <array name="cpu.speeds">
+            <value>400000</value>
+            <value>534000</value>
+            <value>666000</value>
             <value>800000</value>
             <value>933000</value>
             <value>1333000</value>
             <value>1600000</value>
             <value>1866000</value>
             <value>2000000</value>
+            <value>2083000</value>
+            <value>2166000</value>
+            <value>2250000</value>
+            <value>2333000</value>
         </array>
         <item name="cpu.idle">6.1</item>
         <item name="cpu.awake">20.4</item>
