@@ -153,4 +153,7 @@ can be used:
         <MediaCodec name="OMX.google.flac.encoder" type="audio/flac" />
         <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" />
     </Encoders>
+    <Include href="media_codecs_google_audio.xml" />
+    <Include href="media_codecs_google_video.xml" />
+    <Include href="media_codecs_ffmpeg.xml" />
 </MediaCodecs>
