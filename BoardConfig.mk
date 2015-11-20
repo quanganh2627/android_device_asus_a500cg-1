@@ -249,50 +249,6 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 HAVE_SELINUX := true
 BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    seapp_contexts \
-    property_contexts \
-    service_contexts \
-    file.te \
-    device.te \
-    ecryptfs.te \
-    genfs_contexts \
-    vold.te \
-    surfaceflinger.te \
-    zygote.te \
-    pvrsrvctl.te \
-    bluetooth.te \
-    surfaceflinger.te \
-    system_app.te \
-    file.te \
-    shell.te \
-    mediaserver.te \
-    nvm_server.te \
-    su.te   \
-    system_server.te \
-    service.te \
-    mmgr.te \
-    init.te \
-    kernel.te \
-    sysfs_uart_power_ctrl.te \
-    ueventd.te \
-    logcat.te \
-    netd.te \
-    wpa.te \
-    rild.te \
-    akmd.te \
-    gauge.te \
-    customize.te \
-    untrusted_app.te \
-    intel_prop.te \
-    gpsd.te \
-    dpst.te \
-    pclink.te \
-    sensors.te \
-    isolated_app.te \
-    app.te
-
 # Build From source
 ENABLE_IMG_GRAPHICS := true
 #ENABLE_GEN_GRAPHICS := true
