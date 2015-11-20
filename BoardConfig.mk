@@ -26,8 +26,8 @@ LOCAL_CFLAGS += -DARCH_IA32
 TARGET_PRELINK_MODULE := false
 
 #add some intel BOOTCLASSPATH
-#PRODUCT_BOOT_JARS += com.intel.multidisplay 
-#com.intel.config 
+#PRODUCT_BOOT_JARS += com.intel.multidisplay
+#com.intel.config
 
 # skip some proccess to speed up build
 BOARD_SKIP_ANDROID_DOC_BUILD := true
@@ -36,7 +36,7 @@ BUILD_EMULATOR := false
 # enable ARM codegen for x86 with Houdini
 INTEL_HOUDINI := true
 BUILD_ARM_FOR_X86 := true
-ADDITIONAL_BUILD_PROPERTIES += 
+ADDITIONAL_BUILD_PROPERTIES +=
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
@@ -88,7 +88,7 @@ KERNEL_BLD_FLAGS := \
     INSTALL_MOD_STRIP=1 \
     LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
-    
+
 # PRODUCT_OUT and HOST_OUT are now defined after BoardConfig is included.
 # Add early definition here
 PRODUCT_OUT ?= out/target/product/$(TARGET_DEVICE)
@@ -119,7 +119,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 cmdline_extra := watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901
 cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 slub_max_order=2
 cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
+BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2)
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -250,50 +250,50 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 HAVE_SELINUX := true
 BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    seapp_contexts \
-    property_contexts \
-    service_contexts \
-    file.te \
-    device.te \
-    ecryptfs.te \
-    genfs_contexts \
-    vold.te \
-    surfaceflinger.te \
-    zygote.te \
-    pvrsrvctl.te \
-    bluetooth.te \
-    surfaceflinger.te \
-    system_app.te \
-    file.te \
-    shell.te \
-    mediaserver.te \
-    nvm_server.te \
-    su.te   \
-    system_server.te \
-    service.te \
-    mmgr.te \
-    init.te \
-    kernel.te \
-    sysfs_uart_power_ctrl.te \
-    ueventd.te \
-    logcat.te \
-    netd.te \
-    wpa.te \
-    rild.te \
-    akmd.te \
-    akmd_a600cg.te \
-    gauge.te \
-    customize.te \
-    untrusted_app.te \
-    intel_prop.te \
-    gpsd.te \
-    dpst.te \
-    pclink.te \
-    sensors.te \
-    isolated_app.te \
-    app.te
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    seapp_contexts \
+#    property_contexts \
+#    service_contexts \
+#    file.te \
+#    device.te \
+#    ecryptfs.te \
+#    genfs_contexts \
+#    vold.te \
+#    surfaceflinger.te \
+#    zygote.te \
+#    pvrsrvctl.te \
+#    bluetooth.te \
+#    surfaceflinger.te \
+#    system_app.te \
+#    file.te \
+#    shell.te \
+#    mediaserver.te \
+#    nvm_server.te \
+#    su.te   \
+#    system_server.te \
+#    service.te \
+#    mmgr.te \
+#    init.te \
+#    kernel.te \
+#    sysfs_uart_power_ctrl.te \
+#    ueventd.te \
+#    logcat.te \
+#    netd.te \
+#    wpa.te \
+#    rild.te \
+#    akmd.te \
+#    akmd_a600cg.te \
+#    gauge.te \
+#    customize.te \
+#    untrusted_app.te \
+#    intel_prop.te \
+#    gpsd.te \
+#    dpst.te \
+#    pclink.te \
+#    sensors.te \
+#    isolated_app.te \
+#    app.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
