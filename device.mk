@@ -55,6 +55,10 @@ CUSTOM_SUPERUSER = SuperSu
 PRODUCT_COPY_FILES += \
     device/asus/a500cg/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/asus/a500cg/audio_policy.conf:system/etc/audio_policy.conf
+    device/asus/a500cg/audio_policy.conf:system/etc/audio_policy.conf \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # Intel Display
 PRODUCT_PROPERTY_OVERRIDES += \
