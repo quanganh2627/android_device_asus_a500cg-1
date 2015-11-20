@@ -20,18 +20,18 @@
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
-$(call inherit-product, device/asus/a500cg/device.mk)
+$(call inherit-product, device/asus/a500cg/full_a500cg.mk)
 #$(call inherit-product, vendor/asus/a500cg/a500cg-vendor.mk)
 #$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 # Inherit common CM stuff
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 
-#PRODUCT_NAME := full_a500cg
-PRODUCT_DEVICE := a500cg
+#PRODUCT_NAME := full_a501cg
+PRODUCT_DEVICE := a501cg
 PRODUCT_BRAND := asus
-PRODUCT_MODEL := ASUS_T00F
+PRODUCT_MODEL := ASUS_T00J
 PRODUCT_MANUFACTURER := asus
-TARGET_VENDOR_PRODUCT_NAME := cm_a500cg
-TARGET_VENDOR_DEVICE_NAME := ASUS_T00F
+TARGET_VENDOR_PRODUCT_NAME := cm_a501cg
+TARGET_VENDOR_DEVICE_NAME := ASUS_T00J
 
