@@ -102,7 +102,6 @@ PRODUCT_PACKAGES += \
   libmixvbp_vc1
 
 PRODUCT_COPY_FILES += \
-  device/asus/a500cg/configs/platform.xml:system/etc/permissions/platform.xml \
   frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
   frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
   frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
