@@ -328,6 +328,7 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
 
+TARGET_UNIFIED_DEVICE := a500cg
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
     liboempartitioning_static \
