@@ -62,11 +62,15 @@ BOARD_MALLOC_ALIGNMENT := 16
 
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
+# Test build gcc4.9
+TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
+TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
+PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
 #TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_CONFIG := i386_ctp_defconfig
@@ -327,7 +331,6 @@ TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
-
 TARGET_UNIFIED_DEVICE := a500cg
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
@@ -455,3 +458,7 @@ BOARD_HAVE_MODEM := true
 # Logcat use android kernel logger
 TARGET_USES_LOGD := false
 
+TARGET_HAVE_CWS := true
+
+#Enable exfat
+VOLD_ENABLE_EXFAT := true
