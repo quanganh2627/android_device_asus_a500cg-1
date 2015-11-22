@@ -26,8 +26,8 @@ LOCAL_CFLAGS += -DARCH_IA32
 TARGET_PRELINK_MODULE := false
 
 #add some intel BOOTCLASSPATH
-#PRODUCT_BOOT_JARS += com.intel.multidisplay 
-#com.intel.config 
+#PRODUCT_BOOT_JARS += com.intel.multidisplay
+#com.intel.config
 
 # skip some proccess to speed up build
 BOARD_SKIP_ANDROID_DOC_BUILD := true
@@ -35,7 +35,7 @@ BUILD_EMULATOR := false
 
 # enable ARM codegen for x86 with Houdini
 BUILD_ARM_FOR_X86 := true
-ADDITIONAL_BUILD_PROPERTIES += 
+ADDITIONAL_BUILD_PROPERTIES +=
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
@@ -61,11 +61,15 @@ BOARD_MALLOC_ALIGNMENT := 16
 
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
+# Test build gcc4.9
+TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
+TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
+PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
 #TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_CONFIG := i386_ctp_defconfig
@@ -87,7 +91,7 @@ KERNEL_BLD_FLAGS := \
     INSTALL_MOD_STRIP=1 \
     LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
-    
+
 # PRODUCT_OUT and HOST_OUT are now defined after BoardConfig is included.
 # Add early definition here
 PRODUCT_OUT ?= out/target/product/$(TARGET_DEVICE)
@@ -118,7 +122,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 cmdline_extra := watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901
 cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 slub_max_order=2
 cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2) 
+BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2)
 
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -281,7 +285,6 @@ TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
-
 TARGET_UNIFIED_DEVICE := a500cg
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
@@ -409,3 +412,7 @@ BOARD_HAVE_MODEM := true
 # Logcat use android kernel logger
 TARGET_USES_LOGD := false
 
+TARGET_HAVE_CWS := true
+
+#Enable exfat
+VOLD_ENABLE_EXFAT := true
