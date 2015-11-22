@@ -27,11 +27,10 @@ $(call inherit-product, device/asus/a500cg/device.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 
-#PRODUCT_NAME := full_a500cg
+PRODUCT_NAME := full_a500cg
 PRODUCT_DEVICE := a500cg
-PRODUCT_BRAND := asus
+PRODUCT_BRAND := Android
 PRODUCT_MODEL := ASUS_T00F
 PRODUCT_MANUFACTURER := asus
-TARGET_VENDOR_PRODUCT_NAME := cm_a500cg
-TARGET_VENDOR_DEVICE_NAME := ASUS_T00F
+
 
