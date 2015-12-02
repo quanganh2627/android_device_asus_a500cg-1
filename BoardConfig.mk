@@ -62,9 +62,9 @@ BOARD_MALLOC_ALIGNMENT := 16
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 # Test build gcc4.9
-TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
-TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
-PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
+#TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
+#TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
+#PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
@@ -177,9 +177,56 @@ BOARD_USES_AUDIO_HAL_CONFIGURABLE := true
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
 USE_INTEL_SECURE_AVC := true
 
+## Set ABI List for native bridge support
+#
+# To enable native brige support, the ABI list must
+# be set to include the target ABIs
+#
+# Install Native Bridge
+ifeq ($(WITH_NATIVE_BRIDGE),true)
 
-# enable ARM codegen for x86 with Houdini
-BUILD_ARM_FOR_X86 := true
+# Enable ARM codegen for x86 with Native Bridge
+ BUILD_ARM_FOR_X86 := true
+
+# Native Bridge ABI List
+NB_ABI_LIST_32_BIT := armeabi-v7a armeabi
+# NB_ABI_LIST_64_BIT := arm64-v8a
+
+# Support 64 Bit Apps
+ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
+  TARGET_CPU_ABI_LIST_64_BIT ?= $(TARGET_CPU_ABI) $(TARGET_CPU_ABI2)
+  ifeq ($(TARGET_SUPPORTS_32_BIT_APPS),true)
+    TARGET_CPU_ABI_LIST_32_BIT ?= $(TARGET_2ND_CPU_ABI) $(TARGET_2ND_CPU_ABI2)
+  endif
+  ifneq ($(findstring ro.zygote=zygote32_64,$(PRODUCT_DEFAULT_PROPERTY_OVERRIDES)),)
+    TARGET_CPU_ABI_LIST := \
+        $(TARGET_CPU_ABI_LIST_32_BIT) \
+        $(TARGET_CPU_ABI_LIST_64_BIT) \
+        $(NB_ABI_LIST_32_BIT) \
+        $(NB_ABI_LIST_64_BIT)
+    TARGET_CPU_ABI_LIST_32_BIT += $(NB_ABI_LIST_32_BIT)
+  else
+    ifeq ($(TARGET_SUPPORTS_32_BIT_APPS),true)
+      TARGET_CPU_ABI_LIST := \
+          $(TARGET_CPU_ABI_LIST_64_BIT) \
+          $(TARGET_CPU_ABI_LIST_32_BIT) \
+          $(NB_ABI_LIST_32_BIT) \
+          $(NB_ABI_LIST_64_BIT)
+      TARGET_CPU_ABI_LIST_32_BIT += $(NB_ABI_LIST_32_BIT)
+    else
+      TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT) $(NB_ABI_LIST_64_BIT)
+    endif
+  endif
+  TARGET_CPU_ABI_LIST_64_BIT += $(NB_ABI_LIST_64_BIT)
+
+else
+  TARGET_CPU_ABI_LIST_32_BIT ?= $(TARGET_CPU_ABI) $(TARGET_CPU_ABI2)
+  TARGET_CPU_ABI_LIST_32_BIT += $(NB_ABI_LIST_32_BIT)
+  TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_32_BIT)
+endif
+
+endif
+
 
 # HW_Renderer
 USE_OPENGL_RENDERER := true
@@ -258,18 +305,22 @@ ENABLE_IMG_GRAPHICS := true
 #ENABLE_GEN_GRAPHICS := true
 USE_INTEL_MDP := true
 BUILD_WITH_FULL_STAGEFRIGHT := true
-BOARD_USES_WRS_OMXIL_CORE := true
+
 BOARD_USE_LIBVA_INTEL_DRIVER := true
 BOARD_USE_LIBVA := true
 BOARD_USE_LIBMIX := true
 USE_INTEL_VA := true
 INTEL_VA := true
-TARGET_HAS_ISV := true
 USE_HW_VP8 := true
 #TARGET_HAS_MULTIPLE_DISPLAY := true
 USE_AVC_SHORT_FORMAT := true
 USE_SLICE_HEADER_PARSING := true
 USE_SW_MPEG4 := true
+
+#OMX-components
+BOARD_USES_MRST_OMX := true
+BOARD_USES_WRS_OMXIL_CORE := true
+TARGET_HAS_ISV := true
 
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
@@ -285,7 +336,6 @@ TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
-TARGET_UNIFIED_DEVICE := a500cg
 
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
@@ -403,7 +453,7 @@ BOARD_HAVE_IFX6265 := true
 M2_GET_SIM_SMS_STORAGE_ENABLED := true
 
 #WebRTC
-ENABLE_WEBRTC := true
+#ENABLE_WEBRTC := true
 
 #ALAC CODEC
 USE_FEATURE_ALAC := true
@@ -417,3 +467,8 @@ TARGET_HAVE_CWS := true
 
 #Enable exfat
 VOLD_ENABLE_EXFAT := true
+
+#ASF
+USE_INTEL_ASF_EXTRACTOR := true
+
+INTEL_FEATURE_DPTF := true
