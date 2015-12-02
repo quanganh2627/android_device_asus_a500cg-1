@@ -31,6 +31,8 @@ on init
     mkdir /mnt/media_rw/USBdisk3 0700 media_rw media_rw
     mkdir /mnt/media_rw/USBdisk4 0700 media_rw media_rw
     mkdir /mnt/media_rw/USBdisk5 0700 media_rw media_rw
+    # Support external SD card
+    mkdir /storage/MicroSD  0700 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -45,8 +47,6 @@ on init
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
-    # Support external SD card
-    mkdir /storage/MicroSD  0700 root root
 
     # Support USB Disk
     mkdir /storage/USBdisk1 0700 root root
@@ -103,7 +103,7 @@ on fs
     mkdir /factory 0775 system system
     mkdir /config 0775 system system
     mkdir /media 0775 media media
-    mount_all /fstab.redhookbay
+    mount_all /fstab
     mkdir /config/wifi
     chown system wifi /config/wifi
     chmod 0770 /config/wifi
@@ -137,39 +137,33 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse_duration
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
-    
-    #set default cpu freq to 1.3 GHz
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1330000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1330000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1330000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1330000
+    chmod 0666 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
+    chmod 0666 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
 
-service fuse_MicroSD /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/MicroSD /storage/MicroSD
+service fuse_MicroSD /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/MicroSD /storage/MicroSD
     class late_start
     disabled
 
-service fuse_USBdisk1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk1 /storage/USBdisk1
+service fuse_USBdisk1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk1 /storage/USBdisk1
     class late_start
     disabled
 
-service fuse_USBdisk2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk2 /storage/USBdisk2
+service fuse_USBdisk2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk2 /storage/USBdisk2
     class late_start
     disabled
 
-service fuse_USBdisk3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk3 /storage/USBdisk3
+service fuse_USBdisk3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk3 /storage/USBdisk3
     class late_start
     disabled
 
-service fuse_USBdisk4 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk4 /storage/USBdisk4
+service fuse_USBdisk4 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk4 /storage/USBdisk4
     class late_start
     disabled
 
-service fuse_USBdisk5 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/USBdisk5 /storage/USBdisk5
+service fuse_USBdisk5 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/USBdisk5 /storage/USBdisk5
     class late_start
     disabled
 

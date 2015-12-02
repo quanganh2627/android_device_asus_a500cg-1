@@ -2,6 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 # Prebuilt com.asus.ime
 include $(CLEAR_VARS)
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE := AsusKeyboard
 LOCAL_SRC_FILES := $(LOCAL_MODULE)/$(LOCAL_MODULE).apk
 LOCAL_MODULE_TAGS := optional
@@ -34,6 +35,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusFMService
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusFMService/AsusFMService.apk
 LOCAL_MODULE_CLASS := APPS
@@ -72,6 +74,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := ASUSGalleryBurst
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := ASUSGalleryBurst/ASUSGalleryBurst.apk
 LOCAL_MODULE_CLASS := APPS
@@ -79,7 +82,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_REQUIRED_MODULES := libjni_picbest_static libjni_piclear_static libgifencoder 
+LOCAL_REQUIRED_MODULES := libjni_picbest_static libjni_piclear_static libgifencoder
 
 include $(BUILD_PREBUILT)
 #Dependencies libs
@@ -126,6 +129,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := PCLinkManager
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := PCLinkManager/PCLinkManager.apk
 LOCAL_MODULE_CLASS := APPS
@@ -139,6 +143,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusInputDevices
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusInputDevices/AsusInputDevices.apk
 LOCAL_MODULE_CLASS := APPS
@@ -152,6 +157,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusCalculator
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusCalculator/AsusCalculator.apk
 LOCAL_MODULE_CLASS := APPS
@@ -165,11 +171,12 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusCamera
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusCamera/AsusCamera.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_CERTIFICATE := media
 LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_PRIVILEGED_MODULE := true
 
@@ -178,6 +185,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := ASUSGallery
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := ASUSGallery/ASUSGallery.apk
 LOCAL_MODULE_CLASS := APPS
@@ -185,7 +193,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_REQUIRED_MODULES := libjni_face_effect libgif libjni_face_detection libjni_filter_show 
+LOCAL_REQUIRED_MODULES := libjni_face_effect libgif libjni_face_detection libjni_filter_show
 
 include $(BUILD_PREBUILT)
 #Dependencies libs
@@ -253,6 +261,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := SMMI_TEST
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := SMMI_TEST/SMMI_TEST.apk
 LOCAL_MODULE_CLASS := APPS
@@ -265,6 +274,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusFMRadio
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusFMRadio/AsusFMRadio.apk
 LOCAL_MODULE_CLASS := APPS
@@ -284,7 +294,7 @@ include $(BUILD_PREBUILT)
 #LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
 #LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 #LOCAL_CERTIFICATE := PRESIGNED
-#LOCAL_REQUIRED_MODULES := libkcmutil 
+#LOCAL_REQUIRED_MODULES := libkcmutil
 #
 #include $(BUILD_PREBUILT)
 #Dependencies libs
@@ -301,6 +311,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := ICEsoundService
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := ICEsoundService/ICEsoundService.apk
 LOCAL_MODULE_CLASS := APPS
@@ -313,6 +324,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := PCLinkBinary
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := PCLinkBinary/PCLinkBinary.apk
 LOCAL_MODULE_CLASS := APPS
@@ -326,6 +338,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := ASUSBrowser
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := ASUSBrowser/ASUSBrowser.apk
 LOCAL_MODULE_CLASS := APPS
@@ -351,6 +364,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := AsusDrawRes
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusDrawRes/AsusDrawRes.apk
 LOCAL_MODULE_CLASS := APPS
@@ -375,13 +389,14 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := MyASUS
+LOCAL_MODULE_OWNER := asus
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := MyASUS/MyASUS.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_REQUIRED_MODULES := libBaiduMapSDK_v2_4_1 libbdpush_V2_2 
+LOCAL_REQUIRED_MODULES := libBaiduMapSDK_v2_4_1 libbdpush_V2_2
 
 include $(BUILD_PREBUILT)
 #Dependencies libs

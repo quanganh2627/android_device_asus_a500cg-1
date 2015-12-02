@@ -29,9 +29,6 @@ ro.mds.enable=true
 dalvik.vm.houdini=on
 
 #Force GPU Rendering on 2d Operations
-debug.sf.hw=1
-debug.egl.profiler=1
-debug.egl.hw=1
 persist.sys.ui.hw=1
 ro.asus.ui=1.0
 ro.asus.amax.lite=1
