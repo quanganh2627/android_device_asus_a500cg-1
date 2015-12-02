@@ -32,10 +32,32 @@
              android:storageDescription="@string/storage_sd_card"
              android:primary="false"
              android:removable="true"
-             android:allowMassStorage="true" />
+             android:emulated="false"
+             android:allowMassStorage="true"
+             android:maxFileSize="4096" />
 
     <!-- external USB OTG storage -->
     <storage android:mountPoint="/storage/USBdisk1"
+             android:storageDescription="@string/storage_usb"
+             android:primary="false"
+             android:emulated="false"
+             android:removable="true" />
+    <storage android:mountPoint="/storage/USBdisk2"
+             android:storageDescription="@string/storage_usb"
+             android:primary="false"
+             android:emulated="false"
+             android:removable="true" />
+    <storage android:mountPoint="/storage/USBdisk3"
+             android:storageDescription="@string/storage_usb"
+             android:primary="false"
+             android:emulated="false"
+             android:removable="true" />
+    <storage android:mountPoint="/storage/USBdisk4"
+             android:storageDescription="@string/storage_usb"
+             android:primary="false"
+             android:emulated="false"
+             android:removable="true" />
+    <storage android:mountPoint="/storage/USBdisk5"
              android:storageDescription="@string/storage_usb"
              android:primary="false"
              android:emulated="false"

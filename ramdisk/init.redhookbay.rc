@@ -144,7 +144,7 @@ on post-fs-data
     #chown system system /sys/class/power_supply/max17047_battery/model_name
     #chown system system /sys/class/power_supply/max17047_battery/serial_number
     #marked by chih-hsuan chang
-    
+
     #mkdir /data/logs 0770 system log
     #symlink /data/logs /logs
     mkdir /data/logs
@@ -168,8 +168,8 @@ on post-fs
     chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
     chown system system /sys/devices/system/cpu/cpufreq/interactive/touchboost_freq
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
-    chmod 0220 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chmod 0666 /sys/devices/system/cpu/cpufreq/interactive/touchboostpulse
+    chmod 0666 /sys/devices/system/cpu/cpufreq/interactive/boostpulse
 
     # Volume keys wakeup capability
     chmod 0664 /sys/devices/platform/gpio-keys/enabled_wakeup
@@ -202,17 +202,17 @@ on post-fs
     chown system system /dev/akm09911_dev
     chmod 0660 /dev/akm09911_dev
 
-# Permissions for proximity driver 
+# Permissions for proximity driver
     chown system system /sys/class/optical_sensors/proximity/ps_calling
 
 #MPU6500 Gyro and G-sensor
 #inv data
-#Panda add:--->    
+#Panda add:--->
 #chmod 0777 /data/inv_self_test-shared
     chmod 0777 /system/bin/GsensorCalibration
     chmod 0664 /sys/bus/iio/devices/iio:device0/cal_data_auto_load
 #Panda add:<---
-#inv iio  
+#inv iio
     chmod 0600 /dev/iio:device0
     chmod 0664 /sys/bus/iio/devices/iio:device0/accl_enable
     chmod 0664 /sys/bus/iio/devices/iio:device0/accl_matrix
@@ -326,7 +326,7 @@ on post-fs
 
     chmod 0775 /sys/bus/iio/devices/iio:device0/trigger
     chmod 0664 /sys/bus/iio/devices/iio:device0/trigger/current_trigger
-    
+
     #--- chown for mpu sensor ---#
     chown system system /sys/bus/iio/devices/iio:device0/cal_data_auto_load
     chown system system /dev/iio:device0
@@ -547,8 +547,8 @@ on property:persist.asus.dclick=0
 
 on property:persist.asus.dclick=1
     write /sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/input/input1/dclick_mode 1
-    write /sys/android_touch/dclick_mode 1	
-	
+    write /sys/android_touch/dclick_mode 1
+
 #service fg_conf /system/bin/fg_conf -w
     #group system
     #oneshot
@@ -596,13 +596,13 @@ on charger
     insmod /lib/modules/imx219.ko
     insmod /lib/modules/t4k35.ko
     insmod /lib/modules/t4k35_180.ko
-    
+
     insmod /lib/modules/t4k37.ko
-    insmod /lib/modules/mn34130.ko  
-    
+    insmod /lib/modules/mn34130.ko
+
     insmod /lib/modules/hm2056.ko
     insmod /lib/modules/gc2155.ko
-    
+
     insmod /lib/modules/rt8515.ko
     insmod /lib/modules/atomisp-css2300.ko
 
