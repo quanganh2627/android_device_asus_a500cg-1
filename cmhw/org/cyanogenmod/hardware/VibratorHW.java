@@ -22,20 +22,22 @@ import java.io.File;
 public class VibratorHW {
     private static String LEVEL_PATH = "/sys/devices/pci0000:00/0000:00:06.6/pwm_ontime_div";
 
+    private static String CONTROL_PATH = "/sys/devices/pci0000:00/0000:00:06.6/vibrator";
+
     public static boolean isSupported() {
         return new File(LEVEL_PATH).exists();
     }
 
     public static int getMaxIntensity()  {
-        return 80;
+        return 128;
     }
 
     public static int getMinIntensity()  {
-        return 10;
+        return 16;
     }
 
     public static int getWarningThreshold()  {
-        return 70;
+        return 110;
     }
 
     public static int getCurIntensity()  {
@@ -43,7 +45,7 @@ public class VibratorHW {
     }
 
     public static int getDefaultIntensity()  {
-        return 63;
+        return 99;
     }
 
     public static boolean setIntensity(int intensity)  {
