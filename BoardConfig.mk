@@ -283,6 +283,7 @@ BOARD_SEPOLICY_UNION += \
     wpa.te \
     rild.te \
     akmd.te \
+    akmd_a600cg.te \
     gauge.te \
     customize.te \
     untrusted_app.te \
