@@ -12,7 +12,6 @@ type sysfs_uart_power_ctrl, dev_type;
 type nvm_ctl_socket, file_type;
 type sensors_exec, exec_type;
 
-type crashlogd, domain, mlstrustedsubject, unconfineddomain;
 type crashlogd_exec, exec_type, file_type;
 type crashlogd_tmpfs, file_type;
 
@@ -23,7 +22,6 @@ type bd_prov_exec, exec_type;
 
 type fg_conf_exec, exec_type;
 type bcu_cpufreqrel_exec, exec_type, file_type;
-type logcat_exec, exec_type;
 
 type atproxy_usbreset_exec, exec_type;
 

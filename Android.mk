@@ -48,7 +48,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
 ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
     $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
 include $(BUILD_PREBUILT)
-    
+
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES    := ramdisk/sbin/healthd
 LOCAL_MODULE       := healthd
@@ -74,6 +74,6 @@ ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
 include $(BUILD_PREBUILT)
 
 include $(call first-makefiles-under,$(LOCAL_PATH))
-include $(call all-makefiles-under,$(LOCAL_PATH))
+#include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif

@@ -13,7 +13,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 TARGET_ARCH := x86
-TARGET_ARCH_VARIANT := x86-atom
+TARGET_ARCH_VARIANT := atom
 TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
@@ -68,15 +68,14 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 #PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
-TARGET_KERNEL_BUILT_FROM_SOURCE := true
-TARGET_KERNEL_SOURCE := linux/kernel
-TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_BUILT_FROM_SOURCE := true
+#TARGET_KERNEL_SOURCE := linux/kernel
+#TARGET_KERNEL_CONFIG := build69_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
 #TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_CONFIG := i386_ctp_defconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
-TARGET_KERNEL_ARCH := x86
-KERNEL_ARCH := i386
+TARGET_KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
@@ -171,7 +170,7 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_USES_ALSA_AUDIO := true
 BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
-BOARD_USES_AUDIO_HAL_XML := true
+#BOARD_USES_AUDIO_HAL_XML := true
 BOARD_USES_AUDIO_HAL_CONFIGURABLE := true
 
 # DRM Protected Video
