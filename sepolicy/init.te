@@ -1,3 +1,4 @@
+type init_shell, domain, mlstrustedsubject;
 allow rootfs rootfs:file setattr;
 allow init rootfs:file setattr;
 allow init sensors_exec:file execute_no_trans;

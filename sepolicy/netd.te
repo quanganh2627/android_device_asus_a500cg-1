@@ -1,7 +1,7 @@
 allow netd self:capability sys_module;
 allow netd kernel:system module_request;
 #============= netd ==============
-allow netd hosts_data_file:file { read getattr open };
+#allow netd hosts_data_file:file { read getattr open };
 allow netd tmpfs:chr_file { read write ioctl open };
 allow netd tmpfs:file open;
 allow netd socket_device:dir { write remove_name add_name };

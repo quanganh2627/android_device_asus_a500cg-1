@@ -265,12 +265,6 @@
     <!-- Ambient Display -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
-    <!-- Doze: force using accelerometer as pick up sensor -->
-    <bool name="config_dozeUseAccelerometer">true</bool>
-    <!-- enable doze powersaving mode -->
-<!--
-    <bool name="config_enableAutoPowerModes">true</bool>
--->
 
     <!-- Minimum screen brightness setting allowed by the power manager.
      The user is forbidden from setting the brightness below this level. -->
@@ -280,8 +274,6 @@
     <integer name="config_screenBrightnessDoze">17</integer>
     <integer name="config_screenBrightnessDim">20</integer>
     <integer name="config_screenBrightnessDark">1</integer>
-    <!-- Ambient lux at which to enable outdoor mode when LiveDisplay is enabled -->
-    <integer name="config_outdoorAmbientLux">12000</integer>
 
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
@@ -424,8 +416,6 @@
         <item>com.google.android.gms</item>
         <item>com.android.location.fused</item>
     </string-array>
-        <!-- Component name of the geofence services provider. -->
-    <string name="config_geofenceServicesProvider" translatable="false">com.android.location</string>
 
     <!-- Component name of the combo network location provider. -->
     <string name="config_comboNetworkLocationProvider" translatable="false">com.android.location</string>
@@ -491,7 +481,6 @@
     <bool name="config_uninstallable_preloaded_app">true</bool>
     <integer name="config_wifi_network_switching_blacklist_time">172800000</integer>
     <integer name="config_wifi_scan_interval_p2p_connected">360000</integer>
-    <integer name="config_wifi_scan_interval_wfd_connected">300000</integer>
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
@@ -507,19 +496,7 @@
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
     <string name="config_ethernet_tcp_buffers" translatable="false">524288,1048576,3145728,524288,1048576,2097152</string>
     <string name="config_wifi_tcp_buffers">524288,1048576,2097152,262144,524288,1048576</string>
-<!--
-      Defines the system property to set for performance profile xe: sys.cpu.modes. Leave it
-         blank if the device do not support performance profiles
--->
-    <string name="config_perf_profile_prop">sys.perf.profile</string>
 
-<!--
-     When config_perf_profile_prop is defined, this value MUST be the index of
-         one of the listes values in frameworks/base/core/res/res/values/cm_arrays.xml
-         for "perf_profile_values" array. Leave it blank if the device do not support
-         performance profiles
--->
-    <string name="config_perf_profile_default_entry">1</string>
         <!-- Enable the option to check proximity sensor when deciding whether to
          turn the screen on
          NOTE ! - Enable for devices that have a fast response proximity sensor
@@ -529,9 +506,6 @@
 -->
     <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
-    <bool name="config_proximityCheckOnWake">true</bool>
-    <integer name="config_proximityCheckTimeout">100</integer>
-    <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
     <bool name="config_lidControlsSleep">true</bool>
     <integer name="config_lightSensorWarmupTime">0</integer>
     <!-- The list absolute paths of jar/apk files containing the device specific handlers,
@@ -615,14 +589,17 @@
     <add-resource type="bool" name="config_nonPollingWindowOrientation" />
     <bool name="config_nonPollingWindowOrientation">false</bool>
 
-    <!-- Configuartion to support SIM refresh in STK command for dual mode card.-->
-    <bool name="config_sim_refresh_for_dual_mode_card">true</bool>
-
     <bool name="config_enableActivityRecognitionHardwareOverlay">true</bool>
     <bool name="config_bluetooth_sco_off_call">true</bool>
     <bool name="config_bluetooth_wide_band_speech">true</bool>
     <bool name="useImsAlwaysForEmergencyCall">true</bool>
     <bool name="imsServiceAllowTurnOff">true</bool>
     <bool name="config_networkSamplingWakesDevice">true</bool>
-    <bool name="skip_radio_power_off_on_sim_refresh_reset">false</bool>
+
+    <!-- New configs bring-up to M -->
+    <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+    <!-- enable doze powersaving mode -->
+    <bool name="config_enableAutoPowerModes">true</bool>
+
 </resources>
