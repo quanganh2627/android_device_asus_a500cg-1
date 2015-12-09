@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2012  -->
+<thermalthrottleconfig>
+  <!--Cooling Devices-->
+  <ContributingDeviceInfo>
+    <CDeviceName>CPU</CDeviceName>
+    <CDeviceID>1</CDeviceID>
+    <CDeviceClassPath>com.android.server.thermal.CPUMaxFreqControl</CDeviceClassPath>
+    <!--Throttle values are the set of values that a cooling device takes as input.-->
+    <!--The values can be a set of Frequencies for CPU cooling device,-->
+    <!--brightness limit (as percentage) for display cooling device etc.-->
+    <ThrottleValues>
+      <ThrottleNormal>2000000</ThrottleNormal>
+      <ThrottleWarning>1333000</ThrottleWarning>
+      <ThrottleAlert>800000</ThrottleAlert>
+      <ThrottleCritical>800000</ThrottleCritical>
+    </ThrottleValues>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>gpu_dvfs</CDeviceName>
+      <CDeviceID>2</CDeviceID>
+      <CDeviceClassPath>auto</CDeviceClassPath>
+      <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+  <ContributingDeviceInfo>
+      <CDeviceName>GPU</CDeviceName>
+      <CDeviceID>3</CDeviceID>
+      <CDeviceClassPath>com.android.server.thermal.GPUMaxFreqControl</CDeviceClassPath>
+      <CDeviceThrottlePath>none</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+  <!--Map the cooling devices with specfic zones for throttling-->
+  <ZoneThrottleInfo>
+    <ZoneID>1</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <!--set CriticalShutDown to 1, if platform needs to shutdown
+        if this zone reaches critical thermal state to avoid any user impact-->
+    <!--list of cooling device IDs registered for the zone-->
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+      <ThrottleDeviceMask>
+          <Normal>0</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>1</Critical>
+      </ThrottleDeviceMask>
+      <!--four states: Normal,Warning,Alert,Critical. 0 - disable throttling,1 - enable throttling, -1 - dont care-->
+      <DethrottleDeviceMask>
+          <Normal>1</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>0</Critical>
+      </DethrottleDeviceMask>
+      <!--four states: Normal,Warning,Alert,Critical. 0 - disable de-throttling,1 - enable de-throttling, -1 - dont care-->
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>2</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+      <ThrottleDeviceMask>
+          <Normal>0</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>1</Critical>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+          <Normal>1</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>0</Critical>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>3</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+      <ThrottleDeviceMask>
+          <Normal>0</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>1</Critical>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+          <Normal>1</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>0</Critical>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+      <ThrottleDeviceMask>
+          <Normal>0</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>1</Critical>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+          <Normal>1</Normal>
+          <Warning>1</Warning>
+          <Alert>1</Alert>
+          <Critical>0</Critical>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+
+</thermalthrottleconfig>

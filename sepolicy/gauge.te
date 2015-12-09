@@ -1,0 +1,10 @@
+type gauge, domain;
+type gauge_exec, exec_type, file_type;
+init_daemon_domain(gauge);
+allow gauge gauge_device:chr_file {open read write ioctl};
+allow gauge config_file:dir {search };
+allow gauge config_file:file {read write open getattr };
+allow gauge fuse:dir {search };
+#============= gauge ==============
+allow gauge input_device:dir { read open };
+allow gauge self:netlink_kobject_uevent_socket { read bind create setopt };

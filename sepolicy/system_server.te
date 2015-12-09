@@ -1,0 +1,66 @@
+
+# enable Battery Saver
+allow system_server thermal_socket:sock_file write;
+#allow system_server thermal:unix_dgram_socket sendto;
+
+# Property Service write
+#allow system_server shell_prop:property_service set;
+
+allow system_server factory_file:dir { search read };
+allow system_server factory_file:file  { open read getattr};
+allow system_server gps_data_file:fifo_file { write read open setattr create};
+allow system_server gps_data_file:dir { search add_name write };
+#unix_socket_connect(system_server, gnss, cg2k)
+#allow system_server pstore-clean_data_file:dir search;
+allow system_server init:unix_dgram_socket sendto;
+allow system_server surfaceflinger_tmpfs:file { read write };
+
+allow system_server default_android_service:service_manager {add};
+allow system_server fuse:dir {search read write};
+
+#============= system_server ==============
+allow system_server init_tmpfs:file { read getattr unlink open };
+allow system_server recovery_cache_file:dir { read open };
+allow system_server tmpfs:chr_file { read write ioctl open getattr };
+allow system_server tmpfs:dir { write remove_name };
+allow system_server tmpfs:lnk_file read;
+allow system_server tmpfs:sock_file write;
+
+#============= servicemanager ==============
+allow servicemanager zygote:dir search;
+allow servicemanager zygote:file { read open };
+allow servicemanager zygote:process getattr;
+
+#============= system_server ==============
+allow system_server zygote:binder call;
+
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel sysfs_devices_system_cpu:file write;
+
+allow system_server factory_file : file { read getattr open } ;
+#allow unconfineddomain factory_file : file { ioctl read write create getattr setattr lock relabelfrom append unlink link rename swapon quotaon mounton open audit_access } ;
+allow system_app factory_file : file { read getattr open } ;
+#allow unconfineddomain factory_file : dir { ioctl read write create getattr setattr lock relabelfrom append unlink link rename execute swapon quotaon mounton add_name remove_name reparent search rmdir open audit_access execmod } ;
+allow system_app factory_file : dir getattr ;
+#allow unconfineddomain factory_file : lnk_file { ioctl read write create getattr setattr lock relabelfrom append unlink link rename execute swapon quotaon mounton open audit_access execmod } ;
+#allow unconfineddomain factory_file : chr_file { ioctl read write create getattr setattr lock relabelfrom append unlink link rename swapon quotaon mounton open audit_access } ;
+#allow unconfineddomain factory_file : sock_file { ioctl read write create getattr setattr lock relabelfrom append unlink link rename execute swapon quotaon mounton open audit_access execmod } ;
+#allow unconfineddomain factory_file : fifo_file { ioctl read write create getattr setattr lock relabelfrom append unlink link rename execute swapon quotaon mounton open audit_access execmod } ;
+allow dumpstate factory_file : filesystem getattr ;
+allow vold factory_file : file { ioctl read write create getattr setattr lock append unlink link rename open } ;
+allow drmserver factory_file : dir { ioctl read write create getattr setattr unlink link rename add_name remove_name reparent search rmdir open } ;
+allow vold factory_file : dir { ioctl read write getattr add_name remove_name search open } ;
+allow init factory_file : filesystem { mount relabelfrom relabelto } ;
+allow init_shell factory_file : filesystem getattr ;
+#allow crashlogd factory_file : filesystem getattr ;
+allow sensors factory_file : file { read write getattr open } ;
+allow init factory_file : file relabelto ;
+allow mmgr factory_file : file { ioctl read write create getattr setattr lock append unlink link rename open } ;
+allow sensors factory_file : dir { ioctl read write getattr add_name remove_name search open } ;
+allow init factory_file : dir relabelto ;
+allow mmgr factory_file : dir { ioctl read write create getattr setattr unlink link rename add_name remove_name reparent search rmdir open } ;
+allow init factory_file : lnk_file relabelto ;
+allow init factory_file : chr_file relabelto ;
+allow init factory_file : blk_file relabelto ;
+allow init factory_file : sock_file relabelto ;
+allow init factory_file : fifo_file relabelto ;

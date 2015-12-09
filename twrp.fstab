@@ -1,0 +1,29 @@
+/boot           osip        /dev/block/by-name/boot
+/recovery       osip        /dev/block/by-name/recovery
+/fastboot       osip        /dev/block/by-name/fastboot
+
+/cache		ext4		/dev/block/mmcblk0p6
+/system		ext4		/dev/block/mmcblk0p9
+/data		ext4		/dev/block/mmcblk0p10			flags=encryptable=/dev/block/mmcblk0p3/userdata_footer
+/factory	ext4		/dev/block/mmcblk0p3
+/config		ext4		/dev/block/mmcblk0p5
+/external_sd     vfat    	/dev/block/mmcblk1p1    		flags=display="MicroSD";storage;wipeingui;removable
+/usb_otg       vfat     /dev/block/sda1	 /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
+*/block/sda*                   auto            vfat    None    wait,voldmanaged=USBdisk1:auto                                
+ */block/sdb*                   auto            vfat    None    wait,voldmanaged=USBdisk2:auto                                
+ */block/sdc*                   auto            vfat    None    wait,voldmanaged=USBdisk3:auto                                
+-*/block/sde*                   auto            vfat    None    wait,voldmanaged=USBdisk5:auto
+
+#/boot           osip        /dev/block/by-name/boot
+#/recovery       osip        /dev/block/by-name/recovery
+#/fastboot       osip        /dev/block/by-name/fastboot
+#/ADF	        ext4        /dev/block/by-name/ADF
+#/APD			ext4		/dev/block/by-name/APD
+#/cache			ext4		/dev/block/by-name/cache
+#/factory		ext4		/dev/block/by-name/factory
+#/misc			emmc		/dev/block/by-name/misc length=0
+#/data			ext4		/dev/block/by-name/data		flags=encryptable=/factory/userdata_footer
+#/splashscreen	emmc		/dev/block/by-name/splashscreen	flags=display="Splashscreen"
+#/system			ext4		/dev/block/by-name/system
+#/external_sd	vfat		/dev/block/mmcblk1p1		flags=display="MicroSD";storage;wipeingui;removable
+#/USB-OTG 		auto 		/dev/block/sda1 /dev/block/sda flags=display="USB-OTG";storage;removable

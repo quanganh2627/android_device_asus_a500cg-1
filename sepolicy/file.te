@@ -1,0 +1,40 @@
+type bluetooth_control, dev_type;
+type asec_image_file_ext, data_file_type, file_type;
+type ecryptfs, fs_type;
+type log_file, file_type;
+type thermal_socket, file_type;
+type config_file, file_type;
+type factory_file, file_type;
+type mmgr_socket, file_type;
+type mmgr_exec, exec_type, file_type;
+
+type sysfs_uart_power_ctrl, dev_type;
+type nvm_ctl_socket, file_type;
+type sensors_exec, exec_type;
+
+type crashlogd_exec, exec_type, file_type;
+type crashlogd_tmpfs, file_type;
+
+
+type wlan_prov_exec, exec_type;
+
+type bd_prov_exec, exec_type;
+
+type fg_conf_exec, exec_type;
+type bcu_cpufreqrel_exec, exec_type, file_type;
+
+type atproxy_usbreset_exec, exec_type;
+
+#type charge_exec, exec_type;
+
+type logtoold, domain, mlstrustedsubject;
+type logtoold_exec, exec_type, file_type;
+type logtoold_socket, file_type;
+type logtoold_tmpfs, file_type;
+type logbackup, domain, mlstrustedsubject;
+type logbackup_exec, exec_type, file_type;
+type logbackup_tmpfs, file_type;
+type themepack_module_file, data_file_type, file_type;
+type fdctool, domain, mlstrustedsubject;
+type fdctool_exec, exec_type, file_type;
+type fdctool_tmpfs, file_type;

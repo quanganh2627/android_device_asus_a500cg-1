@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2012  -->
+<thermalconfig>
+
+<!--Platform Parameters-->
+  <PlatformInfo>
+    <PlatformThermalStates>5</PlatformThermalStates>
+    <!-- namely TM_OFF, NORMAL, WARNING, ALERT, and CRITICAL.-->
+    <!-- in the increasing order of thermal severity-->
+  </PlatformInfo>
+
+<!--Thermal Zones-->
+  <Zone>
+        <ZoneID>1</ZoneID>
+        <ZoneName>CPU</ZoneName>
+        <!--If 1, supports UEvent, otherwise poll-->
+        <SupportsUEvent>0</SupportsUEvent>
+        <!--1 AND logic, 0 OR Logic-->
+        <SensorLogic>0</SensorLogic>
+        <!--Debounce Interval for this Zone. In milli degrees-->
+        <DebounceInterval>3000</DebounceInterval>
+        <PollDelay>
+            <DelayTOff>30000</DelayTOff>
+            <DelayNormal>30000</DelayNormal>
+            <DelayWarning>15000</DelayWarning>
+            <DelayAlert>10000</DelayAlert>
+            <DelayCritical>5000</DelayCritical>
+        </PollDelay>
+        <Sensor>
+            <SensorID>1</SensorID>
+            <SensorName>DTS</SensorName>
+            <!--Sysfs path to read Temperature. "auto" means the path is standard
+                (/sys/class/thermal/thermal_zoneX/) and enumerated at run time-->
+            <SensorPath>/sys/devices/platform/coretemp.0/</SensorPath>
+            <!--Sysfs Interface names to read Temperature-->
+            <InputTemp>temp2_input</InputTemp>
+            <HighTemp>temp2_threshold2</HighTemp>
+            <LowTemp>temp2_threshold1</LowTemp>
+            <UEventDevPath>none</UEventDevPath>
+            <!--Temperature thresholds for various states in milli degree celsius-->
+            <Threshold>
+                <ThresholdTOff>0</ThresholdTOff>
+                <ThresholdNormal>90000</ThresholdNormal>
+                <ThresholdWarning>95000</ThresholdWarning>
+                <ThresholdAlert>105000</ThresholdAlert>
+                <ThresholdCritical>105000</ThresholdCritical>
+            </Threshold>
+        </Sensor>
+  </Zone>
+
+  <Zone>
+        <ZoneID>2</ZoneID>
+        <ZoneName>BackSkin</ZoneName>
+        <SupportsUEvent>0</SupportsUEvent>
+        <SensorLogic>0</SensorLogic>
+        <DebounceInterval>3000</DebounceInterval>
+        <PollDelay>
+               <DelayTOff>30000</DelayTOff>
+               <DelayNormal>30000</DelayNormal>
+               <DelayWarning>15000</DelayWarning>
+               <DelayAlert>10000</DelayAlert>
+               <DelayCritical>5000</DelayCritical>
+        </PollDelay>
+        <Sensor>
+               <SensorID>2</SensorID>
+               <SensorName>skin1</SensorName>
+               <SensorPath>auto</SensorPath>
+               <InputTemp>temp</InputTemp>
+               <HighTemp>trip_point1</HighTemp>
+               <LowTemp>trip_point0</LowTemp>
+               <Threshold>
+                <ThresholdTOff>0</ThresholdTOff>
+                <ThresholdNormal>65000</ThresholdNormal> <!--65/70/85/90-->
+                <ThresholdWarning>70000</ThresholdWarning>
+                <ThresholdAlert>85000</ThresholdAlert>
+                <ThresholdCritical>90000</ThresholdCritical>
+              </Threshold>
+        </Sensor>
+  </Zone>
+
+  <Zone>
+        <ZoneID>3</ZoneID>
+        <ZoneName>GPUSkin</ZoneName>
+        <SupportsUEvent>0</SupportsUEvent>
+        <SensorLogic>0</SensorLogic>
+        <DebounceInterval>3000</DebounceInterval>
+        <PollDelay>
+               <DelayTOff>30000</DelayTOff>
+               <DelayNormal>30000</DelayNormal>
+               <DelayWarning>15000</DelayWarning>
+               <DelayAlert>10000</DelayAlert>
+               <DelayCritical>5000</DelayCritical>
+        </PollDelay>
+        <Sensor>
+               <SensorID>2</SensorID>
+               <SensorName>skin1</SensorName>
+               <SensorPath>auto</SensorPath>
+               <InputTemp>temp</InputTemp>
+               <HighTemp>trip_point1</HighTemp>
+               <LowTemp>trip_point0</LowTemp>
+               <Threshold>
+                <ThresholdTOff>0</ThresholdTOff>
+                <ThresholdNormal>80000</ThresholdNormal> <!--65/75/85/90-->
+                <ThresholdWarning>85000</ThresholdWarning>
+                <ThresholdAlert>90000</ThresholdAlert>
+                <ThresholdCritical>90000</ThresholdCritical>
+              </Threshold>
+        </Sensor>
+  </Zone>
+
+</thermalconfig>

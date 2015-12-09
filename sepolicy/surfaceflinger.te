@@ -1,0 +1,13 @@
+allow surfaceflinger hwc_service:service_manager add;
+allow surfaceflinger gpu_device:chr_file rw_file_perms;
+#============= surfaceflinger ==============
+allow surfaceflinger tmpfs:chr_file { read write ioctl open };
+allow surfaceflinger tmpfs:lnk_file read;
+allow surfaceflinger tmpfs:sock_file write;
+#============= shared_relro ==============
+allow shared_relro tmpfs:chr_file { read write ioctl open getattr };
+#============= servicemanager ==============
+allow servicemanager tmpfs:chr_file ioctl;
+#============= sdcardd ==============
+allow sdcardd tmpfs:chr_file { read write open };
+allow sdcardd tmpfs:file open;

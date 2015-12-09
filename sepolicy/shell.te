@@ -1,0 +1,63 @@
+# to allow adb shell screencap
+allow shell graphics_device:dir search;
+allow shell surfaceflinger_tmpfs:file { read write };
+# for console in userfastboot
+userdebug_or_eng(`
+  allow shell rootfs:file execute_no_trans;
+')
+allow shell logcat_exec:file getattr;
+allow shell nvm_server_exec:file {getattr};
+allow shell netd_exec:file {getattr execute};
+#============= shell ==============
+allow shell tmpfs:chr_file { read write ioctl open };
+allow shell tmpfs:file open;
+allow shell tmpfs:sock_file write;
+#============= shared_relro ==============
+allow shared_relro tmpfs:chr_file { read write ioctl open getattr };
+#============= shell ==============
+allow shell config_file:dir getattr;
+allow shell factory_file:dir getattr;
+
+#============= shell ==============
+allow shell unlabeled:filesystem getattr;
+
+#============= shell ==============
+allow shell bcu_cpufreqrel_exec:file getattr;
+allow shell bootanim_exec:file getattr;
+allow shell clatd_exec:file getattr;
+allow shell customize_exec:file getattr;
+allow shell debuggerd_exec:file getattr;
+allow shell dhcp_exec:file getattr;
+allow shell dnsmasq_exec:file getattr;
+allow shell dpstmgr_exec:file getattr;
+allow shell drmserver_exec:file getattr;
+allow shell dumpstate_exec:file getattr;
+allow shell gauge_exec:file getattr;
+allow shell gpsd_exec:file getattr;
+allow shell hostapd_exec:file getattr;
+allow shell installd_exec:file getattr;
+allow shell keystore_exec:file getattr;
+allow shell lmkd_exec:file getattr;
+allow shell logd_exec:file getattr;
+allow shell mdnsd_exec:file getattr;
+allow shell mediaserver_exec:file getattr;
+allow shell mtp_exec:file getattr;
+allow shell ppp_exec:file getattr;
+allow shell racoon_exec:file getattr;
+allow shell rild_exec:file getattr;
+allow shell sdcardd_exec:file getattr;
+allow shell sensors_exec:file getattr;
+allow shell servicemanager_exec:file getattr;
+allow shell surfaceflinger_exec:file getattr;
+allow shell sysinit_exec:file getattr;
+allow shell uncrypt_exec:file getattr;
+allow shell vdc_exec:file getattr;
+allow shell vold_exec:file getattr;
+allow shell wpa_exec:file getattr;
+
+#============= shell ==============
+allow shell dalvikcache_data_file:file write;
+allow shell install_recovery:fd use;
+allow shell proc_cpuinfo:file mounton;
+#allow shell self:capability { dac_read_search dac_override };
+

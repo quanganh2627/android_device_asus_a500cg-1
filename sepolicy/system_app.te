@@ -1,0 +1,19 @@
+allow system_app surfaceflinger_tmpfs:file { read write };
+allow system_app log_file:dir { rw_dir_perms setattr };
+allow system_app log_file:file create_file_perms;
+allow system_app log_file:filesystem getattr;
+#============= system_app ==============
+allow system_app su_exec:file { read execute open execute_no_trans };
+allow system_app tmpfs:chr_file { read write ioctl open };
+allow system_app tmpfs:file open;
+allow system_app tmpfs:sock_file write;
+#============= platform_app ==============
+allow platform_app system_app_data_file:file { read getattr open };
+allow platform_app tmpfs:chr_file { read write ioctl open getattr };
+allow platform_app tmpfs:lnk_file read;
+allow platform_app tmpfs:sock_file write;
+#============= isolated_app ==============
+allow isolated_app tmpfs:chr_file { read write ioctl open getattr };
+#============= system_app ==============
+allow system_app sysfs_thermal_management:dir search;
+allow system_app sysfs_thermal_management:file { write read open };

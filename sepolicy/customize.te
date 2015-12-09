@@ -1,0 +1,56 @@
+type customize, domain;
+type customize_exec, exec_type, file_type;
+init_daemon_domain(customize);
+#============= adbd ==============
+allow adbd tmpfs:chr_file { read write ioctl open getattr };
+allow adbd tmpfs:lnk_file read;
+allow adbd tmpfs:sock_file write;
+
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel tmpfs:chr_file { read write };
+allow bcu_cpufreqrel tmpfs:file open;
+allow bcu_cpufreqrel tmpfs:sock_file write;
+
+#============= dex2oat ==============
+allow dex2oat tmpfs:chr_file { read write getattr };
+allow dex2oat tmpfs:file open;
+allow dex2oat tmpfs:sock_file write;
+
+#============= dhcp ==============
+allow dhcp tmpfs:chr_file { read write ioctl open getattr };
+allow dhcp tmpfs:file open;
+allow dhcp tmpfs:sock_file write;
+
+#============= drmserver ==============
+allow drmserver tmpfs:chr_file ioctl;
+
+#============= customize ==============
+allow customize ctl_default_prop:property_service set;
+allow customize default_prop:property_service set;
+allow customize init:unix_stream_socket connectto;
+allow customize property_socket:sock_file write;
+allow customize self:capability dac_override;
+allow customize sep_device:chr_file { read write open };
+allow customize shell_exec:file { read execute open execute_no_trans };
+allow customize system_data_file:dir { write add_name };
+allow customize system_data_file:file { write create open };
+
+#============= gpsd ==============
+allow gpsd sysfs_wake_lock:file { read write open };
+
+#============= healthd ==============
+allow healthd fg_conf_exec:file { read open };
+
+#============= init ==============
+allow init dpstmgr_exec:file execute_no_trans;
+allow init intel_prop:process { siginh transition rlimitinh };
+
+#============= intel_prop ==============
+allow intel_prop rootfs:file entrypoint;
+
+#============= ueventd ==============
+allow ueventd sysfs_thermal_management:file { write open };
+#============= customize ==============
+allow customize sysfs:file write;
+#============= bcu_cpufreqrel ==============
+allow bcu_cpufreqrel sysfs_devices_system_cpu:file write;

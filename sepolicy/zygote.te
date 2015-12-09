@@ -1,0 +1,61 @@
+#type zygote, domain, mlstrustedsubject;
+
+#type zygote_exec, exec_type, file_type;
+
+#type zygote_socket, file_type;
+
+#type zygote_tmpfs, file_type;
+allow zygote zygote_exec : file { ioctl read getattr lock execute execute_no_trans entrypoint open } ;
+allow zygote system_server : process { getpgid setpgid dyntransition } ;
+allow zygote rootfs : dir mounton ;
+allow zygote tmpfs : filesystem mount ;
+allow zygote tmpfs : dir { write create setattr mounton add_name search } ;
+allow zygote cgroup : dir { ioctl read write create getattr setattr unlink link rename add_name remove_name reparent search rmdir open } ;
+allow zygote zygote : process { fork sigchld sigkill sigstop signull signal getsched setsched getsession getpgid setpgid getcap setcap getattr setrlimit setcurrent execmem } ;
+allow zygote zygote : capability { chown dac_override fowner setgid setuid setpcap sys_admin } ;
+dontaudit zygote zygote : capability fsetid ;
+allow zygote zygote : file { ioctl read write getattr lock append open } ;
+allow zygote zygote : dir { ioctl read getattr search open } ;
+allow zygote zygote : fd use ;
+allow zygote zygote : lnk_file { ioctl read getattr lock open } ;
+allow zygote zygote : fifo_file { ioctl read write getattr lock append open } ;
+allow zygote zygote : unix_stream_socket { ioctl read write create getattr setattr append bind connect listen accept getopt setopt shutdown connectto } ;
+allow zygote zygote : unix_dgram_socket { ioctl read write create getattr setattr append bind connect getopt setopt shutdown sendto } ;
+allow zygote zygote : netlink_selinux_socket { ioctl read write create getattr setattr lock relabelfrom relabelto append bind connect listen accept getopt setopt shutdown recvfrom sendto recv_msg send_msg name_bind } ;
+allow zygote dalvikcache_data_file : file { ioctl read write create getattr setattr lock append unlink link rename execute open } ;
+allow zygote dalvikcache_data_file : dir { ioctl read write create getattr setattr unlink link rename add_name remove_name reparent search rmdir open } ;
+allow zygote kernel : security { compute_av check_context } ;
+allow zygote selinuxfs : file { ioctl read write getattr lock append open } ;
+allow zygote system_prop : property_service set ;
+allow zygote labeledfs : filesystem remount ;
+allow zygote dex2oat_exec : file { ioctl read getattr lock execute execute_no_trans open } ;
+allow zygote proc_cpuinfo : file mounton ;
+allow zygote init : process sigchld ;
+allow zygote keychain_data_file : file { ioctl read getattr lock open } ;
+allow zygote keychain_data_file : dir { ioctl read getattr search open } ;
+allow zygote zygote_tmpfs : file { read write } ;
+allow zygote system_data_file : file { ioctl read getattr lock open } ;
+allow zygote system_data_file : dir { ioctl read getattr search open } ;
+allow zygote sdcard_type : dir { write create setattr mounton add_name search } ;
+allow zygote system_file : file { getattr execute execute_no_trans } ;
+allow zygote resourcecache_data_file : file { ioctl read write create getattr setattr lock append unlink link rename open } ;
+allow zygote resourcecache_data_file : dir { ioctl read write getattr add_name remove_name search open } ;
+allow zygote property_socket : sock_file write ;
+allow zygote security_file : file { ioctl read getattr lock open } ;
+allow zygote security_file : dir { ioctl read getattr search open } ;
+allow zygote themepack_module_file : file { ioctl read write create getattr setattr lock append unlink link rename open } ;
+allow zygote themepack_module_file : dir { ioctl read write getattr add_name remove_name search open } ;
+allow zygote appdomain : process { getpgid setpgid dyntransition } ;
+allow zygote appdomain : file { ioctl read getattr lock open } ;
+allow zygote appdomain : dir { getattr search } ;
+type_transition zygote tmpfs : file zygote_tmpfs;
+#allow zygote device:chr_file { read write };
+#allow zygote device:chr_file { open };
+allow zygote system_prop:property_service set;
+#============= zygote ==============
+allow zygote gpu_device:chr_file { read write ioctl open getattr };
+allow zygote servicemanager:binder call;
+allow zygote system_server:binder { transfer call };
+
+
+

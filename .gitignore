@@ -1,0 +1,6 @@
+AndroidKernel.mk
+asusctp_hd_diffconfig
+asusctp_qhd_diffconfig
+intel-prebuilt/prebuilt/ipp
+
+*ipp*

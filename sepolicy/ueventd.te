@@ -1,0 +1,4 @@
+#============= ueventd ==============
+allow ueventd tmpfs:chr_file { create setattr };
+allow ueventd tmpfs:dir { write add_name };
+allow ueventd sysfs_uart_power_ctrl:file {relabelto getattr};

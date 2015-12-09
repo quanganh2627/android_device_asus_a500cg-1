@@ -1,0 +1,3 @@
+allow kernel radio_device:file relabelto;
+allow kernel radio_device:dir relabelto;
+allow kernel sysfs_uart_power_ctrl:file relabelto;

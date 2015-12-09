@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- This file is used to define the mappings between lower-level system
+     user and group IDs and the higher-level permission names managed
+     by the platform.
+
+     Be VERY careful when editing this file!  Mistakes made here can open
+     big security holes.
+-->
+<permissions>
+
+    <!-- ================================================================== -->
+    <!-- ================================================================== -->
+    <!-- ================================================================== -->
+
+    <!-- The following tags are associating low-level group IDs with
+         permission names.  By specifying such a mapping, you are saying
+         that any application process granted the given permission will
+         also be running with the given group ID attached to its process,
+         so it can perform any filesystem (read, write, execute) operations
+         allowed for that group. -->
+
+    <permission name="com.intel.permission.SECURITY_ENGINE" >
+        <group gid="security" />
+    </permission>
+
+    <permission name="android.permission.SYSTEM_GROUP_INTERNAL" >
+    <group gid="system" />
+    </permission>
+
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" >
+        <group gid="sdcard_r" />
+    </permission>
+
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" >
+        <group gid="sdcard_r" />
+        <group gid="sdcard_rw" />
+        <group gid="media_rw" />
+    </permission>
+
+    <permission name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" >
+        <group gid="sdcard_r" />
+        <group gid="sdcard_rw" />
+        <group gid="sdcard_all" />
+        <group gid="media_rw" />
+    </permission>
+
+    <permission name="android.permission.WRITE_MEDIA_STORAGE" >
+        <group gid="media_rw" />
+        <group gid="sdcard_rw" />
+    </permission>
+
+    <!-- AMAX SoftAP powersaving implementation (add permission for system call from hostapd) -->
+    <assign-permission name="android.permission.INTERACT_ACROSS_USERS" uid="wifi" />
+    <assign-permission name="android.permission.MODIFY_AUDIO_SETTINGS" uid="media" />
+    <assign-permission name="android.permission.ACCESS_SURFACE_FLINGER" uid="media" />
+    <assign-permission name="android.permission.WAKE_LOCK" uid="media" />
+    <assign-permission name="android.permission.UPDATE_DEVICE_STATS" uid="media" />
+    <assign-permission name="android.permission.UPDATE_APP_OPS_STATS" uid="media" />
+    <assign-permission name="android.permission.ACCESS_SURFACE_FLINGER" uid="graphics" />
+</permissions>

@@ -1,0 +1,10 @@
+allow rild radio_device:dir search;
+allow rild radio_device:file { lock read open write };
+allow rild mmgr_socket:sock_file write;
+allow rild mmgr:unix_stream_socket connectto;
+#============= rild ==============
+allow rild tmpfs:chr_file { read write getattr open ioctl };
+allow rild tmpfs:sock_file write;
+#============= radio ==============
+allow radio tmpfs:chr_file { read write ioctl open };
+allow radio tmpfs:sock_file write;

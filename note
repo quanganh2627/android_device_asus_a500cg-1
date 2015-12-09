@@ -1,0 +1,43 @@
+https://github.com/01org/libva-cros
+https://github.com/01org/psb_video
+https://github.com/01org/libwsbm
+https://github.com/01org/omxil_core
+https://github.com/01org/omx_comp
+
+
+Asus Zenfone github source file
+
+https://github.com/shakalaca
+https://github.com/quanganh2627
+
+Some Device running on clovertrails
+
+https://github.com/HazouPH
+https://github.com/angel666
+https://github.com/gpdroid
+https://github.com/lenovo-k900
+https://github.com/xxx-man
+
+#external/skia
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_external_skia refs/changes/89/95689/2 && git cherry-pick FETCH_HEAD
+
+#system/core
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_system_core refs/changes/28/103928/1 && git cherry-pick FETCH_HEAD
+
+#hardware/ril
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_hardware_ril refs/changes/25/102725/2 && git cherry-pick FETCH_HEAD
+
+#framework/base
+git fetch http://quanganh2627@review.cyanogenmod.org/a/CyanogenMod/android_frameworks_base refs/changes/28/107828/1 && git cherry-pick FETCH_HEAD
+
+#Prevent windows from freezing screen while timeout
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_frameworks_base refs/changes/20/98620/1 && git cherry-pick FETCH_HEAD
+
+Repopick: 
+97125	libpixelflinger
+101506	ffmpeg
+110329	package/apps/Settings: Batterry
+103343	ril
+101970	recovery: intel superspeed
+
+	

@@ -1,0 +1,6 @@
+#need refine the "device"
+allow appdomain device:chr_file { read write ioctl open getattr };
+
+#============= untrusted_app ==============
+allow untrusted_app sysfs_thermal_management:dir search;
+allow untrusted_app sysfs_thermal_management:file { read getattr open };
