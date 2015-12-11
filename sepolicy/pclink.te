@@ -26,5 +26,5 @@ allow pclinkd system_file : file { ioctl read getattr lock execute execute_no_tr
 allow pclinkd shell_exec : file { read getattr execute open } ;
 allow pclinkd appdomain : unix_stream_socket connectto ;
 allow pclinkd shell : process { transition noatsecure siginh rlimitinh } ;
-dontaudit pclinkd shell : process noatsecure ;
+#dontaudit pclinkd shell : process noatsecure ;
 allow pclinkd pclink_device : chr_file { ioctl read write getattr lock append open } ;

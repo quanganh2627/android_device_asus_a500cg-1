@@ -299,7 +299,7 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # SELinux
 HAVE_SELINUX := true
-BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
+BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy device/intel/sepolicy
 
 #BOARD_SEPOLICY_UNION += \
 #    file_contexts \
