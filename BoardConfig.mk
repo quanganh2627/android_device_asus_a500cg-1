@@ -63,20 +63,19 @@ BOARD_MALLOC_ALIGNMENT := 16
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
 # Test build gcc4.9
-#TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
-#TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
-#PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
+TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
+TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
+PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
 TARGET_KERNEL_SOURCE := linux/kernel
-TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+#TARGET_KERNEL_CONFIG := build69_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_CONFIG := i386_ctp_defconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
-TARGET_KERNEL_ARCH := x86
-KERNEL_ARCH := i386
+TARGET_KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
@@ -90,7 +89,7 @@ KERNEL_BLD_FLAGS := \
     ARCH=$(KERNEL_ARCH) \
     INSTALL_MOD_PATH=../modules_install \
     INSTALL_MOD_STRIP=1 \
-    LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
+    LOCALVERSION=$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
 
 # PRODUCT_OUT and HOST_OUT are now defined after BoardConfig is included.
@@ -171,8 +170,8 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_USES_ALSA_AUDIO := true
 BUILD_WITH_ALSA_UTILS := true
 BOARD_USES_TINY_ALSA_AUDIO := true
-BOARD_USES_AUDIO_HAL_XML := true
-BOARD_USES_AUDIO_HAL_CONFIGURABLE := true
+#BOARD_USES_AUDIO_HAL_XML := true
+#BOARD_USES_AUDIO_HAL_CONFIGURABLE := true
 
 # DRM Protected Video
 BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 1
@@ -518,3 +517,11 @@ VOLD_ENABLE_EXFAT := true
 USE_INTEL_ASF_EXTRACTOR := true
 
 INTEL_FEATURE_DPTF := true
+
+# Security
+BUILD_WITH_CHAABI_SUPPORT := true
+BUILD_WITH_WATCHDOG_DAEMON_SUPPORT := true
+
+SEMC_CFG_FM_SERVICE_TI := true
+SEMC_CFG_FM_SERVICE_TI_HW := true
+
