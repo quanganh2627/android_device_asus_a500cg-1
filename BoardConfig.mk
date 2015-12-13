@@ -61,11 +61,11 @@ MALLOC_IMPL := dlmalloc
 BOARD_MALLOC_ALIGNMENT := 16
 
 # Appends path to ARM libs for Houdini
-PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
+PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm:/system/lib/arm/nb
 # Test build gcc4.9
-TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
-TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
-PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
+#TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
+#TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
+#PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
@@ -519,8 +519,8 @@ USE_INTEL_ASF_EXTRACTOR := true
 INTEL_FEATURE_DPTF := true
 
 # Security
-BUILD_WITH_CHAABI_SUPPORT := true
-BUILD_WITH_WATCHDOG_DAEMON_SUPPORT := true
+#BUILD_WITH_CHAABI_SUPPORT := true
+#BUILD_WITH_WATCHDOG_DAEMON_SUPPORT := true
 
 SEMC_CFG_FM_SERVICE_TI := true
 SEMC_CFG_FM_SERVICE_TI_HW := true
