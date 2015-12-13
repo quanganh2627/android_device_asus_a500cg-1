@@ -33,3 +33,4 @@ ro.asus.ui=1.0
 ro.asus.amax.lite=1
 ro.config.hwrlib=T9_x86
 ro.config.xt9ime.max_subtype=7
+persist.sampling_profiler=1
