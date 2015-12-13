@@ -467,6 +467,12 @@ DEVICE_PACKAGE_OVERLAYS := \
 PRODUCT_PACKAGES += \
   libenc
 
+#libenc
+#PRODUCT_PACKAGES += \
+#  libfmrx \
+#  fmreceiverif \
+#  com.ti.fm.fmreceiverif.xml
+
 
 
 ############################### property ##########################
