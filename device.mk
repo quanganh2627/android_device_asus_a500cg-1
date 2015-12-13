@@ -467,6 +467,30 @@ DEVICE_PACKAGE_OVERLAYS := \
 PRODUCT_PACKAGES += \
   libenc
 
+#Skia
+PRODUCT_PACKAGES += \
+  libI420colorconvert \
+  libasfextractor \
+  libskia_ext \
+
+#ISV
+PRODUCT_PACKAGES += \
+  libisv_omx_core
+
+#Intel mult-thread
+PRODUCT_PACKAGES += \
+  libthreadedsource
+
+#Video editor
+PRODUCT_PACKAGES += \
+  libvavideodecoder \
+  libvideoeditor_stagefrightshells_intel \
+  liblvpp_intel \
+  libvss_intel
+
+
+
+
 #libenc
 #PRODUCT_PACKAGES += \
 #  libfmrx \

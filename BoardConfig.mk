@@ -147,7 +147,7 @@ WIFI_DRIVER_MODULE_ARG := "iface_name=wlan0 firmware_path=/system/etc/firmware/f
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BLUEDROID_ENABLE_V4L2 := true
+#BLUEDROID_ENABLE_V4L2 := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
