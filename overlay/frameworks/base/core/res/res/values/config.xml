@@ -268,12 +268,12 @@
 
     <!-- Minimum screen brightness setting allowed by the power manager.
      The user is forbidden from setting the brightness below this level. -->
-    <integer name="config_screenBrightnessSettingMinimum">10</integer>
+    <integer name="config_screenBrightnessSettingMinimum">15</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">50</integer>
     <integer name="config_screenBrightnessDoze">17</integer>
-    <integer name="config_screenBrightnessDim">20</integer>
-    <integer name="config_screenBrightnessDark">1</integer>
+    <integer name="config_screenBrightnessDim">10</integer>
+    <integer name="config_screenBrightnessDark">5</integer>
 
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
@@ -286,6 +286,7 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>15</item>
         <item>50</item>
         <item>100</item>
         <item>200</item>
@@ -312,9 +313,7 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>15</item>
         <item>24</item>
-        <item>34</item>
         <item>51</item>
         <item>66</item>
         <item>80</item>
@@ -601,5 +600,9 @@
     <bool name="config_supportDoubleTapWake">true</bool>
     <!-- enable doze powersaving mode -->
     <bool name="config_enableAutoPowerModes">true</bool>
+
+        <!-- Apps that are authorized to access shared accounts -->
+    <string name="config_appsAuthorizedForSharedAccounts">;com.android.vending;com.android.settings;com.asus.camera;com.asus.browser;</string>
+
 
 </resources>

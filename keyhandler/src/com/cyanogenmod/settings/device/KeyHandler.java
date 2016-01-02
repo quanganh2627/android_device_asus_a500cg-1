@@ -27,7 +27,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.hardware.TorchManager;
+//import android.hardware.TorchManager;
 import android.media.session.MediaSessionLegacyHelper;
 import android.net.Uri;
 import android.os.Handler;
@@ -81,7 +81,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private KeyguardManager mKeyguardManager;
     private EventHandler mEventHandler;
     private SensorManager mSensorManager;
-    private TorchManager mTorchManager;
+    //private TorchManager mTorchManager;
     private Sensor mProximitySensor;
     WakeLock mProximityWakeLock;
     WakeLock mGestureWakeLock;
@@ -96,10 +96,10 @@ public class KeyHandler implements DeviceKeyHandler {
                 "GestureWakeLock");
 
         final Resources resources = mContext.getResources();
-        mProximityTimeOut = resources.getInteger(
-                com.android.internal.R.integer.config_proximityCheckTimeout);
-        mProximityWakeSupported = resources.getBoolean(
-                com.android.internal.R.bool.config_proximityCheckOnWake);
+        //mProximityTimeOut = resources.getInteger(
+                //com.android.internal.R.integer.config_proximityCheckTimeout);
+        //mProximityWakeSupported = resources.getBoolean(
+                //com.android.internal.R.bool.config_proximityCheckOnWake);
 
         if (mProximityWakeSupported) {
             mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -171,21 +171,21 @@ public class KeyHandler implements DeviceKeyHandler {
         }*/
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
-            if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
-                return true;
-            }
-            Message msg = getMessageForKeyEvent(event);
-            boolean defaultProximity = mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
-            boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.PROXIMITY_ON_WAKE, defaultProximity ? 1 : 0) == 1;
-            if (mProximityWakeSupported && proximityWakeCheckEnabled && mProximitySensor != null) {
-                mEventHandler.sendMessageDelayed(msg, mProximityTimeOut);
-                processEvent(event);
-            } else {
-                mEventHandler.sendMessage(msg);
-            }
+            //if (event.getScanCode() == KEY_GESTURE_DOUBLECLICK && !mPowerManager.isScreenOn()) {
+                //mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
+                //return true;
+            //}
+            //Message msg = getMessageForKeyEvent(event);
+            //boolean defaultProximity = mContext.getResources().getBoolean(
+                //com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
+            //boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                    //Settings.System.PROXIMITY_ON_WAKE, defaultProximity ? 1 : 0) == 1;
+            //if (mProximityWakeSupported && proximityWakeCheckEnabled && mProximitySensor != null) {
+                //mEventHandler.sendMessageDelayed(msg, mProximityTimeOut);
+                //processEvent(event);
+            //} else {
+                //mEventHandler.sendMessage(msg);
+            //}
         }
         return isKeySupported;
     }

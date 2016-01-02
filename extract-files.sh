@@ -55,11 +55,11 @@ for FILE in `egrep -v '(^#|^$)' proprietary-files.txt`; do
 			mkdir -p $BASE/$DIR
 		  fi
 		  if [ "$SRC" = "adb" ]; then
-			adb pull /$FILE $BASE/$FILE
+			adb pull /$FILE $BASE/$FILE || true
 		  elif [ -f $SRC/$FILE ]; then
 			cp -p $SRC/$FILE $BASE/$FILE
 			else echo "Warning : No such $SRC/$FILE"
-		  fi	
+		  fi
 done
 
 

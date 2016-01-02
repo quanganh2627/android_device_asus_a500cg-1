@@ -17,7 +17,8 @@
 
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
-$(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
+#include $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/full_x86.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit common CM stuff
@@ -50,6 +51,15 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 
 CUSTOM_SUPERUSER = SuperSu
+
+# prebuild source kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
+BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
+#include device/asus/a500cg/intel-boot-tools/Android.mk
+TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
+DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
+DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
+$(call transform-prebuilt-to-target,device/asus/a500cg/intel-boot-tools/pack_intel,$(HOST_OUT_EXECUTABLES))
 
 # specific management of audio_policy.conf
 PRODUCT_COPY_FILES += \
@@ -231,9 +241,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
   libhealthd.intel \
 
-PRODUCT_PACKAGES += \
-  sensors.a500cg \
-  libaccelerometersimplecalibration
+#PRODUCT_PACKAGES += \
+#  sensors.a500cg \
+#  libaccelerometersimplecalibration
 #include vendor/intel/hardware/sensors/Android.mk
 
 PRODUCT_PACKAGES += \
@@ -466,6 +476,24 @@ DEVICE_PACKAGE_OVERLAYS := \
 #libenc
 PRODUCT_PACKAGES += \
   libenc
+
+#libdrm
+PRODUCT_PACKAGES += \
+  libdrm_intel \
+  libdrm
+
+# Marshmallow compatibility library
+PRODUCT_PACKAGES += \
+    libmmcompat
+
+# Intel DPST
+PRODUCT_PACKAGES += \
+    dpstmgr \
+	libdm_dpst
+
+#PRODUCT_PACKAGES += \
+#    libbluetooth_vs
+
 
 
 

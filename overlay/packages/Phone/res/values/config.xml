@@ -24,16 +24,14 @@
     <bool name="hac_enabled">true</bool>
 
     <!-- Flag indicating the usage of OEM Hooks for telephony -->
-<!--
+
     <bool name="config_usage_oem_hooks_supported">true</bool>
-    <!-- These two config items are valid only if config_usage_oem_hooks_supported is true -->
-    <!-- The oem hook jar file name -->
-<!--
+     <!--These two config items are valid only if config_usage_oem_hooks_supported is true
+     The oem hook jar file name-->
+
     <string name="config_oem_hook_jar_file">/system/framework/com.intel.internal.telephony.OemTelephony.jar</string>
--->
+
     <!-- The oem hook class name -->
-<!--
     <string name="config_oem_hook_class_name">com.intel.internal.telephony.OemTelephony.OemTelephonyInterfaceCreator</string>
--->
--->
+
 </resources>
