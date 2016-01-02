@@ -1,22 +1,75 @@
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_IS_HOST_MODULE := true
-LOCAL_SRC_FILES := $(LOCAL_PATH)/pack.c
-LOCAL_CFLAGS += -I/usr/include/
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+OVERRIDE_BUILT_MODULE_PATH := $(HOST_OUT)/bin
+LOCAL_UNINSTALLABLE_MODULE:=
+LOCAL_SRC_FILES := pack_intel
+LOCAL_BUILT_MODULE_STEM := pack_intel
+LOCAL_STRIP_MODULE :=
 LOCAL_MODULE := pack_intel
-LOCAL_MODULE_TAGS := optional
-include $(call include-if-build-from-source,Makefile,$(LOCAL_MODULE),$(LOCAL_PATH))
-include $(BUILD_HOST_EXECUTABLE)
+LOCAL_MODULE_STEM := pack_intel
+LOCAL_CERTIFICATE :=
+LOCAL_MODULE_PATH := $(HOST_OUT)/bin
+LOCAL_REQUIRED_MODULES :=
+LOCAL_SHARED_LIBRARIES :=
+include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_IS_HOST_MODULE := true
-LOCAL_SRC_FILES := $(LOCAL_PATH)/unpack.c
-LOCAL_CFLAGS += -I/usr/include/
-LOCAL_MODULE := unpack_intel
-LOCAL_MODULE_TAGS := optional
-include $(call include-if-build-from-source,Makefile,$(LOCAL_MODULE),$(LOCAL_PATH))
+#LOCAL_PATH:= $(call my-dir)
+#
+#include $(CLEAR_VARS)
+#HOST_PREFER_32_BIT := true
+#LOCAL_IS_HOST_MODULE := true
+#LOCAL_SRC_FILES := pack.c
+#LOCAL_MODULE := pack_intel
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE_STERM := pack_intel
+#LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+#LOCAL_MODULE_PATH := $(HOST_OUT)/bin
+#LOCAL_UNSTRIPPED_PATH := $(HOST_OUT)/bin
+#LOCAL_MODULE_CLASS := EXECUTABLES
+#LOCAL_UNINSTALLABLE_MODULE := true
+#include $(BUILD_HOST_EXECUTABLE)
+#
+#include $(CLEAR_VARS)
+#HOST_PREFER_32_BIT := true
+#LOCAL_IS_HOST_MODULE := true
+#LOCAL_SRC_FILES := unpack.c
+#LOCAL_MODULE := unpack_intel
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE_STERM := unpack_intel
+#LOCAL_MODULE_SUFFIX := $(HOST_EXECUTABLE_SUFFIX)
+#LOCAL_MODULE_PATH := $(HOST_OUT)/bin
+#LOCAL_UNSTRIPPED_PATH := $(HOST_OUT)/bin
+#LOCAL_MODULE_CLASS := EXECUTABLES
+#LOCAL_UNINSTALLABLE_MODULE := true
+#
+#include $(BUILD_HOST_EXECUTABLE)
+#$(call dist-for-goals,dist_files,$(LOCAL_BUILT_MODULE))
+#include $(call-all-makefiles-under,$(LOCAL_PATH))
 
-include $(BUILD_HOST_EXECUTABLE)
-$(call dist-for-goals,dist_files,$(LOCAL_BUILT_MODULE))
-include $(call-all-makefiles-under,$(LOCAL_PATH))
+#BOOT_TOOLS_PATH := device/asus/a500cg/intel-boot-tools
+#
+#include $(CLEAR_VARS)
+#LOCAL_32_BIT_ONLY := true
+#LOCAL_MODULE_PATH_32 := $(HOST_OUT)/bin
+#LOCAL_MODULE_STEM_32 := pack_intel
+#LOCAL_SRC_FILES := pack.c
+#LOCAL_CFLAGS += -I/usr/include/
+#LOCAL_MODULE := pack_intel
+#LOCAL_MODULE_TAGS := optional
+#include $(BUILD_HOST_EXECUTABLE)
+#
+#include $(CLEAR_VARS)
+#LOCAL_32_BIT_ONLY := true
+#LOCAL_MODULE_PATH_32 := $(HOST_OUT)/bin
+#LOCAL_MODULE_STEM_32 := unpack_intel
+#LOCAL_SRC_FILES := unpack.c
+#LOCAL_CFLAGS += -I/usr/include/
+#LOCAL_MODULE := unpack_intel
+#LOCAL_MODULE_TAGS := optional
+#include $(BUILD_HOST_EXECUTABLE)
+#$(call dist-for-goals,dist_files,$(LOCAL_MODULE))
+#

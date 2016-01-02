@@ -1,4 +1,4 @@
-
+#include $(GENERIC_X86_CONFIG_MK)
 COMMON_PATH := device/intel/common
 SUPPORT_PATH := vendor/intel/support
 #include $(COMMON_PATH)/BoardConfig.mk
@@ -62,22 +62,18 @@ BOARD_MALLOC_ALIGNMENT := 16
 
 # Appends path to ARM libs for Houdini
 PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm
-# Test build gcc4.9
-#TARGET_TOOLS_PREFIX := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-
-#TARGET_CC := prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android-gcc
-#PATH := $(shell pwd)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin:$(PATH)
 
 # Inline kernel building
-#TARGET_KERNEL_BUILT_FROM_SOURCE := true
-#TARGET_KERNEL_SOURCE := linux/kernel
+TARGET_KERNEL_BUILT_FROM_SOURCE := true
+TARGET_KERNEL_SOURCE := linux/kernel
 #TARGET_KERNEL_CONFIG := build69_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
-#TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
+TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #TARGET_KERNEL_CONFIG := i386_ctp_defconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 KERNEL_SOC := ctp
@@ -89,13 +85,18 @@ KERNEL_BLD_FLAGS := \
     ARCH=$(KERNEL_ARCH) \
     INSTALL_MOD_PATH=../modules_install \
     INSTALL_MOD_STRIP=1 \
-    LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
+#    LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
 
 # PRODUCT_OUT and HOST_OUT are now defined after BoardConfig is included.
 # Add early definition here
 PRODUCT_OUT ?= out/target/product/$(TARGET_DEVICE)
 HOST_OUT ?= out/host/$(HOST_OS)-$(HOST_PREBUILT_ARCH)
+
+# Specify pathmap for glib and sbc
+pathmap_INCL += glib:external/bluetooth/glib \
+		sbc:external/bluetooth/sbc
+
 
 
 
@@ -109,12 +110,6 @@ HOST_OUT ?= out/host/$(HOST_OS)-$(HOST_PREBUILT_ARCH)
 # TARGET_PREBUILT_KERNEL := out/target/product/a500cg/obj/KERNEL_OBJ/arch/x86/boot/bzImage
 # DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery-WW-3.23.40.52.img
 
-# prebuild source kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
-BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
-DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
-DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
 
 # Kernel config (reference only)
 BOARD_KERNEL_BASE := 0x10000000
@@ -186,7 +181,7 @@ USE_INTEL_SECURE_AVC := true
 ifeq ($(WITH_NATIVE_BRIDGE),true)
 
 # Enable ARM codegen for x86 with Native Bridge
- BUILD_ARM_FOR_X86 := true
+BUILD_ARM_FOR_X86 := true
 
 # Native Bridge ABI List
 NB_ABI_LIST_32_BIT := armeabi-v7a armeabi
@@ -245,7 +240,7 @@ BOARD_USES_HWCOMPOSER := true
 RIL_SUPPORTS_SEEK := true
 
 # GPS
-BOARD_HAVE_GPS := true
+BOARD_HAS_GPS_HARDWARE := true
 GPS_CHIP_VENDOR := bcm
 GPS_CHIP := 4752
 include device/intel/common/gps/GpsBoardConfig.mk
@@ -344,7 +339,7 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/egl:/system/vendor/l
 #RECOVERY_VARIANT := twrp
 #TARGET_PROVIDES_INIT_RC := true
 USE_OSIP := true
-REF_DEVICE_NAME := redhookbay
+REF_PRODUCT_NAME := redhookbay
 
 # Init
 TARGET_IGNORE_RO_BOOT_SERIALNO := true
@@ -353,7 +348,7 @@ BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
 ENABLE_SENSOR_HUB := true
 #ENABLE_SCALABLE_SENSOR_HAL := false
-ENABLE_SCALABLE_SENSOR_HAL := true
+#ENABLE_SCALABLE_SENSOR_HAL := true
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -362,12 +357,12 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 
 # Define platform battery healthd library
-BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
+#BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 
 # Rild
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
-BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
+BOARD_RIL_CLASS := ../../../device/asus/a500cg/ril
 SIM_COUNT := 2
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
@@ -472,3 +467,11 @@ VOLD_ENABLE_EXFAT := true
 USE_INTEL_ASF_EXTRACTOR := true
 
 INTEL_FEATURE_DPTF := true
+
+# Build with Clang by default
+#USE_CLANG_PLATFORM_BUILD := false
+#WITHOUT_CLANG := true
+#Doubletap2wake supported by OS from M
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/input/input1/dclick_mode"
+
+

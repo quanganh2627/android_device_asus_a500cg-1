@@ -27,6 +27,7 @@
 #include "drm_hdmi.h"
 #include "xf86drm.h"
 #include "xf86drmMode.h"
+#include <shared-core/drm_mode.h>
 
 
 #define HDMI_FORCE_VIDEO_ON_OFF 1

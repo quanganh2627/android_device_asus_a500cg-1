@@ -5,7 +5,7 @@
 # DEVICE_BASE_RECOVERY_IMAGE := path/to/stuff/existingrecovery.img
 # BOARD_CUSTOM_BOOTIMG_MK := path/to/intel-boot-tools/boot.mk
 #
-HOST_OUT_EXECUTABLES := out/host/linux-x86/bin
+
 INTEL_PACK := $(HOST_OUT_EXECUTABLES)/pack_intel$(HOST_EXECUTABLE_SUFFIX)
 BASE_BOOT_IMAGE := $(DEVICE_BASE_BOOT_IMAGE)
 BASE_RECOVERY_IMAGE := $(DEVICE_BASE_RECOVERY_IMAGE)

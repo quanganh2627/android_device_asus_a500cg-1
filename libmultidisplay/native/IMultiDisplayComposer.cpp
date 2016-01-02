@@ -107,7 +107,7 @@ int BpMultiDisplayComposer::registerListener(
         return MDS_ERROR;
     }
     data.writeInterfaceToken(IMultiDisplayComposer::getInterfaceDescriptor());
-    data.writeStrongBinder(listener->asBinder());
+    data.writeStrongBinder(IMultiDisplayComposer::asBinder(listener));
     data.writeInt32(reinterpret_cast<int32_t>(handle));
     data.writeCString(name);
     data.writeInt32(msg);

@@ -64,3 +64,7 @@ allow init factory_file : chr_file relabelto ;
 allow init factory_file : blk_file relabelto ;
 allow init factory_file : sock_file relabelto ;
 allow init factory_file : fifo_file relabelto ;
+# Allow system server factory file access
+allow system_server efs_file:dir search;
+allow system_server efs_file:file r_file_perms;
+
