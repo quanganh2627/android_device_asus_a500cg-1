@@ -145,6 +145,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
   $(call find-copy-subdir-files,*,device/asus/a500cg/include,obj/include)
 
+#GPS FIX
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gpsd:system/bin/gpsd   
+  
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.sf.lcd_density=320 \
   ro.opengles.version = 131072
