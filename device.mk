@@ -488,8 +488,52 @@ PRODUCT_PACKAGES += \
   liblvpp_intel \
   libvss_intel
 
+#Intel Jpeg
+PRODUCT_PACKAGES += \
+  libjpeg-turbo \
+  libjpeg-turbo-static
 
+#Intel sensorhub
+PRODUCT_PACKAGES += \
+  sensorhubd \
+  libsensorhub  \
+  sensorhub_client \
+  calibration \
+  event_notification
 
+#libstagefrighthw
+PRODUCT_PACKAGES += \
+  libstagefrighthw
+
+#libaudio_hal
+PRODUCT_PACKAGES += \
+  libactive_value_set \
+  active_value_set_host \
+  libkeyvaluepairs \
+  libkeyvaluepairs_host \
+  libstream_static_host \
+  libstream_static \
+  libparametermgr_static_host \
+  libparametermgr_static \
+  libhalaudiodump \
+  libhalaudiodump_host \
+  libaudioplatformstate \
+  route_criteria.conf \
+  audio.routemanager \
+  audio.routemanager.includes \
+  libsamplespec_static_host \
+  libsamplespec_static \
+  audio_policy.$(TARGET_DEVICE) \
+  libaudioconversion_static_host \
+  libaudioconversion_static \
+  liblpepreprocessing \
+  liblpepreprocessinghelper \
+  liblpepreprocessinghelper_host \
+  audio_hal_configurable \
+  audio.primary.$(TARGET_DEVICE) \
+  libaudio_stream_manager_static_host \
+  libaudiohw_intel \
+  libaudiohw_intel_host
 
 #libenc
 #PRODUCT_PACKAGES += \
