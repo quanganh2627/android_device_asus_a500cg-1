@@ -33,7 +33,6 @@
              android:primary="false"
              android:removable="true"
              android:emulated="false"
-             android:allowMassStorage="true"
              android:maxFileSize="4096" />
 
     <!-- external USB OTG storage -->
