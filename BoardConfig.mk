@@ -412,7 +412,7 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.intel
 # Rild
 # Radio
 BOARD_RIL_SUPPORTS_MULTIPLE_CLIENTS := true
-BOARD_RIL_CLASS := ../../../device/asus/T00F/ril
+BOARD_RIL_CLASS := ../../../device/asus/a500cg/ril
 SIM_COUNT := 2
 # Use Intel camera extras (HDR, face detection, panorama, etc.) by default
 USE_INTEL_CAMERA_EXTRAS := true
