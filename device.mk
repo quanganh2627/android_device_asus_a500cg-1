@@ -79,7 +79,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Modules (currently from ASUS)
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/asus/a500cg/ramdisk,root)
+    $(call find-copy-subdir-files,*,device/asus/a500cg/ramdisk,root) \
+	system/core/rootdir/init.rc:root/init.aosp.rc
 
 # Binary to be replaced with source code ..
 PRODUCT_COPY_FILES += \

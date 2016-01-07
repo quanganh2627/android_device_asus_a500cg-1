@@ -56,7 +56,7 @@ on init
     mkdir /storage/USBdisk5 0700 root root
 
     #symlink for ASUS APP
-    mkdir   /Removable 0756 root sdcard_r
+    mkdir   /Removable 0751 root sdcard_r
     symlink /storage/MicroSD  /Removable/MicroSD
     symlink /storage/USBdisk1 /Removable/USBdisk1
     symlink /storage/USBdisk2 /Removable/USBdisk2

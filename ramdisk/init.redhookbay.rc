@@ -27,6 +27,8 @@ on early-init
 #    #setprop ro.swconf.info DSDS_A500CG
 
 on init
+    # Marshmallow compatibility library
+    export LD_PRELOAD "/system/lib/libmmcompat.so"
     chmod 0770 /system/bin/upi_ug31xx
     chown system system /system/bin/upi_ug31xx
 

@@ -43,7 +43,7 @@ ADDITIONAL_BUILD_PROPERTIES +=
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
-
+-include vendor/intel/houdini/houdini.mk
 # Atom optimizations to improve memory benchmarks.
 -include device/asus/a500cg/OptAtom.mk
 
@@ -76,7 +76,7 @@ TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
-#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
 KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 KERNEL_SOC := ctp
@@ -98,7 +98,8 @@ HOST_OUT ?= out/host/$(HOST_OS)-$(HOST_PREBUILT_ARCH)
 
 # Specify pathmap for glib and sbc
 pathmap_INCL += glib:external/bluetooth/glib \
-		sbc:external/bluetooth/sbc
+		sbc:external/bluetooth/sbc \
+    libdrm-intel:hardware/intel/libdrm
 
 
 
@@ -421,7 +422,7 @@ INTEL_WIDI := false
 TARGET_SUPPORT_HWC_SYS_LAYER := true
 TARGET_HAS_MULTIPLE_DISPLAY := true
 
-INTEL_FEATURE_AWARESERVICE := true
+#INTEL_FEATURE_AWARESERVICE := true
 #PRODUCT_BOOT_JARS += com.intel.aware.awareservice
 
 # System's VSYNC phase offsets in nanoseconds
@@ -467,9 +468,9 @@ TARGET_HAVE_CWS := true
 VOLD_ENABLE_EXFAT := true
 
 #ASF
-USE_INTEL_ASF_EXTRACTOR := true
-
-INTEL_FEATURE_DPTF := true
+#USE_INTEL_ASF_EXTRACTOR := true
+#
+#INTEL_FEATURE_DPTF := true
 
 # Build with Clang by default
 #USE_CLANG_PLATFORM_BUILD := false
@@ -477,4 +478,5 @@ INTEL_FEATURE_DPTF := true
 #Doubletap2wake supported by OS from M
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/input/input1/dclick_mode"
 
-
+#Disable damn Jack compiler
+ANDROID_COMPILE_WITH_JACK := false
