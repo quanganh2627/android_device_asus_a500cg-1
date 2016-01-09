@@ -246,18 +246,18 @@ LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
 ###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := ZooperWidget
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := ZooperWidget/ZooperWidget.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
-###############################################################################
+#include $(CLEAR_VARS)
+#
+#LOCAL_MODULE := ZooperWidget
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_SRC_FILES := ZooperWidget/ZooperWidget.apk
+#LOCAL_MODULE_CLASS := APPS
+#LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+#LOCAL_CERTIFICATE := PRESIGNED
+#
+#include $(BUILD_PREBUILT)
+##############################################################################
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := SMMI_TEST
@@ -374,17 +374,17 @@ LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
 ###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := Themer
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := Themer/Themer.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#
+#LOCAL_MODULE := Themer
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_SRC_FILES := Themer/Themer.apk
+#LOCAL_MODULE_CLASS := APPS
+#LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+#LOCAL_CERTIFICATE := PRESIGNED
+#
+#include $(BUILD_PREBUILT)
 ###############################################################################
 include $(CLEAR_VARS)
 

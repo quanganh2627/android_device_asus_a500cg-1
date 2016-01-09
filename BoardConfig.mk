@@ -8,7 +8,7 @@ LOCAL_PATH := device/asus/a500cg
 BOARD_CREATE_MODPROBE_SYMLINK := true
 TARGET_DEVICE_KERNEL_HEADERS := device/asus/a500cg/kernel-headers
 TARGET_BOARD_KERNEL_HEADERS := $(COMMON_PATH)/kernel-headers
-TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include
+TARGET_SPECIFIC_HEADER_PATH := device/asus/a500cg/include external/openssl/include
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -40,7 +40,7 @@ ADDITIONAL_BUILD_PROPERTIES +=
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
--include vendor/intel/houdini/houdini.mk
+#$(call inherit-product-if-exist, vendor/intel/houdini/houdini.mk)
 # Atom optimizations to improve memory benchmarks.
 -include device/asus/a500cg/OptAtom.mk
 
