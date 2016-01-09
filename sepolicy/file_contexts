@@ -76,7 +76,7 @@
 /system/bin/bcu_cpufreqrel      u:object_r:bcu_cpufreqrel_exec:s0
 
 # logcat for all the init scripts
-/system/bin/logcat              u:object_r:logcat_exec:s0
+#/system/bin/logcat              u:object_r:logcat_exec:s0
 
 # pvrsrvctl
 /system/vendor/bin/pvrsrvctl    u:object_r:pvrsrvctl_exec:s0

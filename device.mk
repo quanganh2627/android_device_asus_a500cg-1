@@ -495,7 +495,13 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    libbluetooth_vs
 
-
+# Keep using openssl
+PRODUCT_PACKAGE += \
+  openssl \
+  libssl \
+  libcrypto \
+  libssl-host \
+  libcrypto-host
 
 
 ############################### property ##########################
