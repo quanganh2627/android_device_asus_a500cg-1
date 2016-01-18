@@ -597,7 +597,6 @@ system/bin/a600cg_akmd09911
 system/bin/mkntfs
 system/bin/crashlogd
 system/bin/dhcp_lease_evt.sh
-system/bin/vold
 system/bin/logkmsg
 system/bin/tinymix
 system/bin/miu-app
