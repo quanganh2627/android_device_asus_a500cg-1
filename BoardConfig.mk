@@ -22,7 +22,7 @@ TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := x86
 
 INTEL_INGREDIENTS_VERSIONS := true
-LOCAL_CFLAGS += -DARCH_IA32
+#LOCAL_CFLAGS += -DARCH_IA32
 TARGET_PRELINK_MODULE := false
 
 #add some intel BOOTCLASSPATH
@@ -36,7 +36,7 @@ BUILD_EMULATOR := false
 # enable ARM codegen for x86 with Houdini
 INTEL_HOUDINI := true
 BUILD_ARM_FOR_X86 := true
-ADDITIONAL_BUILD_PROPERTIES +=
+ADDITIONAL_BUILD_PROPERTIES += \
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
@@ -78,17 +78,16 @@ TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
 #KERNEL_CONFIG_OVERRIDE := device/asus/a500cg/asusctp_hd_diffconfig
 TARGET_KERNEL_ARCH := i386
 BOARD_KERNEL_IMAGE_NAME := bzImage
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := x86_64-linux-android-
-KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
+#KERNEL_EXTRA_FLAGS := ANDROID_TOOLCHAIN_FLAGS=-mno-android
 KERNEL_SOC := ctp
 #remove time_macros from ccache options, it breaks signing process
-KERNEL_CCSLOP := $(filter-out time_macros,$(subst $(comma), ,$(CCACHE_SLOPPINESS)))
-KERNEL_CCSLOP := $(subst $(space),$(comma),$(KERNEL_CCSLOP))
+#KERNEL_CCSLOP := $(filter-out time_macros,$(subst $(comma), ,$(CCACHE_SLOPPINESS)))
+#KERNEL_CCSLOP := $(subst $(space),$(comma),$(KERNEL_CCSLOP))
 CCACHE_SLOPPINESS := $(KERNEL_CCSLOP)
 KERNEL_BLD_FLAGS := \
     ARCH=$(KERNEL_ARCH) \
-    INSTALL_MOD_PATH=../modules_install \
     INSTALL_MOD_STRIP=1 \
     $(KERNEL_EXTRA_FLAGS)
 #    LOCALVERSION=-$(KERNEL_ARCH)_$(KERNEL_SOC) \
@@ -120,7 +119,7 @@ pathmap_INCL += glib:external/bluetooth/glib \
 # Kernel config (reference only)
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-cmdline_extra := watchdog.watchdog_thresh=60 androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901
+cmdline_extra := androidboot.spid=xxxx:xxxx:xxxx:xxxx:xxxx:xxxx androidboot.serialno=01234567890123456789012345678901
 cmdline_extra1 := ip=50.0.0.2:50.0.0.1::255.255.255.0::usb0:on vmalloc=172M androidboot.wakesrc=05 androidboot.mode=main loglevel=8 slub_max_order=2
 cmdline_extra2 := loglevel=8 kmemleak=off androidboot.bootmedia=sdcard androidboot.hardware=redhookbay androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE := init=/init pci=noearly console=logk0 earlyprintk=nologger  $(cmdline_extra)  $(cmdline_extra1)  $(cmdline_extra2)
@@ -231,16 +230,17 @@ endif
 
 # HW_Renderer
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/asus/a500cg/configs/egl.cfg
-BOARD_ALLOW_EGL_HIBERNATION := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
+#BOARD_EGL_CFG := device/asus/a500cg/configs/egl.cfg
+#BOARD_ALLOW_EGL_HIBERNATION := true
+#TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+#COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DNO_SECURE_DISCARD
+#
+#BOARD_EGL_WORKAROUND_BUG_10194508 := true
 # DPST
-INTEL_DPST := true
+#INTEL_DPST := true
 
 # HWComposer
-BOARD_USES_HWCOMPOSER := true
+#BOARD_USES_HWCOMPOSER := true
 
 # RILD
 RIL_SUPPORTS_SEEK := true
@@ -299,7 +299,7 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # SELinux
 HAVE_SELINUX := true
-BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
+BOARD_SEPOLICY_DIRS += device/asus/mofd-common/sepolicy
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
@@ -330,7 +330,7 @@ USE_MINIKIN := true
 EXTENDED_FONT_FOOTPRINT := true
 
 BLOCK_BASED_OTA := false
-BOARD_CUSTOM_MAKE_RECOVERY_PATCH := vendor/intel/hardware/libintelprov/make_recovery_patch
+#BOARD_CUSTOM_MAKE_RECOVERY_PATCH := vendor/intel/hardware/libintelprov/make_recovery_patch
 TARGET_RELEASETOOLS_EXTENSIONS := device/asus/a500cg/releasetools
 TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools/make_recovery_patch
 #TARGET_RELEASETOOLS_EXTENSIONS := vendor/intel/hardware/libintelprov
@@ -358,8 +358,8 @@ ENABLE_SENSOR_HUB := true
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
+#BOARD_CHARGER_SHOW_PERCENTAGE := true
+#BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 
 # Define platform battery healthd library
@@ -467,7 +467,7 @@ TARGET_USES_LOGD := false
 TARGET_HAVE_CWS := true
 
 #Enable exfat
-VOLD_ENABLE_EXFAT := true
+#VOLD_ENABLE_EXFAT := true
 
 #ASF
 #USE_INTEL_ASF_EXTRACTOR := true
@@ -482,3 +482,6 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/pci0000:00/0000:00:00.3/i2c-0/0-0020/in
 
 #Disable damn Jack compiler
 ANDROID_COMPILE_WITH_JACK := false
+BOARD_USES_DRM_HWCOMPOSER := true
+COMMON_GLOBAL_CFLAGS += -DGFX_BUF_EXT
+BOARD_USES_LIBDRM := true
