@@ -34,3 +34,281 @@ ro.asus.amax.lite=1
 ro.config.hwrlib=T9_x86
 ro.config.xt9ime.max_subtype=7
 persist.sampling_profiler=1
+
+# Performance tweaks
+debug.enabletr=true
+debug.qctwa.preservebuf=1
+dev.pm.dyn_samplingrate=1
+video.accelerate.hw=1
+ro.vold.umsdirtyratio=20
+debug.overlayui.enable=1
+debug.egl.hw=1
+ro.fb.mode=1
+hw3d.force=1
+persist.sys.ui.hw=1
+ro.sf.compbypass.enable=0
+debug.sf.hw=1
+debug.composition.type=c2d
+persist.sys.composition.type=c2d
+debug.performance.tuning=1
+debug.enabletr=true
+persist.android.strictmode=0
+ro.min_pointer_dur=1
+ro.secure=0
+
+# Better battery
+lifeusb_wakeup=enable
+proximity_incall=enable
+power_supply.wakeup=enable
+ro.config.hw_power_saving=1
+ro.config.hw_fast_dormancy=1
+ro.config.hw_quickpoweron=true
+persist.sys.use_dithering=0
+pm.sleep_mode=1
+ro.ril.disable.power.collapse=0
+ro.ril.fast.dormancy.rule=0
+
+# improve battery under no signal
+ro.mot.eri.losalert.delay=1000
+
+#Better signal reception
+persist.cust.tel.eons=1
+ro.config.hw_fast_dormancy=1
+
+# Signal Tweaks
+persist.cust.tel.eons=1
+ro.ril.gprsclass=10
+ro.ril.hsdpa.category=8
+ro.ril.hsupa.category=6
+ro.ril.hsxpa=1
+
+#Better internet browsing & download speed
+net.tcp.buffersize.default=4096,87380,256960,4096, 16384,256960
+net.tcp.buffersize.wifi=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.umts=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.gprs=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.edge=4096,87380,256960,4096,163 84,256960
+net.tcp.buffersize.hspa=6144,87380,524288,6144,163 84,262144
+net.tcp.buffersize.lte=524288,1048576,2097152,5242 88,1048576,2097152
+net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,8 7380,1048576
+net.tcp.buffersize.evdo_b=6144,87380,1048576,6144, 87380,1048576
+
+# Wireless Tweaks
+net.ipv4.ip_no_pmtu_disc=0
+net.ipv4.route.flush=1
+net.ipv4.tcp_ecn=0
+net.ipv4.tcp_fack=1
+net.ipv4.tcp_mem=187000 187000 187000
+net.ipv4.tcp_moderate_rcvbuf=1
+net.ipv4.tcp_no_metrics_save=1
+net.ipv4.tcp_rfc1337=1
+net.ipv4.tcp_rmem=4096 39000 187000
+net.ipv4.tcp_sack=1
+net.ipv4.tcp_timestamps=1
+net.ipv4.tcp_window_scaling=1
+net.ipv4.tcp_wmem=4096 39000 187000
+
+# Frees More RAM
+persist.sys.purgeable_assets=1
+
+# Fix Some App Force Closures
+ro.kernel.android.checkjni=0
+
+# Better Responsiveness & Speed
+windowsmgr.max_events_per_sec=150
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000 
+fw.max_users=3
+fw.show_multiuserui=1
+
+# Decrease Boot Time
+ro.config.hw_quickpoweron=true 
+persist.sys.shutdown.mode=hibernate 
+dev.bootcomplete=0
+
+# Screen Density
+ro.sf.lcd_density=280
+
+# Home in Memory
+ro.HOME_APP_ADJ=1
+
+# Make Launcher Rotate
+log.tag.launcher_force_rotate=VERBOSE
+lockscreen.rot_override=true
+
+#Faster Boot-Animation FPS
+boot.fps=20
+
+# Dialing Tweaks
+ro.telephony.call_ring.delay=0
+ro.lge.proximity.delay=25
+mot.proximity.delay=25
+
+# Smoother video streaming and tweak media
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-record=false
+
+# Increase camera's photo and video recording quality
+ro.media.dec.aud.wma.enabled=1
+ro.media.dec.vid.wmv.enabled=1
+
+# Miscellaneous Tweaks for performance
+ro.config.hw_menu_unlockscreen=false
+ro.mot.eri.losalert.delay=1000
+ro.telephony.sms_segment_size=160
+
+#Minimum brightness of your screen
+ro.lcd_min_brightness=1
+
+# Increase some Performance
+ro.product.gpu.driver=1
+ENFORCE_PROCESS_LIMIT=false
+ro.wmt.blcr.enable=0
+
+# Game tweaks
+persist.sys.NV_FPSLIMIT=75
+persist.sys.NV_POWERMODE=1
+persist.sys.NV_PROFVER=15
+persist.sys.NV_STEREOCTRL=0
+persist.sys.NV_STEREOSEPCHG=0
+persist.sys.NV_STEREOSEP=20
+persist.sys.purgeable_assets=1
+htc.audio.alt.enable=0
+htc.audio.hac.enable=0
+ro.config.hw_quickpoweron=true
+
+#Disable Miscellaneous Android Logging Stuff
+debugtool.anrhistory=0
+profiler.debugmonitor=false
+profiler.launch=false
+profiler.hung.dumpdobugreport=false
+
+#Enable ADB Debugging By Default & Disable USB Debugging Popup
+persist.adb.notify=0
+persist.service.adb.enable=1
+persist.service.debuggable=1
+persist.sys.usb.config=mtp,adb
+
+#Disable Logers
+ro.config.htc.nocheckin=1
+ro.config.nocheckin=1
+
+#Disable Kernel Error Checking
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+
+#DHA tunning
+ro.config.dha_tunnable=1
+
+#Disable Strict Mode Checking
+persist.android.strictmode=0
+
+# Support For IPV4 and IPV6
+persist.telephony.support.ipv6=1
+persist.telephony.support.ipv4=1
+
+# Other Tweaks
+ro.config.hw_new_wifitopdp=1
+vm.dirty_ratio=90
+vm.dirty_background_ratio=70
+vm.vfs_cache_pressure=10
+vm.min_free_kbytes=4096
+
+#ADD
+mot.proximity.delay=25
+pm.sleep_mode=1
+ro.config.nocheckin=1
+ro.lge.proximity.delay=25
+
+# Bass audio props for Lolipop
+tunnel.decode=false
+persist.sys.media.use-awesome=1
+sys.keep_app_1=com.bel.android.dspmanager
+ro.audio.samplerate=48000
+ro.audio.pcm.samplerate=48000
+af.resample=52000
+
+# Enable 16bit Transparency
+persist.sys.use_16bpp_alpha=1
+
+# Panorama quality
+ro.media.panorama.defres=3264x1840
+ro.media.panorama.frameres=1280x720
+
+#Liquid Smooth Ui
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
+ro.ril.enable.a52=1
+ro.ril.enable.a53=0
+
+# Better Flashlight intensity and camera-flash quality
+ro.media.capture.flash=led
+ro.media.capture.flashMinV=3300000
+ro.media.capture.torchIntensity=40
+ro.media.capture.flashIntensity=70
+ro.media.capture.maxres=8m
+ro.media.capture.fast.fps=4
+ro.media.capture.slow.fps=120
+ro.media.panorama.defres=3264x1840
+ro.media.panorama.frameres=1280x720
+ro.camcorder.videoModes=true
+
+#Enable Quick Power-On Mode To Reduce Boot-Time
+ro.config.hw_quickpoweron=true
+persist.sys.shutdown.mode=hibernate
+
+#Tether/Hotspot Tweak
+ro.tether.denied=false
+
+# Increase camera's photo and video recording quality
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.hprof.vid.bps=8000000
+ro.media.enc.hprof.vid.fps=65
+ro.media.enc.jpeg.quality=100
+
+# faster youtube
+ro.ril.hep=1
+
+# System prop to select audio resampler quality
+af.resampler.quality=255
+
+# For the default value of agps
+ro.ril.def.agps.mode=2
+ro.ril.def.agps.feature=1
+
+#Gps
+ro.com.google.locationfeatures=1
+ro.com.google.networklocation=1
+htc.audio.alt.enable=0
+htc.audio.hac.enable=0
+
+#LuanHalaiko Fps Boost
+debug.egl.swapinterval=0
+
+# Zram Tweaks
+#persist.service.zram=0
+#ro.zram.default=0
+
+#Nitro lag Nullifier ACTIVITY
+INACTIVE_RESET_TIME=false 
+APP_SWITCH_DELAY_TIME=false 
+CONTENT_APP_IDLE_OFFSET=false 
+CPU_MIN_CHECK_DURATION=false 
+EMPTY_APP_IDLE_OFFSET=false 
+ENFORCE_PROCESS_LIMIT=false 
+GC_TIMEOUT=false 
+MAX_ACTIVITIES=false 
+MAX_HIDDEN_APPS=false 
+MAX_PROCESSES=false 
+MAX_RECENT_TASKS=false 
+MAX_SERVICE_INACTIVITY=false 
+MIN_CRASH_INTERVAL=false 
+MIN_HIDDEN_APPS=false 
+MIN_RECENT_TASKS=false 
+PROC_START_TIMEOUT=false 
+SERVICE_TIMEOUT=false
