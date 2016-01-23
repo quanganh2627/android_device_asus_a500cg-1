@@ -4,5 +4,12 @@ type pvrsrvctl_exec, exec_type, file_type;
 init_daemon_domain(pvrsrvctl)
 # allow access to /dev/dri/card0
 allow pvrsrvctl gpu_device:chr_file rw_file_perms;
+
 # allow graphics driver initialization
-allow pvrsrvctl self:capability {sys_admin sys_module};
+allow pvrsrvctl self:capability sys_admin;
+# enable pipe communication between appdomain processes and
+# surfaceflinger for gralloc subchannel feature (dynamic fbc)
+allow bootanim surfaceflinger:fifo_file rw_file_perms;
+allow system_server surfaceflinger:fifo_file rw_file_perms;
+allow appdomain surfaceflinger:fifo_file rw_file_perms;
+allow mediaserver surfaceflinger:fifo_file rw_file_perms;

@@ -1,9 +1,9 @@
-type bluetooth_control, dev_type;
+#type bluetooth_control, dev_type;
 type asec_image_file_ext, data_file_type, file_type;
 type ecryptfs, fs_type;
 type log_file, file_type;
 type thermal_socket, file_type;
-type config_file, file_type;
+#type config_file, file_type;
 type factory_file, file_type;
 type mmgr_socket, file_type;
 type mmgr_exec, exec_type, file_type;
@@ -18,7 +18,7 @@ type crashlogd_tmpfs, file_type;
 
 type wlan_prov_exec, exec_type;
 
-type bd_prov_exec, exec_type;
+#type bd_prov_exec, exec_type;
 
 type fg_conf_exec, exec_type;
 type bcu_cpufreqrel_exec, exec_type, file_type;
