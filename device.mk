@@ -32,7 +32,7 @@ PRODUCT_MODEL := ASUS_T00F
 PRODUCT_DEVICE := a500cg
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
+	LOCAL_KERNEL := device/asus/a500cg/kernel
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -498,10 +498,10 @@ PRODUCT_PACKAGES += \
 # Keep using openssl
 PRODUCT_PACKAGE += \
   openssl \
-  libssl \
-  libcrypto \
-  libssl-host \
-  libcrypto-host
+  libssl_openssl \
+  libcrypto_openssl \
+  libssl_openssl-host \
+  libcrypto_openssl-host
 
 
 ############################### property ##########################
