@@ -1,0 +1,4 @@
+type akmd_a600cg, domain;
+type akmd_a600cg_exec, exec_type, file_type;
+init_daemon_domain(akmd_a600cg);
+allow akmd_a600cg sensors_device:chr_file {open read write ioctl};
