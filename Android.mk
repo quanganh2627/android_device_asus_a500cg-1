@@ -20,7 +20,7 @@
 # to only building on ARM if they include assembly. Individual makefiles
 # are responsible for having their own logic, for fine-grained control.
 
-ifeq ($(TARGET_DEVICE),a500cg)
+ifneq ($(filter a500cg,$(TARGET_DEVICE)),)
 LOCAL_PATH := $(call my-dir)
 
 #include $(CLEAR_VARS)
@@ -73,7 +73,21 @@ LOCAL_PATH := $(call my-dir)
 #
 #include $(BUILD_PREBUILT)
 #
+#LOCAL_ADDITIONAL_DEPENDENCIES :=  device/asus/a500cg/openssl-prebuilt/Android.mk
+
+#include $(call all-named-subdir-makefiles, openssl-prebuilt libmultidisplay libintel-updater power prebuilts intel-boot-tools)
 include $(call first-makefiles-under,$(LOCAL_PATH))
 include $(call all-makefiles-under,$(LOCAL_PATH))
+# Add sepdk driver
+-include vendor/intel/tools/PRIVATE/debug_internal_tools/sepdk/src/AndroidSEP.mk
+-include linux/modules/debug_tools/vtunedk/src/pax/AndroidPAX.mk
 
+# Add vtunedk: sep3_xx, vtsspp drivers. PAX driver will be used from sepdk.
+-include linux/modules/debug_tools/vtunedk/src/AndroidSEP.mk
+-include linux/modules/debug_tools/vtunedk/src/vtsspp/AndroidVTSSPP.mk
+
+# Testbox - Only for engineering and userdebug
+ifneq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
+-include linux/modules/PRIVATE/testbox/AndroidTB.mk
+endif
 endif
