@@ -1,2 +1,4 @@
 allow sysfs_uart_power_ctrl sysfs:filesystem associate;
 type sysfs_thermal_management,fs_type, sysfs_type;
+#============= sysfs_devices_system_cpu ==============
+allow sysfs_devices_system_cpu sysfs:filesystem associate;

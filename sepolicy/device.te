@@ -6,10 +6,11 @@ type gauge_device, dev_type;
 
 type mmgr, domain;
 type sep_device, dev_type;
-type i2c_device, dev_type;
+#type i2c_device, dev_type;
 type switch_ctrl_device, dev_type;
 
 type securitymanager_service, service_manager_type;
 type securityfile_service, service_manager_type;
 type cws_service, service_manager_type;
 type hwc_service, service_manager_type;
+allow drmserver gpu_device:chr_file rw_file_perms;
