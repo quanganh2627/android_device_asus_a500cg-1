@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 LOCAL_IS_HOST_MODULE := true
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_TAGS := optional
-OVERRIDE_BUILT_MODULE_PATH := $(HOST_OUT)/bin
+#OVERRIDE_BUILT_MODULE_PATH := $(HOST_OUT)/bin
 LOCAL_UNINSTALLABLE_MODULE:=
 LOCAL_SRC_FILES := pack_intel
 LOCAL_BUILT_MODULE_STEM := pack_intel
@@ -47,7 +47,7 @@ include $(BUILD_PREBUILT)
 #LOCAL_UNINSTALLABLE_MODULE := true
 #
 #include $(BUILD_HOST_EXECUTABLE)
-#$(call dist-for-goals,dist_files,$(LOCAL_BUILT_MODULE))
+$(call dist-for-goals,dist_files,$(LOCAL_BUILT_MODULE))
 #include $(call-all-makefiles-under,$(LOCAL_PATH))
 
 #BOOT_TOOLS_PATH := device/asus/a500cg/intel-boot-tools
