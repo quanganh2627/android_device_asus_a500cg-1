@@ -76,4 +76,15 @@ include $(BUILD_PREBUILT)
 include $(call first-makefiles-under,$(LOCAL_PATH))
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+-include vendor/intel/tools/PRIVATE/debug_internal_tools/sepdk/src/AndroidSEP.mk
+-include linux/modules/debug_tools/vtunedk/src/pax/AndroidPAX.mk
+
+# Add vtunedk: sep3_xx, vtsspp drivers. PAX driver will be used from sepdk.
+-include linux/modules/debug_tools/vtunedk/src/AndroidSEP.mk
+-include linux/modules/debug_tools/vtunedk/src/vtsspp/AndroidVTSSPP.mk
+
+# Testbox - Only for engineering and userdebug
+ifneq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
+-include linux/modules/PRIVATE/testbox/AndroidTB.mk
+endif
 endif

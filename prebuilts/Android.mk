@@ -176,7 +176,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := AsusCamera/AsusCamera.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := media
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
 LOCAL_PRIVILEGED_MODULE := true
 
@@ -246,17 +246,17 @@ LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
 ###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := ZooperWidget
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := ZooperWidget/ZooperWidget.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#
+#LOCAL_MODULE := ZooperWidget
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_SRC_FILES := ZooperWidget/ZooperWidget.apk
+#LOCAL_MODULE_CLASS := APPS
+#LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+#LOCAL_CERTIFICATE := PRESIGNED
+#
+#include $(BUILD_PREBUILT)
 ###############################################################################
 include $(CLEAR_VARS)
 
@@ -374,17 +374,17 @@ LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
 ###############################################################################
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := Themer
-LOCAL_MODULE_TAGS := optional
-LOCAL_SRC_FILES := Themer/Themer.apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#
+#LOCAL_MODULE := Themer
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_SRC_FILES := Themer/Themer.apk
+#LOCAL_MODULE_CLASS := APPS
+#LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+#LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+#LOCAL_CERTIFICATE := PRESIGNED
+#
+#include $(BUILD_PREBUILT)
 ###############################################################################
 include $(CLEAR_VARS)
 
@@ -442,3 +442,30 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := PRESIGNED
 
 include $(BUILD_PREBUILT)
+###############################################################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := ZenUIHelp
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := ZenUIHelp/ZenUIHelp.apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_PATH := $(TARGET_OUT_APPS)
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_CERTIFICATE := PRESIGNED
+
+include $(BUILD_PREBUILT)
+###############################################################################
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := AsusZenUIServices
+LOCAL_MODULE_OWNER := asus
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := AsusZenUIServices/AsusZenUIServices.apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_MODULE_PATH:=$(TARGET_OUT_APPS_PRIVILEGED)
+LOCAL_PRIVILEGED_MODULE := true
+
+include $(BUILD_PREBUILT)
+

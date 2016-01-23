@@ -18,7 +18,7 @@
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
-
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit common CM stuff
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -147,8 +147,8 @@ PRODUCT_COPY_FILES += \
 
 #GPS FIX
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gpsd:system/bin/gpsd   
-  
+    $(LOCAL_PATH)/configs/gpsd:system/bin/gpsd
+
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.sf.lcd_density=320 \
   ro.opengles.version = 131072
@@ -267,25 +267,42 @@ PRODUCT_PACKAGES += \
 
 #ZenUI set
 PRODUCT_PACKAGES += \
+  AsusKeyboard \
+  libjni_xt9input \
+  AsusFMService \
+  OemTelephonyApp \
+  AsusBackup \
+  ASUSGalleryBurst \
+  libjni_picbest_static \
+  libjni_piclear_static \
+  libgifencoder \
+  3CToolbox \
   PCLinkManager \
+  AsusInputDevices \
   AsusCalculator \
   AsusCamera \
+  ASUSGallery \
+  libjni_face_effect \
+  libgif \
+  libjni_face_detection \
+  libjni_filter_show \
+  SepService \
   SMMI_TEST \
-  AsusKeyboard \
-  3CToolbox \
+  AsusFMRadio \
+  AsusLauncher \
+  libkcmutil \
+  ICEsoundService \
   PCLinkBinary \
   ASUSBrowser \
-  AsusDrawRes \
-  ASUSGallery \
-  ASUSGalleryBurst \
-  OemTelephonyApp \
-  SARManager \
   SensorCal \
-  SepService \
+  AsusDrawRes \
+  MyASUS \
+  libBaiduMapSDK_v2_4_1 \
+  libbdpush_V2_2 \
   CWSClientService \
-  Themer \
-  ZooperWidget \
-  ICEsoundService
+  SARManager \
+  ZenUIHelp \
+  AsusZenUIServices \
 
 #ituxd for intel thermal management
 ENABLE_ITUXD := true
@@ -545,7 +562,8 @@ PRODUCT_PACKAGES += \
 #  fmreceiverif \
 #  com.ti.fm.fmreceiverif.xml
 
-
+# Turn on genarate changelog om repo
+MAKE_CHANGELOG := true
 
 ############################### property ##########################
 

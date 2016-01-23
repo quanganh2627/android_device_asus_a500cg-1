@@ -36,7 +36,7 @@ BUILD_EMULATOR := false
 # enable ARM codegen for x86 with Houdini
 INTEL_HOUDINI := true
 BUILD_ARM_FOR_X86 := true
-ADDITIONAL_BUILD_PROPERTIES +=
+ADDITIONAL_BUILD_PROPERTIES += \
     ro.dalvik.vm.isa.arm=x86 \
     ro.enable.native.bridge.exec=1 \
     ro.dalvik.vm.native.bridge=libhoudini.so
@@ -50,7 +50,10 @@ TARGET_BOARD_PLATFORM := clovertrail
 TARGET_BOOTLOADER_BOARD_NAME := clovertrail
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1363148800
+BOARD_CACHEIMAGE_PARTITION_SIZE := 536870912
 BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 17825792
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 17825792
 
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 
@@ -69,7 +72,9 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm:/system/lib/arm/
 
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
+TARGET_KERNEL_SOURCE_IS_PRESENT := true
 TARGET_KERNEL_SOURCE := linux/kernel
+KERNEL_SRC_DIR := linux/kernel
 #TARGET_KERNEL_CONFIG := build69_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
 TARGET_KERNEL_CONFIG := cm_a500cg_defconfig
@@ -85,9 +90,8 @@ KERNEL_SOC := ctp
 KERNEL_CCSLOP := $(filter-out time_macros,$(subst $(comma), ,$(CCACHE_SLOPPINESS)))
 KERNEL_CCSLOP := $(subst $(space),$(comma),$(KERNEL_CCSLOP))
 CCACHE_SLOPPINESS := $(KERNEL_CCSLOP)
-KERNEL_BLD_FLAGS := \
+#KERNEL_BLD_FLAGS := \
     ARCH=$(KERNEL_ARCH) \
-    INSTALL_MOD_PATH=../modules_install \
     INSTALL_MOD_STRIP=1 \
     LOCALVERSION=$(KERNEL_ARCH)_$(KERNEL_SOC) \
     $(KERNEL_EXTRA_FLAGS)
@@ -96,6 +100,88 @@ KERNEL_BLD_FLAGS := \
 # Add early definition here
 PRODUCT_OUT ?= out/target/product/$(TARGET_DEVICE)
 HOST_OUT ?= out/host/$(HOST_OS)-$(HOST_PREBUILT_ARCH)
+
+### See upstream patch:
+### https://android-review.googlesource.com/#/c/64639/
+### Define in bsp until merged
+# Macro to add include directories of modules in pathmap_INCL
+# relative to root of source tree. Usage:
+# $(call add-path-map, project1:path1)
+# OR
+# $(call add-path-map, \
+#        project1:path1 \
+#        project2:path1)
+#
+define add-path-map
+$(eval pathmap_INCL += \
+    $(foreach path, $(1), \
+        $(if $(filter $(firstword $(subst :, ,$(path))):%, $(pathmap_INCL)), \
+            $(error Duplicate AOSP path map $(path)), \
+            $(path) \
+         ) \
+     ) \
+ )
+endef
+
+#Extend the AOSP path includes
+$(call add-path-map, stlport:external/stlport/stlport \
+        alsa-lib:external/alsa-lib/include \
+        libxml2:external/libxml2/include \
+        webcore-icu:external/webkit/Source/WebCore/icu \
+        tinyalsa:external/tinyalsa/include \
+        core-jni:frameworks/base/core/jni \
+        vss:frameworks/av/libvideoeditor/vss/inc \
+        vss-common:frameworks/av/libvideoeditor/vss/common/inc \
+        vss-mcs:frameworks/av/libvideoeditor/vss/mcs/inc \
+        vss-stagefrightshells:frameworks/av/libvideoeditor/vss/stagefrightshells/inc \
+        lvpp:frameworks/av/libvideoeditor/lvpp \
+        osal:frameworks/av/libvideoeditor/osal/inc \
+        frameworks-base-core:frameworks/base/core/jni \
+        frameworks-av:frameworks/av/include \
+        frameworks-openmax:frameworks/native/include/media/openmax \
+        jpeg:external/jpeg \
+        skia:external/skia/include \
+        sqlite:external/sqlite/dist \
+        opencv-cv:external/opencv/cv/include \
+        opencv-cxcore:external/opencv/cxcore/include \
+        opencv-ml:external/opencv/ml/include \
+        libstagefright:frameworks/av/media/libstagefright/include \
+        libstagefright-rtsp:frameworks/av/media/libstagefright/rtsp \
+        libmediaplayerservice:frameworks/av/media/libmediaplayerservice \
+        gtest:external/gtest/include \
+        frameworks-base-libs:frameworks/base/libs \
+        frameworks-av-services:frameworks/av/services \
+        tinycompress:external/tinycompress/include \
+        libnfc-nci:external/libnfc-nci/src/include \
+        libnfc-nci_hal:external/libnfc-nci/src/hal/include \
+        libnfc-nci_nfc:external/libnfc-nci/src/nfc/include \
+        libnfc-nci_nfa:external/libnfc-nci/src/nfa/include \
+        libnfc-nci_gki:external/libnfc-nci/src/gki \
+        libc-private:bionic/libc/private \
+        icu4c-common:external/icu/icu4c/source/common \
+        expat-lib:external/expat/lib \
+        libvpx:external/libvpx \
+        protobuf:external/protobuf/src \
+        zlib:external/zlib \
+        openssl:external/openssl/include \
+        libnl-headers:external/libnl-headers \
+        system-security:system/security/keystore/include/keystore \
+        libpcap:external/libpcap \
+        libsensorhub:vendor/intel/hardware/libsensorhub/src/include \
+        libsensorhub_ish:vendor/intel/hardware/libsensorhub/src_ish/include \
+        icu4c-i18n:external/icu/icu4c/source/i18n \
+        bt-bluez:system/bluetooth/bluez-clean-headers \
+        astl:external/astl/include \
+        libusb:external/libusb/libusb \
+        libc-kernel:bionic/libc/kernel \
+        libc-x86:bionic/libc/arch-x86/include \
+        strace:external/strace \
+        bionic:bionic \
+        opengl:frameworks/native/opengl/include \
+        libstagefright-wifi-display:frameworks/av/media/libstagefright/wifi-display \
+        libffi:external/libffi/include \
+        libffi-x86:external/libffi/linux-x86)
+
 
 
 
@@ -245,7 +331,7 @@ BOARD_USES_HWCOMPOSER := true
 RIL_SUPPORTS_SEEK := true
 
 # GPS
-BOARD_HAVE_GPS := true
+BOARD_HAS_GPS_HARDWARE := true
 GPS_CHIP_VENDOR := bcm
 GPS_CHIP := 4752
 include device/intel/common/gps/GpsBoardConfig.mk
@@ -396,9 +482,10 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 # Hardware
 BOARD_HARDWARE_CLASS := device/asus/a500cg/cmhw
 #BOARD_PROVIDES_INIT := true
-ENABLE_SENSOR_HUB := true
+#ENABLE_SENSOR_HUB := true
+#ENABLE_SENSOR_HUB_ISH := true
 #ENABLE_SCALABLE_SENSOR_HAL := false
-ENABLE_SCALABLE_SENSOR_HAL := true
+#ENABLE_SCALABLE_SENSOR_HAL_ISH := true
 BOARD_FUNCTIONFS_HAS_SS_COUNT := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
