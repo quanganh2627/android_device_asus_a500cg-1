@@ -20,10 +20,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "fw_version_check.h"
 
@@ -169,7 +170,7 @@ err:
  * 00 SCU RT Firmware Minor Revision
  * 01 SCU RT Firmware Major Revision
  * 02 SCU ROM Firmware Minor Revision
- * 03 SCU ROM Firmware Major Revision 
+ * 03 SCU ROM Firmware Major Revision
  * 04 P-unit Microcode Minor Revision
  * 05 P-unit Microcode Major Revision
  * 06 IA-32 Firmware Minor Revision
