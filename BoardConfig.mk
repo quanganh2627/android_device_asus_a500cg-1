@@ -384,52 +384,52 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # SELinux
 HAVE_SELINUX := true
-BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy device/intel/sepolicy
+BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
 
-#BOARD_SEPOLICY_UNION += \
-#    file_contexts \
-#    seapp_contexts \
-#    property_contexts \
-#    service_contexts \
-#    file.te \
-#    device.te \
-#    ecryptfs.te \
-#    genfs_contexts \
-#    vold.te \
-#    surfaceflinger.te \
-#    zygote.te \
-#    pvrsrvctl.te \
-#    bluetooth.te \
-#    surfaceflinger.te \
-#    system_app.te \
-#    file.te \
-#    shell.te \
-#    mediaserver.te \
-#    nvm_server.te \
-#    su.te   \
-#    system_server.te \
-#    service.te \
-#    mmgr.te \
-#    init.te \
-#    kernel.te \
-#    sysfs_uart_power_ctrl.te \
-#    ueventd.te \
-#    logcat.te \
-#    netd.te \
-#    wpa.te \
-#    rild.te \
-#    akmd.te \
-#    akmd_a600cg.te \
-#    gauge.te \
-#    customize.te \
-#    untrusted_app.te \
-#    intel_prop.te \
-#    gpsd.te \
-#    dpst.te \
-#    pclink.te \
-#    sensors.te \
-#    isolated_app.te \
-#    app.te
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    seapp_contexts \
+    property_contexts \
+    service_contexts \
+    file.te \
+    device.te \
+    ecryptfs.te \
+    genfs_contexts \
+    vold.te \
+    surfaceflinger.te \
+    zygote.te \
+    pvrsrvctl.te \
+    bluetooth.te \
+    surfaceflinger.te \
+    system_app.te \
+    file.te \
+    shell.te \
+    mediaserver.te \
+    nvm_server.te \
+    su.te   \
+    system_server.te \
+    service.te \
+    mmgr.te \
+    init.te \
+    kernel.te \
+    sysfs_uart_power_ctrl.te \
+    ueventd.te \
+    logcat.te \
+    netd.te \
+    wpa.te \
+    rild.te \
+    akmd.te \
+    akmd_a600cg.te \
+    gauge.te \
+    customize.te \
+    untrusted_app.te \
+    intel_prop.te \
+    gpsd.te \
+    dpst.te \
+    pclink.te \
+    sensors.te \
+    isolated_app.te \
+    app.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true
@@ -466,7 +466,7 @@ TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools
 #TARGET_RELEASETOOLS_EXTENSIONS := vendor/intel/hardware/libintelprov
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
-TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,cm_a500cg,cm_a501cg,ASUS_T00F,ASUS_T00J,a600cg,cm_a600cg,ASUS_T00G
+TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,aicp_a500cg,aicp_a501cg,ASUS_T00F,ASUS_T00J,a600cg,aicp_a600cg,ASUS_T00G
 
 TARGET_RECOVERY_UPDATER_EXTRA_LIBS += \
 #    libcgpt_static \
