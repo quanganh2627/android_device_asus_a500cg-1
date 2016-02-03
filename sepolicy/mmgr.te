@@ -21,6 +21,7 @@ allow mmgr zygote_exec:file {getattr read open execute};
 allow mmgr sysfs:file write;
 
 #log
+type log_file, file_type;
 allow mmgr log_file:file {write read open unlink getattr};
 allow mmgr system_data_file:dir { add_name create remove_name write};
 allow mmgr system_data_file:file {create write open unlink };
