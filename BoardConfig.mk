@@ -73,7 +73,7 @@ PRODUCT_LIBRARY_PATH := $(PRODUCT_LIBRARY_PATH):/system/lib/arm:/system/lib/arm/
 # Inline kernel building
 TARGET_KERNEL_BUILT_FROM_SOURCE := true
 TARGET_KERNEL_SOURCE_IS_PRESENT := true
-TARGET_KERNEL_SOURCE := linux/kernel
+#TARGET_KERNEL_SOURCE := linux/kernel
 KERNEL_SRC_DIR := linux/kernel
 #TARGET_KERNEL_CONFIG := build69_defconfig
 #TARGET_KERNEL_SOURCE := kernel/asus/a500cg/kernel
@@ -198,7 +198,7 @@ $(call add-path-map, stlport:external/stlport/stlport \
 # prebuild source kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
 BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
+TARGET_PREBUILT_KERNEL := device/asus/a500cg/kernel
 DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
 DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
 
@@ -384,52 +384,55 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 
 # SELinux
 HAVE_SELINUX := true
-BOARD_SEPOLICY_DIRS += device/asus/a500cg/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/asus/a500cg/sepolicy \
+    vendor/aicp/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
+    genfs_contexts \
     seapp_contexts \
     property_contexts \
     service_contexts \
-    file.te \
-    device.te \
-    ecryptfs.te \
-    genfs_contexts \
-    vold.te \
-    surfaceflinger.te \
-    zygote.te \
-    pvrsrvctl.te \
-    bluetooth.te \
-    surfaceflinger.te \
-    system_app.te \
-    file.te \
-    shell.te \
-    mediaserver.te \
-    nvm_server.te \
-    su.te   \
-    system_server.te \
-    service.te \
-    mmgr.te \
     init.te \
-    kernel.te \
-    sysfs_uart_power_ctrl.te \
-    ueventd.te \
-    logcat.te \
+    su.te \
+    system_server.te \
+    app.te \
     netd.te \
-    wpa.te \
-    rild.te \
-    akmd.te \
-    akmd_a600cg.te \
-    gauge.te \
+    healthd.te \
+    bluetooth.te \
+    nvm_server.te \
+    ecryptfs.te \
+    kernel.te \
     customize.te \
-    untrusted_app.te \
-    intel_prop.te \
-    gpsd.te \
-    dpst.te \
-    pclink.te \
-    sensors.te \
     isolated_app.te \
-    app.te
+    akmd_a600cg.te \
+    sysfs_uart_power_ctrl.te \
+    system_server.te.orig \
+    ueventd.te \
+    device.te \
+    system_app.te \
+    untrusted_app.te \
+    mmgr.te \
+    pclink.te \
+    file.te \
+    service.te \
+    sensors.te \
+    intel_prop.te \
+    gauge.te \
+    pvrsrvctl.te \
+    akmd.te \
+    vold.te \
+    zygote.te \
+    dpst.te \
+    gpsd.te \
+    surfaceflinger.te \
+    wpa.te \
+    logcat.te \
+    rild.te \
+    fs_use \
+    mediaserver.te \
+    shell.te
 
 # Build From source
 ENABLE_IMG_GRAPHICS := true

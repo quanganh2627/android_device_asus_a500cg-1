@@ -473,7 +473,7 @@ PRODUCT_PACKAGES += \
 # OemTelephony for OEM HOOK API
 PRODUCT_PACKAGES += \
     OemTelephonyApp \
-    com.intel.internal.telephony.MmgrClient
+#    com.intel.internal.telephony.MmgrClient
 
 PRODUCT_PACKAGE_OVERLAYS := \
   device/intel/common/overlays_extensions
