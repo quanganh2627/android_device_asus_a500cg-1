@@ -469,7 +469,7 @@ PRODUCT_PACKAGES += \
 	CWSClientService \
 	CwsServiceMgr \
 	CWS_SERVICE_MANAGER
-
+$(call inherit-product-if-exists,  prebuilts/intel-prebuilt/Android.mk)
 # OemTelephony for OEM HOOK API
 PRODUCT_PACKAGES += \
     OemTelephonyApp \
@@ -569,7 +569,7 @@ MAKE_CHANGELOG := true
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs
 # before they have a chance to cause problems.
 # Default=true for development builds, set by android buildsystem.
-PRODUCT_PROPERTY_DEFAULTOVERRIDES += \
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
     dalvik.vm.checkjni=false
 
@@ -583,6 +583,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
   wifi.version.driver=5.90.195.89.38 \
   gps.version.driver=6.19.6.216527 \
   bt.version.driver=V10.00.01 \
+  ro.epad.mount_point.microsd=/storage/MicroSD
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \

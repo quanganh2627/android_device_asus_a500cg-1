@@ -17,7 +17,7 @@ $(call inherit-product, vendor/aicp/configs/common.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
 # Get the long list of APNs
 #PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
-PRODUCT_COPY_FILES := device/asus/a500cg/configs/apns-conf.xml:system/etc/apns-conf.xml
+#PRODUCT_COPY_FILES := device/asus/a500cg/configs/apns-conf.xml:system/etc/apns-conf.xml
 
 # Inherit device configsuration change remove aosp full
 $(call inherit-product, device/asus/a500cg/full_a500cg.mk)
