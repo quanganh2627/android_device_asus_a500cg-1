@@ -588,8 +588,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
   persist.sys.root_access=3
   wifi.version.driver=5.90.195.89.38 \
   gps.version.driver=6.19.6.216527 \
-  bt.version.driver=V10.00.01 \
-  ro.epad.mount_point.microsd=/storage/MicroSD
+  bt.version.driver=V10.00.01
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.dalvik.vm.isa.arm=x86 \
