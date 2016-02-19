@@ -48,7 +48,7 @@ ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
 ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
     $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
 include $(BUILD_PREBUILT)
-    
+
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES    := ramdisk/sbin/healthd
 LOCAL_MODULE       := healthd
@@ -82,6 +82,8 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 # Add vtunedk: sep3_xx, vtsspp drivers. PAX driver will be used from sepdk.
 -include linux/modules/debug_tools/vtunedk/src/AndroidSEP.mk
 -include linux/modules/debug_tools/vtunedk/src/vtsspp/AndroidVTSSPP.mk
+-include linux/modules/debug_tools/socwatchdk/src/AndroidSOCWatchDK.mk
+-include linux/modules/debug_tools/powerdk/src/AndroidPowerDK.mk
 
 # Testbox - Only for engineering and userdebug
 ifneq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
