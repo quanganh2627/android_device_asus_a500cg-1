@@ -104,17 +104,21 @@ $(KERNEL_CONFIG_KDUMP): $(KERNEL_DEFCONFIG) $(wildcard $(COMMON_PATH)/kdump_defc
 	@mkdir -p $(KERNEL_OUT_DIR_KDUMP)
 	@cat $^ > $@
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS_KDUMP) oldconfig
-openssl : $(HOST_OUT)/bin/openssl
 ifeq (,$(filter build_kernel-nodeps,$(MAKECMDGOALS)))
-$(KERNEL_BZIMAGE): openssl $(MINIGZIP)
+$(KERNEL_BZIMAGE):  $(MINIGZIP)
 endif
 
 $(KERNEL_BZIMAGE): $(KERNEL_CONFIG)
 	@rm -f $@
+#include device/asus/a500cg/openssl-prebuilt/Android.mk
+ifeq (,$(filter build_kernel-nodeps,$(MAKECMDGOALS)))
+$(KERNEL_BZIMAGE): $(KERNEL_CONFIG) openssl $(MINIGZIP)
+endif
+$(KERNEL_BZIMAGE):
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS)
 	@cp -f $(KERNEL_OUT_DIR)/arch/x86/boot/bzImage $@
 
-build_bzImage_kdump: $(KERNEL_CONFIG_KDUMP) openssl $(MINIGZIP)
+build_bzImage_kdump: $(KERNEL_CONFIG_KDUMP) $(MINIGZIP)
 	@echo Building the kdump bzimage
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS_KDUMP)
 	@cp -f $(KERNEL_OUT_DIR_KDUMP)/arch/x86/boot/bzImage $(PRODUCT_OUT)/kdumpbzImage
@@ -205,4 +209,3 @@ endef
 
 .PHONY: menuconfig xconfig gconfig get_kernel_from_source
 .PHONY: copy_modules_to_root $(KERNEL_BZIMAGE) modules_install headers_install clean_kernel
-

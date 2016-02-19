@@ -23,57 +23,8 @@
 ifeq ($(TARGET_DEVICE),a500cg)
 LOCAL_PATH := $(call my-dir)
 
-#include $(CLEAR_VARS)
-#LOCAL_MODULE       := init
-#LOCAL_SRC_FILES    := ramdisk/init
-#LOCAL_MODULE_CLASS := ETC
-#LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-#LOCAL_UNSTRIPPED_PATH := $(TARGET_ROOT_OUT_UNSTRIPPED)
-# Make a symlink from /sbin/ueventd and /sbin/watchdogd to /init
-#SYMLINKS := \
-#	$(TARGET_ROOT_OUT)/sbin/ueventd \
-#	$(TARGET_ROOT_OUT)/sbin/watchdogd
-#
-#$(SYMLINKS): INIT_BINARY := $(LOCAL_MODULE)
-#$(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
-#	@echo "Symlink: $@ -> ../$(INIT_BINARY)"
-#	@mkdir -p $(dir $@)
-#	@rm -rf $@
-#	$(hide) ln -sf ../$(INIT_BINARY) $@
-#
-#ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
-#
-# We need this so that the installed files could be picked up based on the
-# local module name
-#ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
-#    $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
-#include $(BUILD_PREBUILT)
-#
-#include $(CLEAR_VARS)
-#LOCAL_SRC_FILES    := ramdisk/sbin/healthd
-#LOCAL_MODULE       := healthd
-#LOCAL_MODULE_CLASS := ETC
-#LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)/sbin
-#LOCAL_UNSTRIPPED_PATH := $(TARGET_ROOT_OUT_UNSTRIPPED)/sbin
-# Symlink /charger to /sbin/healthd
-#SYMLINKS := \
-#	$(TARGET_ROOT_OUT)/charger
-#$(SYMLINKS): HEALTHD_BINARY := $(LOCAL_MODULE)
-#$(SYMLINKS): $(LOCAL_INSTALLED_MODULE) $(LOCAL_PATH)/Android.mk
-#	@echo "Symlink: $@ -> sbin/$(HEALTHD_BINARY)"
-#	@mkdir -p $(dir $@)
-#	@rm -rf $@
-#	$(hide) ln -sf sbin/$(HEALTHD_BINARY) $@
-#
-#ALL_DEFAULT_INSTALLED_MODULES += $(SYMLINKS)
-# We need this so that the installed files could be picked up based on the
-# local module name
-#ALL_MODULES.$(LOCAL_MODULE).INSTALLED := \
-#    $(ALL_MODULES.$(LOCAL_MODULE).INSTALLED) $(SYMLINKS)
-#
-#include $(BUILD_PREBUILT)
-#
 include $(CLEAR_VARS)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 include $(call first-makefiles-under,$(LOCAL_PATH))
+
 endif
