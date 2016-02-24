@@ -162,7 +162,7 @@ PRODUCT_PACKAGES += \
   houdini \
   arm_dyn \
   arm_exe
-#include vendor/intel/houdini/houdini.mk
+include vendor/intel/houdini/houdini.mk
 # usb
 PRODUCT_PACKAGES += \
   com.android.future.usb.accessory
@@ -185,8 +185,8 @@ PRODUCT_PACKAGES += \
 
 # Keyhandler
 PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler \
-    CMActions
+    com.cyanogenmod.keyhandler
+#    CMActions
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -473,7 +473,8 @@ $(call inherit-product-if-exists,  prebuilts/intel-prebuilt/Android.mk)
 # OemTelephony for OEM HOOK API
 PRODUCT_PACKAGES += \
     OemTelephonyApp \
-#    com.intel.internal.telephony.MmgrClient
+    com.intel.internal.telephony.MmgrClient \
+	com.intel.internal.telephony.MmgrClient.xml
 
 PRODUCT_PACKAGE_OVERLAYS := \
   device/intel/common/overlays_extensions
@@ -552,6 +553,11 @@ PRODUCT_PACKAGES += \
   libaudio_stream_manager_static_host \
   libaudiohw_intel \
   libaudiohw_intel_host
+
+#Using prebuilt webview to produce build-time
+PRODUCT_PACKAGES += \
+    libwebviewchromium_plat_support \
+    libwebviewchromium_loader
 
 #libenc
 #PRODUCT_PACKAGES += \

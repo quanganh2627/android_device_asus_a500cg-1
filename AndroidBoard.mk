@@ -8,7 +8,6 @@ endif
 ifeq ($(TARGET_KERNEL_SOURCE_IS_PRESENT),true)
 #Kernel rules (build from source, or from tarball
 #$(call inherit-product, device/asus/a500cg/openssl-prebuilt/Android.mk)
-include device/asus/a500cg/AndroidKernel.mk
 build_kernel: get_kernel_from_source
 else
 build_kernel: get_kernel_from_tarball
@@ -22,6 +21,8 @@ bootimage: $(INSTALLED_KERNEL_TARGET) $(INSTALLED_RAMDISK_TARGET)
 
 $(INSTALLED_KERNEL_TARGET): build_kernel
 $(INSTALLED_RAMDISK_TARGET): build_kernel
+include device/asus/a500cg/AndroidKernel.mk
+
 #for Intel icc
 export ANDROID_SYSROOT :=
 export ANDROID_GNU_X86_TOOLCHAIN :=
