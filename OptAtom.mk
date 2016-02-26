@@ -7,9 +7,9 @@ ARCH_X86_HAVE_SSSE3 := true
 ARCH_X86_HAVE_MOVBE := true
 ARCH_X86_HAVE_POPCNT := false
 TARGET_GLOBAL_CFLAGS += \
-                        -O2 \
+                        -O3 \
                         -flto \
-                        -march=atom \
+                        -march=bonnell \
                         -mmmx \
                         -msse \
                         -msse2 \
