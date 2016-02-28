@@ -34,7 +34,6 @@ BOARD_SKIP_ANDROID_DOC_BUILD := true
 BUILD_EMULATOR := false
 
 # enable ARM codegen for x86 with Houdini
-INTEL_HOUDINI := true
 BUILD_ARM_FOR_X86 := true
 ADDITIONAL_BUILD_PROPERTIES += 
     ro.dalvik.vm.isa.arm=x86 \
