@@ -21,9 +21,6 @@ $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/full_x86.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
 
 LOCAL_PATH := device/asus/a500cg
 

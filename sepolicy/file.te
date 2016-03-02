@@ -38,3 +38,25 @@ type themepack_module_file, data_file_type, file_type;
 type fdctool, domain, mlstrustedsubject;
 type fdctool_exec, exec_type, file_type;
 type fdctool_tmpfs, file_type;
+type config_file, file_type;
+
+
+#============= dumpstate ==============
+allow dumpstate proc_cpuinfo:file mounton;
+
+#============= shell ==============
+allow shell self:netlink_kobject_uevent_socket { create setopt };
+allow shell vold_exec:file { read execute open execute_no_trans };
+allow shell vold_prop:property_service set;
+
+#============= sudaemon ==============
+allow sudaemon fg_conf_exec:file getattr;
+allow sudaemon logcat_exec:file getattr;
+
+
+#============= init ==============
+allow init system_file:dir relabelfrom;
+allow init system_file:file relabelfrom;
+
+#============= sysinit ==============
+allow sysinit cgroup:dir { create add_name };
