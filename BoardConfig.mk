@@ -18,7 +18,7 @@ TARGET_CPU_ABI := x86
 TARGET_CPU_ABI2 := armeabi-v7a
 TARGET_CPU_ABI_LIST := x86,armeabi-v7a,armeabi
 TARGET_CPU_ABI_LIST_32_BIT := x86,armeabi-v7a,armeabi
-TARGET_CPU_SMP := true
+#TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := x86
 
 INTEL_INGREDIENTS_VERSIONS := true
