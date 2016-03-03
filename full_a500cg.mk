@@ -24,7 +24,6 @@ $(call inherit-product, device/asus/a500cg/device.mk)
 #$(call inherit-product, vendor/asus/a500cg/a500cg-vendor.mk)
 #$(call inherit-product-if-exists, vendor/google/gapps/gapps.mk)
 # Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 
 PRODUCT_NAME := full_a500cg
