@@ -18,7 +18,7 @@
 $(call inherit-product-if-exists, vendor/asus/a500cg/a500cg-vendor.mk)
 
 #include $(call inherit-product, device/asus/a500cg/intel-boot-tools/Android.mk)
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/full_x86.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -28,13 +28,13 @@ PRODUCT_BRAND := asus
 PRODUCT_MODEL := ASUS_T00F
 PRODUCT_DEVICE := a500cg
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/asus/a500cg/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#	LOCAL_KERNEL := device/asus/a500cg/kernel
+#else
+#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_KERNEL):kernel
 
 #TARGET_RECOVERY_PREBUILT_KERNEL := $(LOCAL_KERNEL)
 
@@ -53,10 +53,10 @@ CUSTOM_SUPERUSER = SuperSu
 BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
 BOARD_CUSTOM_MKBOOTIMG := device/asus/a500cg/intel-boot-tools/boot.mk
 #include device/asus/a500cg/intel-boot-tools/Android.mk
-TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
+#TARGET_PREBUILT_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
 DEVICE_BASE_BOOT_IMAGE := device/asus/a500cg/blobs/boot_60.img
 DEVICE_BASE_RECOVERY_IMAGE := device/asus/a500cg/blobs/recovery_60.img
-$(call transform-prebuilt-to-target,device/asus/a500cg/intel-boot-tools/pack_intel,$(HOST_OUT_EXECUTABLES))
+#$(call transform-prebuilt-to-target,device/asus/a500cg/intel-boot-tools/pack_intel,$(HOST_OUT_EXECUTABLES))
 
 # specific management of audio_policy.conf
 PRODUCT_COPY_FILES += \
@@ -125,8 +125,8 @@ PRODUCT_COPY_FILES += \
   frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
   frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
   frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
-  frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.xml \
-  frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.gps.xml \
+  frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
+  frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
   frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
   frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
   frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
