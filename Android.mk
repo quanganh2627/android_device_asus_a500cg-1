@@ -24,6 +24,13 @@ ifeq ($(TARGET_DEVICE),a500cg)
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+# prebuild source kernel
+#BOARD_CUSTOM_BOOTIMG_MK := device/asus/a500cg/intel-boot-tools/boot.mk
+BOARD_CUSTOM_MKBOOTIMG := $(HOST_OUT_EXECUTABLES)/pack_intel$(HOST_EXECUTABLE_SUFFIX)
+#TARGET_PREBUILT_KERNEL := device/asus/a500cg/kernel
+DEVICE_BASE_BOOT_IMAGE := $(LOCAL_PATH)/blobs/boot_60.img
+DEVICE_BASE_RECOVERY_IMAGE := $(LOCAL_PATH)/blobs/recovery_60.img
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 include $(call first-makefiles-under,$(LOCAL_PATH))
 
