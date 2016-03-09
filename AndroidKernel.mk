@@ -89,12 +89,20 @@ KERNEL_DIFFCONFIG ?= $(TARGET_DEVICE_DIR)/$(TARGET_DEVICE)_diffconfig
 KERNEL_VERSION_FILE := $(KERNEL_OUT_DIR)/include/config/kernel.release
 KERNEL_VERSION_FILE_KDUMP := $(KERNEL_OUT_DIR_KDUMP)/include/config/kernel.release
 KERNEL_BZIMAGE := $(PRODUCT_OUT)/kernel
+KERNEL_OUT_STAMP := $(KERNEL_OUT_DIR)/.mkdir_stamp
+KERNEL_HEADERS_INSTALL_STAMP := $(KERNEL_OUT_DIR)/.headers_install_stamp
 
-$(KERNEL_CONFIG): $(KERNEL_DEFCONFIG) $(wildcard $(KERNEL_DIFFCONFIG))
-	@echo Regenerating kernel config $(KERNEL_OUT_DIR)
+$(KERNEL_OUT_STAMP):
 	@mkdir -p $(KERNEL_OUT_DIR)
+	@rm -rf $(KERNEL_OUT_MODINSTALL)
+	@rm -rf $(KERNEL_OUT_HDRINSTALL)
 	@mkdir -p $(KERNEL_OUT_MODINSTALL)
-	@mkdir -p $(KERNEL_OUT_HDRINSTALL)
+    @mkdir -p $(KERNEL_OUT_HDRINSTALL)
+	@touch $@
+
+
+$(KERNEL_CONFIG): $(KERNEL_OUT_STAMP) $(KERNEL_DEFCONFIG) $(wildcard $(KERNEL_DIFFCONFIG))
+	@echo Regenerating kernel config $(KERNEL_OUT_DIR)
 	@cat $^ > $@
 	@! $(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS) listnewconfig | grep -q CONFIG_ ||  \
 		(echo "There are errors in defconfig $^, please run cd $(KERNEL_SRC_DIR) && ./scripts/updatedefconfigs.sh" ; exit 1)
@@ -108,13 +116,7 @@ ifeq (,$(filter build_kernel-nodeps,$(MAKECMDGOALS)))
 $(KERNEL_BZIMAGE):  $(MINIGZIP)
 endif
 
-$(KERNEL_BZIMAGE): $(KERNEL_CONFIG)
-	@rm -f $@
-#include device/asus/a500cg/openssl-prebuilt/Android.mk
-ifeq (,$(filter build_kernel-nodeps,$(MAKECMDGOALS)))
-$(KERNEL_BZIMAGE): $(KERNEL_CONFIG) openssl $(MINIGZIP)
-endif
-$(KERNEL_BZIMAGE):
+$(KERNEL_BZIMAGE): $(KERNEL_OUT_STAMP) $(KERNEL_CONFIG) $(MINIGZIP)
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS)
 	@cp -f $(KERNEL_OUT_DIR)/arch/x86/boot/bzImage $@
 
@@ -123,11 +125,12 @@ build_bzImage_kdump: $(KERNEL_CONFIG_KDUMP) $(MINIGZIP)
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS_KDUMP)
 	@cp -f $(KERNEL_OUT_DIR_KDUMP)/arch/x86/boot/bzImage $(PRODUCT_OUT)/kdumpbzImage
 
-modules_install: $(KERNEL_BZIMAGE)
+modules_install: $(KERNEL_OUT_STAMP) $(KERNEL_BZIMAGE)
 	@mkdir -p $(KERNEL_OUT_MODINSTALL)
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS) modules_install
 
-headers_install: modules_install
+headers_install: $(KERNEL_OUT_STAMP) $(KERNEL_CONFIG)
+	@rm -rf $(KERNEL_OUT_HDRINSTALL)
 	@mkdir -p $(KERNEL_OUT_HDRINSTALL)
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS) headers_install
 
@@ -137,7 +140,7 @@ clean_kernel:
 #need to do this to have a modules.dep correctly set.
 #it is not optimized (copying all modules for each rebuild) but better than kernel-build.sh
 #fake depmod with a symbolic link to have /lib/modules/$(version_tag)/xxxx.ko
-copy_modules_to_root: $(KERNEL_BZIMAGE) modules_install headers_install
+copy_modules_to_root: $(KERNEL_OUT_STAMP) $(KERNEL_BZIMAGE) modules_install headers_install
 	@$(RM) -rf $(KERNEL_MODULES_ROOT)
 	@mkdir -p $(KERNEL_MODULES_ROOT)
 	@find $(KERNEL_OUT_MODINSTALL)/lib/modules/`cat $(KERNEL_VERSION_FILE)` -name "*.ko" -exec cp -f {} $(KERNEL_MODULES_ROOT)/ \;
@@ -150,7 +153,8 @@ get_kernel_from_source: copy_modules_to_root
 
 #ramdisk depends on kernel modules
 $(PRODUCT_OUT)/ramdisk.img: copy_modules_to_root
-#$(PRODUCT_OUT)/obj/KERNEL_OBJ/usr: copy_modules_to_root
+$(PRODUCT_OUT)/obj/KERNEL_OBJ/usr: copy_modules_to_root
+
 menuconfig xconfig gconfig: $(KERNEL_CONFIG)
 	@$(KERNEL_BLD_ENV) $(MAKE) -C $(KERNEL_SRC_DIR) $(KERNEL_BLD_FLAGS) $@
 ifeq ($(wildcard $(KERNEL_DIFFCONFIG)),)
