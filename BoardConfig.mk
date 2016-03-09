@@ -331,9 +331,10 @@ EXTENDED_FONT_FOOTPRINT := true
 BLOCK_BASED_OTA := false
 #BOARD_CUSTOM_MAKE_RECOVERY_PATCH := vendor/intel/hardware/libintelprov/make_recovery_patch
 TARGET_RELEASETOOLS_EXTENSIONS := device/asus/a500cg/releasetools
-TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := device/asus/a500cg/releasetools/make_recovery_patch
+TARGET_RELEASETOOL_MAKE_RECOVERY_PATCH_SCRIPT := $(TARGET_RELEASETOOLS_EXTENSIONS)/make_recovery_patch
+BOARD_CUSTOM_MAKE_RECOVERY_PATCH := $(TARGET_RELEASETOOLS_EXTENSIONS)/make_recovery_patch
 #TARGET_RELEASETOOLS_EXTENSIONS := vendor/intel/hardware/libintelprov
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/a500cg/releasetools/ota_from_target_files
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := $(TARGET_RELEASETOOLS_EXTENSIONS)/ota_from_target_files
 TARGET_RECOVERY_UPDATER_LIBS += libintel_updater
 TARGET_OTA_ASSERT_DEVICE := a500cg,a501cg,aicp_a500cg,aicp_a501cg,ASUS_T00F,ASUS_T00J,a600cg,aicp_a600cg,ASUS_T00G
 

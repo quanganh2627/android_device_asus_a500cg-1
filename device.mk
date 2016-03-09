@@ -29,11 +29,7 @@ PRODUCT_MODEL := ASUS_T00F
 PRODUCT_DEVICE := a500cg
 
 #ifeq ($(TARGET_PREBUILT_KERNEL),)
-<<<<<<< HEAD
 #	LOCAL_KERNEL := device/asus/a500cg/kernel
-=======
-#	LOCAL_KERNEL := device/asus/a500cg/blobs/bzImage-boot-newDTW
->>>>>>> 8ab3edf... Provide own Kernel Makefile to support inline kernel building
 #else
 #	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 #endif
