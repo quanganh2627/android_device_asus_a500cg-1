@@ -31,16 +31,16 @@ bootimage: $(INSTALLED_KERNEL_TARGET) $(INSTALLED_RAMDISK_TARGET)
 $(INSTALLED_KERNEL_TARGET): build_kernel
 $(INSTALLED_RAMDISK_TARGET): build_kernel
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
--include vendor/intel/tools/PRIVATE/debug_internal_tools/sepdk/src/AndroidSEP.mk
--include linux/modules/debug_tools/vtunedk/src/pax/AndroidPAX.mk
+#-include vendor/intel/tools/PRIVATE/debug_internal_tools/sepdk/src/AndroidSEP.mk
+#-include linux/modules/debug_tools/vtunedk/src/pax/AndroidPAX.mk
 
-# Add vtunedk: sep3_xx, vtsspp drivers. PAX driver will be used from sepdk.
--include linux/modules/debug_tools/vtunedk/src/AndroidSEP.mk
--include linux/modules/debug_tools/vtunedk/src/vtsspp/AndroidVTSSPP.mk
--include linux/modules/debug_tools/socwatchdk/src/AndroidSOCWatchDK.mk
--include linux/modules/debug_tools/powerdk/src/AndroidPowerDK.mk
+## Add vtunedk: sep3_xx, vtsspp drivers. PAX driver will be used from sepdk.
+#-include linux/modules/debug_tools/vtunedk/src/AndroidSEP.mk
+#-include linux/modules/debug_tools/vtunedk/src/vtsspp/AndroidVTSSPP.mk
+#-include linux/modules/debug_tools/socwatchdk/src/AndroidSOCWatchDK.mk
+#-include linux/modules/debug_tools/powerdk/src/AndroidPowerDK.mk
 
-# Testbox - Only for engineering and userdebug
-ifneq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
--include linux/modules/PRIVATE/testbox/AndroidTB.mk
-endif
+## Testbox - Only for engineering and userdebug
+#ifneq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
+#-include linux/modules/PRIVATE/testbox/AndroidTB.mk
+#endif
