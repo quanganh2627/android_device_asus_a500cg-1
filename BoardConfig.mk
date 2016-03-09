@@ -2,7 +2,7 @@
 COMMON_PATH := device/intel/common
 SUPPORT_PATH := vendor/intel/support
 #include $(COMMON_PATH)/BoardConfig.mk
-
+REF_DEVICE_NAME := redhookbay
 LOCAL_PATH := device/asus/a500cg
 
 BOARD_CREATE_MODPROBE_SYMLINK := true
