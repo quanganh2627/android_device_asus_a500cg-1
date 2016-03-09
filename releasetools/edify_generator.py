@@ -14,7 +14,7 @@
 
 import os
 import re
-
+sys.path.insert(0, './build/tools/releasetools')
 import common
 
 class EdifyGenerator(object):
